@@ -1,7 +1,7 @@
 const botconfig = require("./botconfig.json");
+const fetch = require("node-fetch");
 
 module.exports = async (bot) => {
-    const fetch = require("node-fetch")
     fetch(`https://infinitybotlist.com/api/bots/725582436477698118`, {
         method: "POST",
         headers: {
