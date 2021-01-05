@@ -18,10 +18,24 @@ module.exports = async (bot) => {
         })
     }).then(async(res) => {
         const result = await res.json();
+        const { error, message } = result;
         const statsEmbed = new MessageEmbed()
-            .setColor(botconfig.color)
-            .addField(`Posted Stats - ${today.format("MMM Do YYYY")}`, `\`\`\`json\n${result}\n\`\`\``)
-            .setTimestamp();
+            if(error === true) {
+                statsEmbed.setColor("RED")
+                statsEmbed.addField("Error?", "Yes")
+                statsEmbed.addField("Response", message)
+            } else {
+                statsEmbed.setColor("GREEN")
+                statsEmbed.addField("Error?", "No")
+                statsEmbed.addField("Response", message)
+            }
+            statsEmbed.setFooter(today.format("MMM Do YYYY"))
+            statsEmbed.setTimestamp();
         iblHook.send(statsEmbed)
+        // const statsEmbed = new MessageEmbed()
+        //     .setColor(botconfig.color)
+        //     .addField(`Posted Stats - ${today.format("MMM Do YYYY")}`, `\`\`\`json\n${result}\n\`\`\``)
+        //     .setTimestamp();
+        // iblHook.send(statsEmbed)
     })
 }
