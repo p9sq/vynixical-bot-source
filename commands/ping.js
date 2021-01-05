@@ -1,25 +1,25 @@
-const Discord = require("discord.js");
-const { color } = require("../botconfig.json");
+const { stripIndents } = require("common-tags");
 
 module.exports.run = async (bot, message, args) => {
-    const msg = await message.channel.send("⌛ Pinging...")
+    const msg = await message.channel.send("<a:issue:792503404747423744> | Pinging...")
 
-        let embed = new Discord.MessageEmbed()
-        .setTitle("Pong! 🏓")
-        .setDescription([
-            `**Message:** \`${(msg.editedTimestamp || msg.createdTimestamp) - (message.editedTimestamp || message.createdTimestamp)}ms\``,
-            `${bot.ws.ping ? `**Websocket:** \`${Math.round(bot.ws.ping)}ms\`` : ''}`,
-            `**Total Shard(s):** \`${bot.ws.totalShards}\``
-        ].join("\n"))
-        .setColor(color)
-        .setTimestamp()
-        msg.edit(embed)
-        msg.edit("")
+    const msgSpeed = (msg.editedTimestamp || msg.createdTimestamp) - (message.editedTimestamp || message.createdTimestamp);
+    const websocketPing = Math.round(bot.ws.ping);
+    const botShards = bot.ws.totalShards;
+    const userPing = msg.createdTimestamp - new Date().getTime();
+
+    msg.edit(stripIndents`<a:fixed:792503399085768754> | **Pong!**
+    \`\`\`yaml
+    Message: ${msgSpeed}ms
+    Websocket: ${websocketPing}ms
+    Your Ping: ${userPing}ms
+    Total Shards: ${botShards}
+    \`\`\``)
 }
 
 module.exports.config = {
     name: "ping",
-    description: "Shows the message edit, and the websocket latency",
+    description: "Shows the message edit speed, websocket lantency, your ping, and the bots shards",
     usage: "ping",
     category: "Fun",
     example: "ping",

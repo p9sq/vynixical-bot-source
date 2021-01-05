@@ -14,7 +14,7 @@ if(!message.member.hasPermission("MANAGE_MESSAGES")) {
   if(!args[0]) return message.channel.send("Please specify the amount of messages you want to delete!")
   if(isNaN(args[0])) return message.channel.send("That is not a number!")
 
-  await message.channel.messages.fetch({limit: 100}).then(messages => {
+  await message.channel.messages.fetch({limit: args[0]}).then(messages => {
     message.channel.bulkDelete(messages)
   })
   message.channel.send(`<:allow:793205689753010217> **Successfully purged ${args[0]} messages**`).then(msg => msg.delete({ timeout: 4000 }))

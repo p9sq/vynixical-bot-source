@@ -13,20 +13,21 @@ module.exports.run = async (bot, message, args) => {
         message.channel.send(embed)
         } else {
 
-    if(!args[0]) return message.channel.send("<:maybe:793205689153093702> **Please specify a command to reload**")
+    if(!args[0]) return message.channel.send("<:maybe:793205689153093702> **You must input a command name**");
 
-    let commandName = args[0].toLowerCase()
+    let command = args[0].toLowerCase();
 
     try {
-        delete require.cache[require.resolve(`./${commandName}.js`)]
-        bot.commands.delete(commandName)
-        const pull = require(`./${commandName}.js`)
-        bot.commands.set(commandName, pull)
-    } catch(e) {
-        return message.channel.send(`<:deny:793205689488900136> **Failed to reload ${args[0].toLowerCase()} command**`)
-    }
+        delete require.cache[require.resolve(`./${command}.js`)];
+        bot.commands.delete(command);
 
-    message.channel.send(`<:allow:793205689753010217> **Successfully reloaded ${args[0].toLowerCase()} command**`)
+        const pull = require(`./${command}.js`);
+        bot.commands.set(command, pull);
+
+        return message.channel.send(`<:allow:793205689753010217> **Successfully reloaded ${args[0].toLowerCase()} command**`);
+    } catch(error) {
+        return message.channel.send(`<:deny:793205689488900136> **Error while reloading ${args[0].toLowerCase()} command**: \`${error}\``);
+    }
 }
 }
 
