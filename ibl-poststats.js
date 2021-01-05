@@ -16,12 +16,28 @@ module.exports = async (bot) => {
             servers: bot.guilds.cache.size,
             shards: bot.ws.totalShards
         })
-    }).then(async(res) => {
-        const result = await res.json();
+    }).then(async(res) => await res.json()).then((data) => {
+        // const statsEmbed = new MessageEmbed()
+        //     .setColor(botconfig.color)
+        //     .addField(`Posted Stats - ${today.format("MMM Do YYYY")}`, `\`\`\`json\n${result}\n\`\`\``)
+        //     .setTimestamp();
+        // iblHook.send(statsEmbed)
         const statsEmbed = new MessageEmbed()
-            .setColor(botconfig.color)
-            .addField(`Posted Stats - ${today.format("MMM Do YYYY")}`, `\`\`\`json\n${result}\n\`\`\``)
-            .setTimestamp();
-        iblHook.send(statsEmbed)
+            if(data.error === true) {
+                statsEmbed
+                    .setColor("RED")
+                    .addField("Error?", "Yes")
+                    .addField("Response", data.message)
+                    .setTimestamp()
+                    .setFooter(today.format("MMM Do YYYY"))
+            } else {
+                statsEmbed
+                    .setColor("GREEN")
+                    .addField("Error?", "No")
+                    .addField("Response", data.message)
+                    .setTimestamp()
+                    .setFooter(today.format("MMM Do YYYY"))
+            }
+        iblHook.send(statsEmbed);
     })
 }
