@@ -20,7 +20,7 @@ module.exports = async (bot) => {
         const result = await res.json();
         const statsEmbed = new MessageEmbed()
             .setColor(botconfig.color)
-            .addField(`Posted Stats - ${today.format("MMM Do YY")}`, `\`\`\`json\n${result}\n\`\`\``)
+            .addField(`Posted Stats - ${today.format("MMM Do YYYY")}`, `\`\`\`json\n${result}\n\`\`\``)
             .setTimestamp();
         iblHook.send(statsEmbed)
     })
