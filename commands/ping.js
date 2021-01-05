@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args) => {
     const msgSpeed = (msg.editedTimestamp || msg.createdTimestamp) - (message.editedTimestamp || message.createdTimestamp);
     const websocketPing = Math.round(bot.ws.ping);
     const botShards = bot.ws.totalShards;
-    const userPing = msg.createdTimestamp - new Date().getTime();
+    const userPing = new Date().getTime() - msg.createdTimestamp;
 
     msg.edit(stripIndents`<a:fixed:792503399085768754> | **Pong!**
     \`\`\`yaml
