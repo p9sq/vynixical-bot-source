@@ -1,6 +1,7 @@
 const botconfig = require("../botconfig.json");
 const Discord = require("discord.js");
-const { Type } = require("@extreme_hero/deeptype");
+// const { Type } = require("@extreme_hero/deeptype");
+const { post } = require("node-superfetch");
 const { inspect } = require("util");
 
 module.exports.run = async (bot, message, args) => {
@@ -35,8 +36,8 @@ module.exports.run = async (bot, message, args) => {
         if (res.length < 2000) {
             await msg.reply(`*Executed in ${stop[0] > 0 ? `${stop[0]}s ` : ""}${stop[1] / 1e6}ms*\n\`\`\`js\n${res}\n\`\`\``);
         } else {
-            const output = new Discord.MessageAttachment(Buffer.from(res), "output.txt");
-            await msg.reply("The output was too big. I have posted it to a text document.", output);
+            const {body} = await post("https://hastebin.com/documents").send(res)
+            await msg.reply(`The output was too big. I have posted it https://hastebin.com/${body.key}.js`);
         }
     } catch (err) {
         return message.reply(`Error while evaluating: \`${bot.utils.clean(err)}\``);
