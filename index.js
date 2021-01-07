@@ -34,7 +34,7 @@ bot.on("ready", async () => {
   setInterval(() => bot.user.setPresence({activity: {name: status, type: "WATCHING"}, status: "online"}), 60000);
   setInterval(() => require("./ibl-poststats")(bot), 3e5);
   mongoose.connect("mongodb+srv://admin:pz1234567@snakeboy-uoihx.mongodb.net/SnakeBoy_events?retryWrites=true&w=majority", {useNewUrlParser: true,
-  useUnifiedTopology: true}).then(console.log(`Successfully connected to MongoDB`));
+  useUnifiedTopology: true}).then(console.log(`[${utc().format("HH:mm:ss")}] Successfully connected to MongoDB`));
   const current = new Date();
   const giveaways = await Giveaway.find({endsOn: {$gt: current}});
   await scheduleGiveaways(bot, giveaways);

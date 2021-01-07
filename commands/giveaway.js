@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const { color } = require("../botconfig.json");
 const ms = require("ms");
 const moment = require("moment");
-const { saveGiveaway, scheduleGiveaways } = require("../utils/functions");
+const { saveGiveaway, scheduleGiveaways } = require("../utils");
 
 const prompts = [
     "Give this giveaway a title!",
