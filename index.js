@@ -2,12 +2,12 @@ const botconfig = require("./botconfig.json");
 const mongoose = require("mongoose");
 const Discord = require("discord.js");
 const { utc } = require("moment");
-const { scheduleGiveaways, loadCommands, loadEvents } = require("./utils/functions");
+const { scheduleGiveaways, loadCommands, loadEvents } = require("./utils");
 const Giveaway = require("./models/giveaway");
 
 const bot = new Discord.Client({disableMentions: "everyone"});
 bot.setMaxListeners(0);
-bot.utils = require("./utils/functions");
+bot.utils = require("./utils");
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 bot.categories = new Discord.Collection();
@@ -19,7 +19,7 @@ process.on("uncaughtException", (error) => console.log(`[${utc().format("HH:mm:s
 process.on("uncaughtExceptionMonitor", (error) => console.log(`[${utc().format("HH:mm:ss")}] ${error}`));
 
 bot.on("ready", async () => {
-  console.log(`Logged in as ${bot.user.tag}`);
+  console.log(`[${utc().format("HH:mm:ss")}] Logged in as ${bot.user.tag}`);
   loadCommands(bot);
   loadEvents(bot);
   const statuses = [

@@ -1,7 +1,8 @@
-const Giveaway = require("../models/giveaway");
+const Giveaway = require("./models/giveaway");
 const schedule = require("node-schedule");
-const botconfig = require("../botconfig.json");
+const botconfig = require("./botconfig.json");
 const fs = require("fs");
+const { utc } = require("moment");
 
 async function saveGiveaway(response) {
     if(!response) throw new Error("Missing the response")
@@ -146,7 +147,7 @@ function loadCommands(bot) {
               bot.aliases.set(alias, pull.config.name)
           });
       });
-      console.log(`Successfully loaded ${bot.commands.size} commands`)
+      console.log(`[${utc().format("HH:mm:ss")}] Successfully loaded ${bot.commands.size} commands`)
   });
 }
 
@@ -161,7 +162,7 @@ function loadEvents(bot) {
             bot.events.set(evtName, evt);
             bot.on(evtName, evt.bind(null, bot));
         });
-        console.log(`Successfully loaded ${bot.events.size} events`)
+        console.log(`[${utc().format("HH:mm:ss")}] Successfully loaded ${bot.events.size} events`)
     });
 }
 
