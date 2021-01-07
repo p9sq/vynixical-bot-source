@@ -140,7 +140,7 @@ function loadCommands(bot) {
       }
   
       jsfile.forEach((f, i) => {
-          let pull = require(`../commands/${f}`);
+          let pull = require(`./commands/${f}`);
           bot.commands.set(pull.config.name, pull);
           bot.categories.set(pull.config.category, pull)
           pull.config.aliases.forEach(alias => {
@@ -157,7 +157,7 @@ function loadEvents(bot) {
         if (err) return console.error;
         files.forEach(file => {
             if (!file.endsWith('.js')) return;
-            const evt = require(`../events/${file}`);
+            const evt = require(`./events/${file}`);
             let evtName = file.split('.')[0];
             bot.events.set(evtName, evt);
             bot.on(evtName, evt.bind(null, bot));
