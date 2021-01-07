@@ -48,11 +48,6 @@ guildprefix.findOne({guildID: message.guild.id, guildName: message.guild.name}, 
   }
 })
 
-if(message.author.id === bot.user.id && message.content.includes(botconfig.token)) {
-  message.delete()
-  message.channel.send(message.content.replace(new RegExp(botconfig.google, "gi"), "*".repeat(botconfig.google.length)))
-}
-
 if(!guildData) {
   return;
 } else {
