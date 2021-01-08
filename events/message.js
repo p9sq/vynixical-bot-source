@@ -14,6 +14,20 @@ let num = 50;
 
 module.exports = async (bot, message) => {
 if(message.author.bot || message.channel.type === "dm") return;
+
+if(message.guild.id === "731049271926849556") {
+  if(message.channel.id === "749864488311980052") {
+    message.delete();
+    const embed = new Discord.MessageEmbed()
+      .setColor("GREEN")
+      .addField(`Suggestion by ${message.author.tag}`, message.content)
+    message.channel.send(embed).then(async(msg) => {
+      await msg.react("761037152532299797")
+      await msg.react("760961307221426246")
+    })
+  }
+}
+
 users.findOne({userID: message.author.id, guildID: message.guild.id}, (err, member) => {
 config.findOne({guildID: message.guild.id}, (err, lvl) => {
 userlevel.findOne({guildID: message.guild.id, userID: message.author.id}, (err, user) => {
