@@ -83,7 +83,7 @@ function encode(char) {
 
 function decode(char) {
     if(!char) throw new Error("Missing binary code")
-    if(!char instanceof String) throw new TypeError("The given parameter isn't a string")
+    if(!char instanceof Number) throw new TypeError("The given parameter isn't a number")
     return char.split(" ").map(str => String.fromCharCode(Number.parseInt(str, 2))).join("");
 }
 
@@ -182,8 +182,8 @@ function loadEvents(bot) {
 function insertCommands(bot, embed) {
     if(!bot) throw new Error("Missing the bot")
     if(!embed) throw new Error("Missing the embed")
-    if(!bot instanceof Client) throw new TypeError("The given parameter isn't a discord client")
-    if(!embed instanceof MessageEmbed) throw new TypeError("The given parameter isn't a discord message embed")
+    if(bot instanceof Client) throw new TypeError("The given parameter isn't a discord client")
+    if(embed instanceof MessageEmbed) throw new TypeError("The given parameter isn't a discord message embed")
     bot.categories.map(cat => {
         embed.addField(cat.config.category, bot.commands.filter(cmd => {
             cmd.config.category === cat.config.category
