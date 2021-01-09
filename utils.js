@@ -169,7 +169,31 @@ function loadEvents(bot) {
 function insertCommands(bot, embed) {
     if(!bot) throw new Error("Missing the bot")
     if(!embed) throw new Error("Missing the embed")
-    bot.categories.map(cat => embed.addField(cat.config.category, bot.commands.filter(cmd => cmd.config.category === cat.config.category).map(cmd => `\`${cmd.config.name}\``).join(", ")))
+    bot.categories.map(cat => {
+        embed.addField(cat.config.category, bot.commands.filter(cmd => {
+            cmd.config.category === cat.config.category
+        }).map(cmd => `\`${cmd.config.name}\``).join(", "))
+    })
+}
+
+function halfString(string) {
+    if(!string) throw new Error("Missing the string parameter")
+    const stringlen = string.length;
+    const halflen = stringlen / 2;
+    const hidden = string.slice(halflen);
+    const res = string.replace(hidden, "".repeat(hidden.length));
+  
+    return res
+}
+
+function halfHide(string) {
+    if(!string) throw new Error("Missing the string parameter")
+    const stringlen = string.length;
+    const halflen = stringlen / 2;
+    const hidden = string.slice(halflen);
+    const res = string.replace(hidden, "*".repeat(hidden.length));
+  
+    return res
 }
 
 module.exports = {
@@ -184,5 +208,7 @@ module.exports = {
     duration,
     loadCommands,
     loadEvents,
-    insertCommands
+    insertCommands,
+    halfString,
+    halfHide
 }
