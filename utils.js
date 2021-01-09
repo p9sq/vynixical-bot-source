@@ -3,6 +3,7 @@ const schedule = require("node-schedule");
 const botconfig = require("./botconfig.json");
 const fs = require("fs");
 const { utc } = require("moment");
+const { Client, MessageEmbed } = require("discord.js");
 
 async function saveGiveaway(response) {
     if(!response) throw new Error("Missing the response")
@@ -24,6 +25,7 @@ async function saveGiveaway(response) {
 async function scheduleGiveaways(bot, giveaways) {
     if(!bot) throw new Error("Missing bot")
     if(!giveaways) throw new Error("Missing giveaways array")
+    if(!bot instanceof Client) throw new TypeError("The given parameter isn't a discord client")
     for (let i = 0; i < giveaways.length; i++) {
         const { channelId, messageId, endsOn, prize } = giveaways[i];
         schedule.scheduleJob(endsOn, async () => {
@@ -54,6 +56,7 @@ async function scheduleGiveaways(bot, giveaways) {
 function determineWinners(users, max) {
     if(!users) throw new Error("Missing the winners")
     if(!max) throw new Error("Missing the max number of winners")
+    if(!max instanceof Number) throw new TypeError("Max winners must be a string")
     if(users.length <= max) return users;
     const numbers = new Set();
     const winnersArray = [];
@@ -71,6 +74,7 @@ function determineWinners(users, max) {
 
 function encode(char) {
     if(!char) throw new Error("Missing text")
+    if(!char instanceof String) throw new TypeError("The given parameter isn't a string")
     return char.split("").map(str => {
         const converted = str.charCodeAt(0).toString(2);
         return converted.padStart(8, "0");
@@ -79,16 +83,19 @@ function encode(char) {
 
 function decode(char) {
     if(!char) throw new Error("Missing binary code")
+    if(!char instanceof String) throw new TypeError("The given parameter isn't a string")
     return char.split(" ").map(str => String.fromCharCode(Number.parseInt(str, 2))).join("");
 }
 
 function capitalizeFirstLetter(string) {
     if(!string) throw new Error("Missing text")
+    if(!string instanceof String) throw new TypeError("Text must be a string")
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function clean(text) {
     if(!text) throw new Error("Missing text")
+    if(!text instanceof String) throw new TypeError("Text must be a string")
     if (typeof text === "string") {
         text = text
             .replace(/`/g, `\`${String.fromCharCode(8203)}`)
@@ -103,6 +110,8 @@ function clean(text) {
 function trimArray(arr, maxLen = 10) {
     if(!arr) throw new Error("Missing array")
     if(!maxLen) throw new Error("Missing the max length")
+    if(!arr instanceof Array) throw new TypeError("Array isn't a proper array")
+    if(!maxLen instanceof Number) throw new TypeError("Max length must be a number")
     if(arr.length > maxLen) {
         const len = arr.length - maxLen;
         arr = arr.slice(0, maxLen);
@@ -113,6 +122,7 @@ function trimArray(arr, maxLen = 10) {
 
 function formatBytes(bytes) {
     if(!bytes) throw new Error("Missing the bytes")
+    if(!bytes instanceof Number) throw new TypeError("Bytes must be a number")
     if(bytes === 0) return "0 Bytes";
     const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
     const i = Math.floor(Math.log(bytes) / Math.log(1024));
@@ -120,7 +130,8 @@ function formatBytes(bytes) {
 }
 
 function duration(ms) {
-    if(!ms) throw new Error("Missing 'ms'")
+    if(!ms) throw new Error("Missing the milliseconds")
+    if(!ms instanceof Number) throw new TypeError("Milliseconds must be a number")
     const sec = Math.floor((ms / 1000) % 60).toString()
     const min = Math.floor((ms / (1000 * 60)) % 60).toString()
     const hrs = Math.floor((ms / (1000 * 60 * 60)) % 60).toString()
@@ -130,6 +141,7 @@ function duration(ms) {
 
 function loadCommands(bot) {
     if(!bot) throw new Error("Missing the bot")
+    if(!bot instanceof Client) throw new TypeError("The given parameter isn't a discord client")
   fs.readdir("./commands/", (err, files) => {
   
       if(err) console.log(err)
@@ -153,6 +165,7 @@ function loadCommands(bot) {
 
 function loadEvents(bot) {
     if(!bot) throw new Error("Missing the bot")
+    if(!bot instanceof Client) throw new TypeError("The given parameter isn't a discord client")
     fs.readdir('./events/', (err, files) => {
         if (err) return console.error;
         files.forEach(file => {
@@ -169,6 +182,8 @@ function loadEvents(bot) {
 function insertCommands(bot, embed) {
     if(!bot) throw new Error("Missing the bot")
     if(!embed) throw new Error("Missing the embed")
+    if(!bot instanceof Client) throw new TypeError("The given parameter isn't a discord client")
+    if(!embed instanceof MessageEmbed) throw new TypeError("The given parameter isn't a discord message embed")
     bot.categories.map(cat => {
         embed.addField(cat.config.category, bot.commands.filter(cmd => {
             cmd.config.category === cat.config.category
@@ -178,6 +193,7 @@ function insertCommands(bot, embed) {
 
 function halfString(string) {
     if(!string) throw new Error("Missing the string parameter")
+    if(!string instanceof String) throw new TypeError("The given parameter isn't a string")
     const stringlen = string.length;
     const halflen = stringlen / 2;
     const hidden = string.slice(halflen);
@@ -188,6 +204,7 @@ function halfString(string) {
 
 function halfHide(string) {
     if(!string) throw new Error("Missing the string parameter")
+    if(!string instanceof String) throw new TypeError("The given parameter isn't a string")
     const stringlen = string.length;
     const halflen = stringlen / 2;
     const hidden = string.slice(halflen);
