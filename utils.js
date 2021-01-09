@@ -25,7 +25,7 @@ async function saveGiveaway(response) {
 async function scheduleGiveaways(bot, giveaways) {
     if(!bot) throw new Error("Missing bot")
     if(!giveaways) throw new Error("Missing giveaways array")
-    if(!bot instanceof Client) throw new TypeError("The given parameter isn't a discord client")
+    if(!bot instanceof Client) throw new TypeError("Client parameter must be a discord client")
     for (let i = 0; i < giveaways.length; i++) {
         const { channelId, messageId, endsOn, prize } = giveaways[i];
         schedule.scheduleJob(endsOn, async () => {
@@ -56,7 +56,7 @@ async function scheduleGiveaways(bot, giveaways) {
 function determineWinners(users, max) {
     if(!users) throw new Error("Missing the winners")
     if(!max) throw new Error("Missing the max number of winners")
-    if(!max instanceof Number) throw new TypeError("Max winners must be a string")
+    if(!max instanceof Number) throw new TypeError("Max winners must be a number")
     if(users.length <= max) return users;
     const numbers = new Set();
     const winnersArray = [];
@@ -74,7 +74,7 @@ function determineWinners(users, max) {
 
 function encode(char) {
     if(!char) throw new Error("Missing text")
-    if(!char instanceof String) throw new TypeError("The given parameter isn't a string")
+    if(!char instanceof String) throw new TypeError("Char must be a string")
     return char.split("").map(str => {
         const converted = str.charCodeAt(0).toString(2);
         return converted.padStart(8, "0");
@@ -83,13 +83,13 @@ function encode(char) {
 
 function decode(char) {
     if(!char) throw new Error("Missing binary code")
-    if(!char instanceof Number) throw new TypeError("The given parameter isn't a number")
+    if(!char instanceof Number) throw new TypeError("Char must be a number")
     return char.split(" ").map(str => String.fromCharCode(Number.parseInt(str, 2))).join("");
 }
 
 function capitalizeFirstLetter(string) {
     if(!string) throw new Error("Missing text")
-    if(!string instanceof String) throw new TypeError("Text must be a string")
+    if(!string instanceof String) throw new TypeError("String must be string")
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
@@ -141,7 +141,7 @@ function duration(ms) {
 
 function loadCommands(bot) {
     if(!bot) throw new Error("Missing the bot")
-    if(!bot instanceof Client) throw new TypeError("The given parameter isn't a discord client")
+    if(!bot instanceof Client) throw new TypeError("Client parameter must be a discord client")
   fs.readdir("./commands/", (err, files) => {
   
       if(err) console.log(err)
@@ -165,7 +165,7 @@ function loadCommands(bot) {
 
 function loadEvents(bot) {
     if(!bot) throw new Error("Missing the bot")
-    if(!bot instanceof Client) throw new TypeError("The given parameter isn't a discord client")
+    if(!bot instanceof Client) throw new TypeError("Client parameter must be a discord client")
     fs.readdir('./events/', (err, files) => {
         if (err) return console.error;
         files.forEach(file => {
@@ -182,18 +182,14 @@ function loadEvents(bot) {
 function insertCommands(bot, embed) {
     if(!bot) throw new Error("Missing the bot")
     if(!embed) throw new Error("Missing the embed")
-    if(!bot instanceof Client) throw new TypeError("The given parameter isn't a discord client")
-    if(!embed instanceof MessageEmbed) throw new TypeError("The given parameter isn't a discord message embed")
-    bot.categories.map(cat => {
-        embed.addField(cat.config.category, bot.commands.filter(cmd => {
-            cmd.config.category === cat.config.category
-        }).map(cmd => `\`${cmd.config.name}\``).join(", "))
-    })
+    if(!bot instanceof Client) throw new TypeError("Client parameter must be a discord client")
+    if(!embed instanceof MessageEmbed) throw new TypeError("Embed must be a discord message embed")
+    bot.categories.map(cat => embed.addField(cat.config.category, bot.commands.filter(cmd => cmd.config.category === cat.config.category).map(cmd => `\`${cmd.config.name}\``).join(", ")))
 }
 
 function halfString(string) {
     if(!string) throw new Error("Missing the string parameter")
-    if(!string instanceof String) throw new TypeError("The given parameter isn't a string")
+    if(!string instanceof String) throw new TypeError("String must be a string")
     const stringlen = string.length;
     const halflen = stringlen / 2;
     const hidden = string.slice(halflen);
@@ -204,7 +200,7 @@ function halfString(string) {
 
 function halfHide(string) {
     if(!string) throw new Error("Missing the string parameter")
-    if(!string instanceof String) throw new TypeError("The given parameter isn't a string")
+    if(!string instanceof String) throw new TypeError("String must be a string")
     const stringlen = string.length;
     const halflen = stringlen / 2;
     const hidden = string.slice(halflen);
