@@ -25,6 +25,7 @@ if(!message.member.hasPermission("MANAGE_GUILD")) {
                 .setColor("GREEN")
                 .addField(`Suggestion by ${message.author.tag}`, content)
             suggestion.edit(embed);
+            message.channel.send(`<:allow:793205689753010217> **The suggestion was successfully edited. New suggestion: ${content}**`)
         }
     }
 }
@@ -32,10 +33,10 @@ if(!message.member.hasPermission("MANAGE_GUILD")) {
 
 module.exports.config = {
     name: "editsuggestion",
-    description: "Shows the message edit speed, websocket lantency, your ping, and the bots shards",
-    usage: "ping",
-    category: "Fun",
-    example: "ping",
-    accessableby: "Everyone",
-    aliases: ["pingpong", "latency", "ms"]
+    description: "Edits the suggestion",
+    usage: "editsuggestion <userID> <messageID> <content>",
+    category: "Moderation",
+    example: "editsuggestion 490064230717063195 798323583956811777 This is better than that",
+    accessableby: "Admins",
+    aliases: ["es", "editsug"]
 }
