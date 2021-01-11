@@ -130,7 +130,7 @@ module.exports = async (guildMemberAdd, member) => {
                 .replace("{member}", `${member.user.tag}`)
                 .replace("{member}", `${member.user.tag}`)
                 .replace("{guild}", `${member.guild.name}`)
-                .replace("{memberCount:format}", formatNumber(member.guild.memberCount))
+                // .replace("{memberCount:format}", formatNumber(member.guild.memberCount))
                 .replace("{memberCount}", member.guild.memberCount);
               if(!image) {
                 channel.send(welmsg);
@@ -144,35 +144,35 @@ module.exports = async (guildMemberAdd, member) => {
     })
 }
 
-function formatNumber(number) {
-  let result;
+// function formatNumber(number) {
+//   let result;
 
-  if(number === "11") result = `${number}th`;
-  if(number === "101") result = `${number}th`;
-  if(number === "10") result = `${number}th`;
+//   if(number === "11") result = `${number}th`;
+//   if(number === "101") result = `${number}th`;
+//   if(number === "10") result = `${number}th`;
 
-  if(number.endsWith("0")) result = number;
+//   if(number.endsWith("0")) result = number;
 
-  if(number === "1") result = "1st";
-  if(number === "2") result = "2nd";
-  if(number === "3") result = "3rd";
-  if(number === "4") result = "4th";
-  if(number === "5") result = "5th";
-  if(number === "6") result = "6th";
-  if(number === "7") result = "7th";
-  if(number === "8") result = "8th";
-  if(number === "9") result = "9th";
-  if(number === "10") result = "10th";
+//   if(number === "1") result = "1st";
+//   if(number === "2") result = "2nd";
+//   if(number === "3") result = "3rd";
+//   if(number === "4") result = "4th";
+//   if(number === "5") result = "5th";
+//   if(number === "6") result = "6th";
+//   if(number === "7") result = "7th";
+//   if(number === "8") result = "8th";
+//   if(number === "9") result = "9th";
+//   if(number === "10") result = "10th";
 
-  if(number.endsWith("1")) result = `${number}st`;
-  if(number.endsWith("2")) result = `${number}nd`;
-  if(number.endsWith("3")) result = `${number}rd`;
-  if(number.endsWith("4")) result = `${number}th`;
-  if(number.endsWith("5")) result = `${number}th`;
-  if(number.endsWith("6")) result = `${number}th`;
-  if(number.endsWith("7")) result = `${number}th`;
-  if(number.endsWith("8")) result = `${number}th`;
-  if(number.endsWith("9")) result = `${number}th`;
+//   if(number.endsWith("1")) result = `${number}st`;
+//   if(number.endsWith("2")) result = `${number}nd`;
+//   if(number.endsWith("3")) result = `${number}rd`;
+//   if(number.endsWith("4")) result = `${number}th`;
+//   if(number.endsWith("5")) result = `${number}th`;
+//   if(number.endsWith("6")) result = `${number}th`;
+//   if(number.endsWith("7")) result = `${number}th`;
+//   if(number.endsWith("8")) result = `${number}th`;
+//   if(number.endsWith("9")) result = `${number}th`;
   
-  return result;
-}
+//   return result;
+// }
