@@ -13,6 +13,7 @@ bot.aliases = new Discord.Collection();
 bot.categories = new Discord.Collection();
 bot.snipes = new Discord.Collection();
 bot.events = new Discord.Collection();
+bot.suggestions = new Discord.Collection();
 
 process.on("unhandledRejection", (error) => console.log(`[${utc().format("HH:mm:ss")}] ${error}`));
 process.on("uncaughtException", (error) => console.log(`[${utc().format("HH:mm:ss")}] ${error}`));

@@ -17,6 +17,7 @@ if(message.author.bot || message.channel.type === "dm") return;
 
 if(message.guild.id === "731049271926849556") {
   if(message.channel.id === "749864488311980052") {
+    bot.suggestions.set(message.author.id, message.guild.id, message.id);
     message.delete();
     const embed = new Discord.MessageEmbed()
       .setColor("GREEN")
