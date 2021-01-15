@@ -1,17 +1,14 @@
 module.exports.run = async (bot, message, args) => {
     var chance = Math.floor(Math.random() * 2);
+    const msg = await message.channel.send("<a:spinning_coin:717949437774790787> Flipping...")
     if (chance == 0) {
-        message.channel.send("<a:Spinning_Coin:713305992762359849> Flipping...").then((msg)=> {
-            setTimeout(function(){
-            msg.edit("Your coin landed on heads!");
-            }, 4000)
-        }) 
+        setTimeout(() => {
+            msg.edit("Your coin landed on heads!")
+        }, 4000)
     } else {
-        message.channel.send("<a:Spinning_Coin:713305992762359849> Flipping...").then((msg)=> {
-            setTimeout(function(){
-            msg.edit("Your coin landed on tails!");
-            }, 4000)
-        })
+        setTimeout(() => {
+            msg.edit("Your coin landed on tails!")
+        }, 4000)
     }
 }
 
