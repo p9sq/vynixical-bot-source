@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args) => {
         if(!user) return message.channel.send("<:maybe:793205689153093702> **Please mention a user**")
             let msg = args.slice(1).join(" ")
             if(!msg) return message.channel.send("<:maybe:793205689153093702> **Please provide a message to send**")
-            message.channel.send(`<:allow:793205689753010217> **Successfully sent ${user.tag} your message`)
+            message.channel.send(`<:allow:793205689753010217> **Successfully sent ${user.tag} your message**`)
             let sentEmbed = new Discord.MessageEmbed()
             .setTitle("📥 You got mail")
             .setColor(color)
