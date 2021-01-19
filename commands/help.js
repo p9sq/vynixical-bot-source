@@ -12,7 +12,8 @@ module.exports.run = async (bot, message, args) => {
             embed.setDescription([
 				`These are the available commands for ${message.guild.name}`,
 				`The prefix for this server is \`${data.prefix}\``,
-				`Command Parameters: \`<>\` is strict & \`[]\` is optional`
+                `Command Parameters: \`<>\` is strict & \`[]\` is optional`,
+                `Don't actually include the command parameters when using any command`
 			]);
 	        if(!owners.includes(message.author.id)) {
 		        categories = bot.utils.removeDuplicates(bot.commands.filter(cmd => cmd.config.category !== "Developer").map(cmd => cmd.config.category));
