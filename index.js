@@ -2,8 +2,10 @@ const botconfig = require("./botconfig.json");
 const mongoose = require("mongoose");
 const Discord = require("discord.js");
 const { utc } = require("moment");
-const { scheduleGiveaways, loadCommands, loadEvents } = require("./utils");
+const { scheduleGiveaways } = require("./utils");
 const Giveaway = require("./models/giveaway");
+const commandHandler = require("./structures/command");
+const eventHandler = require("./structures/event");
 
 const bot = new Discord.Client({disableMentions: "everyone"});
 bot.setMaxListeners(0);
@@ -21,8 +23,8 @@ process.on("uncaughtExceptionMonitor", (error) => console.log(`[${utc().format("
 
 bot.on("ready", async () => {
   console.log(`[${utc().format("HH:mm:ss")}] Logged in as ${bot.user.tag}`);
-  loadCommands(bot);
-  loadEvents(bot);
+  commandHandler.run(bot);
+  eventHandler.run(bot);
   const statuses = [
     `Connected to ${bot.guilds.cache.size.toLocaleString()} servers | ??help`,
     `Watching ${bot.channels.cache.size.toLocaleString()} channels | ??help`,

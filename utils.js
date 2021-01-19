@@ -1,8 +1,6 @@
 const Giveaway = require("./models/giveaway");
 const schedule = require("node-schedule");
 const botconfig = require("./botconfig.json");
-const fs = require("fs");
-const { utc } = require("moment");
 const { Client } = require("discord.js");
 
 async function saveGiveaway(response) {
@@ -143,46 +141,6 @@ function duration(ms) {
     return `${days.padStart(1, "0")} days, ${hrs.padStart(2, "0")} hours, ${min.padStart(2, "0")} minutes, ${sec.padStart(2, "0")} seconds`
 }
 
-function loadCommands(bot) {
-    if(!bot) throw new Error("Missing the bot")
-    if(!bot instanceof Client) throw new TypeError("Client parameter must be a discord client")
-  fs.readdir("./commands/", (err, files) => {
-  
-      if(err) console.log(err)
-  
-      const jsfile = files.filter(f => f.split(".").pop() === "js")
-      if(jsfile.length <= 0) {
-          return console.log("Couldn't Find Commands");
-      }
-  
-      jsfile.forEach((f, i) => {
-          const pull = require(`./commands/${f}`);
-          bot.commands.set(pull.config.name, pull);
-          bot.categories.set(pull.config.category, pull)
-          pull.config.aliases.forEach(alias => {
-              bot.aliases.set(alias, pull.config.name)
-          });
-      });
-      console.log(`[${utc().format("HH:mm:ss")}] Successfully loaded ${bot.commands.size} commands`)
-  });
-}
-
-function loadEvents(bot) {
-    if(!bot) throw new Error("Missing the bot")
-    if(!bot instanceof Client) throw new TypeError("Client parameter must be a discord client")
-    fs.readdir("./events/", (err, files) => {
-        if (err) return console.error;
-        files.forEach(file => {
-            if (!file.endsWith(".js")) return;
-            const evt = require(`./events/${file}`);
-            const evtName = file.split(".")[0];
-            bot.events.set(evtName, evt);
-            bot.on(evtName, evt.bind(null, bot));
-        });
-        console.log(`[${utc().format("HH:mm:ss")}] Successfully loaded ${bot.events.size} events`)
-    });
-}
-
 function halfString(string) {
     if(!string) throw new Error("Missing the string parameter")
     if(!string instanceof String) throw new TypeError("String must be a string")
@@ -215,8 +173,6 @@ module.exports = {
     trimArray,
     formatBytes,
     duration,
-    loadCommands,
-    loadEvents,
     halfString,
     halfHide,
     removeDuplicates
