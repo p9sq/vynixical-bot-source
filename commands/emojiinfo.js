@@ -11,15 +11,15 @@ module.exports.run = async (bot, message, args) => {
         txt = "No"
     }
     if(!emoji) return message.channel.send("Please specify a emoji id or name!")
-    let embed = new Discord.MessageEmbed()
-    .setTitle(`${emoji.name} info`)
-    .setThumbnail(emoji.url)
-    .setColor(color)
-    .addField("Name:", emoji.name || "None", true)
-    .addField("ID:", emoji.id || "None", true)
-    .addField("Animated", txt || "None", true)
-    .addField("Emoji Created:", moment(emoji.createdAt).format('MMMM Do YYYY, h:mm A') + " | " + moment(emoji.createdAt).startOf().fromNow() || "None", true)
-    .addField("URL:", "<" + emoji.url + ">" || "None", true)
+    const embed = new Discord.MessageEmbed()
+        .setTitle(`${emoji.name} info`)
+        .setThumbnail(emoji.url)
+        .setColor(color)
+        .addField("Name:", emoji.name || "None", true)
+        .addField("ID:", emoji.id || "None", true)
+        .addField("Animated", txt || "None", true)
+        .addField("Emoji Created:", moment(emoji.createdAt).format('MMMM Do YYYY, h:mm A') + " | " + moment(emoji.createdAt).startOf().fromNow() || "None", true)
+        .addField("URL:", "<" + emoji.url + ">" || "None", true)
     if(emoji.animated) {
         embed.addField("Indentifier:", "`<a:" + emoji.name + ":" + emoji.id + ">`" || "None")
     } else {

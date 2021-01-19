@@ -3,7 +3,7 @@ const weltxt = require("../models/welcometext");
 
 module.exports.run = async (bot, message, args) => {
     if(!message.member.hasPermission("MANAGE_GUILD")) {
-        let embed = new Discord.MessageEmbed()
+        const embed = new Discord.MessageEmbed()
         embed.setTitle("Invalid Permissions!")
         embed.addField("Permissions Required:", "Manage Guild")
         embed.setFooter(bot.user.username, bot.user.displayAvatarURL({format: "png"}))

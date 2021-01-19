@@ -3,10 +3,10 @@ const Discord = require("discord.js");
 module.exports.run = async (bot, message, args) => {
 if(!message.guild.me.hasPermission("MANAGE_GUILD")) return message.channel.send("<:maybe:793205689153093702> **I am missing the Manage Guild permission**")
 if(!message.member.hasPermission("MANAGE_GUILD")) {
-    let invalidEmbed = new Discord.MessageEmbed()
-    .setTitle("Invalid Permissions!")
-    .addField("Permissions Required:", "Manage Guild")
-    .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());
+    const invalidEmbed = new Discord.MessageEmbed()
+        .setTitle("Invalid Permissions!")
+        .addField("Permissions Required:", "Manage Guild")
+        .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());
     message.channel.send(invalidEmbed);
 } else {
     const userID = args[0]
