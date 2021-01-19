@@ -183,23 +183,13 @@ function loadEvents(bot) {
     });
 }
 
-function insertCommands(bot, embed) {
-    if(!bot) throw new Error("Missing the bot")
-    if(!embed) throw new Error("Missing the embed")
-    if(!bot instanceof Client) throw new TypeError("Client parameter must be a discord client")
-    if(!embed instanceof MessageEmbed) throw new TypeError("Embed must be a discord message embed")
-    let categories;
-	if(!botconfig.owners.includes(message.author.id)) {
-		categories = removeDuplicates(bot.commands.filter(cmd => cmd.config.category !== "Developer").map(cmd => cmd.config.category));
-	} else {
-		categories = removeDuplicates(bot.commands.map(cmd => cmd.config.category));
-	}
-
-	for (const category of categories) {
-		embed.addField(category, bot.commands.filter(cmd => cmd.config.category === category).map(cmd => `\`${cmd.config.name}\``).join(", "));
-	}
-    // bot.categories.map(cat => embed.addField(cat.config.category, bot.commands.filter(cmd => cmd.config.category === cat.config.category).map(cmd => `\`${cmd.config.name}\``).join(", ")))
-}
+// function insertCommands(bot, embed) {
+//     if(!bot) throw new Error("Missing the bot")
+//     if(!embed) throw new Error("Missing the embed")
+//     if(!bot instanceof Client) throw new TypeError("Client parameter must be a discord client")
+//     if(!embed instanceof MessageEmbed) throw new TypeError("Embed must be a discord message embed")
+//     bot.categories.map(cat => embed.addField(cat.config.category, bot.commands.filter(cmd => cmd.config.category === cat.config.category).map(cmd => `\`${cmd.config.name}\``).join(", ")))
+// }
 
 function halfString(string) {
     if(!string) throw new Error("Missing the string parameter")
@@ -235,7 +225,7 @@ module.exports = {
     duration,
     loadCommands,
     loadEvents,
-    insertCommands,
+    // insertCommands,
     halfString,
     halfHide,
     removeDuplicates
