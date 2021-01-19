@@ -4,9 +4,9 @@ const { color } = require("../botconfig.json");
 module.exports.run = async (bot, message, args) => {
     if(!args.join(" ")) return message.channel.send("Please provide some text!")
     const txt = args.join(" ").split("").reverse().join("")
-    let embed = new Discord.MessageEmbed()
+    const embed = new Discord.MessageEmbed()
     embed.setColor(color)
-    embed.addField("Reversed Text", "```" + txt + "```")
+    embed.addField("Reversed Text", `\`\`\`${txt}\`\`\``)
     message.channel.send(embed)
 }
 

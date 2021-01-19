@@ -5,11 +5,11 @@ module.exports.run = async (bot, message, args) => {
     if(!owners.includes(message.author.id)) {
         message.react("710703782887161898")
         const embed = new Discord.MessageEmbed()
-        .setTitle("❌ Access Denied!")
-        .setDescription("You aren't the owner of this bot!")
-        .setColor("RED")
-        .setFooter(bot.user.username, bot.user.displayAvatarURL({format: "png"}))
-        .setTimestamp()
+            .setTitle("❌ Access Denied!")
+            .setDescription("You aren't the owner of this bot!")
+            .setColor("RED")
+            .setFooter(bot.user.username, bot.user.displayAvatarURL({format: "png"}))
+            .setTimestamp()
         message.channel.send(embed)
         } else {
         try {

@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
             const msg = args.slice(2).join(" ")
             if(!channel) return message.channel.send("<:maybe:793205689153093702> **Please mention a channel**")
             if(!msg) return message.channel.send("<:maybe:793205689153093702> **Please specify a message**")
-            let embed = new Discord.MessageEmbed()
+            const embed = new Discord.MessageEmbed()
             embed.setDescription(msg)
             embed.setColor(color)
             embed.setFooter(`Author: ${message.author.tag}`)

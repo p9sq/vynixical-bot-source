@@ -3,7 +3,7 @@ const config = require("../models/config");
 const Discord = require("discord.js");
 const canvacord = require("canvacord");
 const { color } = require("../botconfig.json");
-let num = 50;
+const num = 50;
 
 module.exports.run = async (bot, message, args) => {
     const Member = message.mentions.users.last() || message.author;

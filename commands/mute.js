@@ -3,8 +3,8 @@ const mutedRole = require("../models/mute");
 const modlogs = require("../models/logchannel");
 
 module.exports.run = async (bot, message, args) => {
-    let Member = message.mentions.users.last();
-    let member = message.mentions.members.last();
+    const Member = message.mentions.users.last();
+    const member = message.mentions.members.last();
     let reason = args.slice(1).join(" ")
     if(!message.guild.me.hasPermission("MANAGE_GUILD")) return message.channel.send("Error! I am missing the `MANAGE_GUILD` permission!")
     if(!message.member.hasPermission("MANAGE_GUILD")) {
@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
             member.roles.add(m.muteID);
             message.channel.send(`<:check:314349398811475968> Successfully muted **${Member.tag}** with reason **${reason}**!`)
   
-            let muteEmbed = new Discord.MessageEmbed()
+            const muteEmbed = new Discord.MessageEmbed()
             modlogs.findOne({ guildID: message.guild.id}, (err , ch) => {
               muteEmbed.setAuthor(`[MUTE] ${Member.tag}`, `${Member.displayAvatarURL()}`)
               muteEmbed.addField("Server muted in:", `${message.guild.name}\n\`(${message.guild.id})\``, true)

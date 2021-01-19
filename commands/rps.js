@@ -4,14 +4,14 @@ const { color } = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
     if(args[0]) {
-        let choices = ["rock", "paper", "scissors"];
+        const choices = ["rock", "paper", "scissors"];
         let botChoice = choices[Math.floor(Math.random() * 3)];
         let playerChoice = args[0]
 
         if(!choices.includes(playerChoice)) return message.channel.send("Invalid choices...");
     
         let gameMsg = "";
-        let embed = new Discord.MessageEmbed()
+        const embed = new Discord.MessageEmbed()
         embed.setColor('RANDOM')
         if(botChoice == playerChoice) {
             gameMsg = "It's a tie!";
@@ -37,7 +37,7 @@ module.exports.run = async (bot, message, args) => {
             embed.setTimestamp()
             message.channel.send(embed);
     } else {
-        let embed = new Discord.MessageEmbed()
+        const embed = new Discord.MessageEmbed()
         guildprefix.findOne({guildID: message.guild.id, guildName: message.guild.name, guildOwner: message.guild.owner.user.tag}, (err, data) => {
         embed.setColor(color)
         embed.setDescription(`Pick one: \`Rock\`, \`Paper\`, or \`Scissors\`. Make sure to type it in again after *${data.prefix}rps*`)

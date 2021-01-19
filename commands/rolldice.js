@@ -1,5 +1,5 @@
 module.exports.run = async (bot, message, args) => {
-    let responses = [
+    const responses = [
         "1",
         "2",
         "3",
@@ -7,10 +7,10 @@ module.exports.run = async (bot, message, args) => {
         "5",
         "6"
     ]
-    let response = responses[Math.floor(Math.random()*(responses.length))]
+    const response = responses[Math.floor(Math.random()*(responses.length))]
     message.channel.send("🎲 Rolling...").then((msg)=> {
-        setTimeout(function(){
-        msg.edit(`Your die landed on ${response}!`);
+        setTimeout(() => {
+            msg.edit(`Your dice landed on ${response}!`);
         }, 4000)
     }) 
 }

@@ -5,17 +5,17 @@ module.exports.run = async (bot, message, args) => {
     if(!owners.includes(message.author.id)) {
         message.react("710703782887161898")
         const embed = new Discord.MessageEmbed()
-        .setTitle("❌ Access Denied!")
-        .setDescription("You aren't the owner of this bot!")
-        .setColor("RED")
-        .setFooter(bot.user.username, bot.user.displayAvatarURL({format: "png"}))
-        .setTimestamp()
+            .setTitle("❌ Access Denied!")
+            .setDescription("You aren't the owner of this bot!")
+            .setColor("RED")
+            .setFooter(bot.user.username, bot.user.displayAvatarURL({format: "png"}))
+            .setTimestamp()
         message.channel.send(embed)
         } else {
 
     if(!args[0]) return message.channel.send("<:maybe:793205689153093702> **You must input a command name**");
 
-    let command = args[0].toLowerCase();
+    const command = args[0].toLowerCase();
 
     try {
         delete require.cache[require.resolve(`./${command}.js`)];
