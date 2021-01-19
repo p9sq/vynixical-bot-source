@@ -2,8 +2,8 @@ const { Random } = require("something-random-on-discord");
 const random = new Random();
 
 module.exports.run = async (bot, message, args) => {
-    let data = await random.getJoke()
-      message.channel.send(data);
+    const data = await random.getJoke()
+    message.channel.send(data);
 }
 
 module.exports.config = {

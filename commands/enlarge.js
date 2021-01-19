@@ -5,18 +5,17 @@ module.exports.run = async (bot, message, args) => {
     const emoji = args[0]
     if(!emoji) return message.channel.send("Please specify a emoji!")
 
-    let custom = Discord.Util.parseEmoji(emoji);
-    let embed = new Discord.MessageEmbed()
+    const custom = Discord.Util.parseEmoji(emoji);
+    const embed = new Discord.MessageEmbed()
     .setTitle(`Enlarged version of ${emoji}`)
     .setColor("#FFFF00")
 
-    if (custom.id) {
+    if(custom.id) {
         embed.setImage(`https://cdn.discordapp.com/emojis/${custom.id}.${custom.animated ? "gif" : "png"}`);
         return message.channel.send(embed);
-    }
-    else {
+    }else {
         let parsed = parse(emoji, { assetType: "png" });
-        if (!parsed[0]) return message.channel.send("Invalid emoji!");
+        if(!parsed[0]) return message.channel.send("Invalid emoji!");
 
         embed.setImage(parsed[0].url);
         return message.channel.send(embed);

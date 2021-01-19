@@ -4,13 +4,13 @@ const botconfig = require("../botconfig.json");
 module.exports.run = async (bot, message, args) => {
     if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send("<:maybe:793205689153093702> **I am missing the Ban Members permission**")
     if(!message.member.hasPermission("BAN_MEMBERS")) {
-        let invalidEmbed = new Discord.MessageEmbed()
-        .setTitle("Invalid Permissions!")
-        .addField("Permissions Required:", "Ban Members")
-        .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());
+        const invalidEmbed = new Discord.MessageEmbed()
+            .setTitle("Invalid Permissions!")
+            .addField("Permissions Required:", "Ban Members")
+            .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());
         message.channel.send(invalidEmbed);
       } else {
-        let userID = args[0];
+        const userID = args[0];
         let reason = args.slice(1).join(" ");
 
         if(!userID) return message.channel.send("<:deny:793205689488900136> **Please specify a valid user id**");

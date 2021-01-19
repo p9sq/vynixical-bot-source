@@ -13,10 +13,10 @@ const prompts = [
 
 module.exports.run = async (bot, message, args) => {
 if(!message.member.hasPermission("MANAGE_GUILD")) {
-    let invalidEmbed = new Discord.MessageEmbed()
-    .setTitle("Invalid Permissions!")
-    .addField("Permissions Required:", "Manage Guild")
-    .setFooter(bot.user.username, bot.user.displayAvatarURL({format: "png"}))
+    const invalidEmbed = new Discord.MessageEmbed()
+        .setTitle("Invalid Permissions!")
+        .addField("Permissions Required:", "Manage Guild")
+        .setFooter(bot.user.username, bot.user.displayAvatarURL({format: "png"}))
     message.channel.send(invalidEmbed)
 } else {
     if(!args[0]) return message.channel.send("Please specify a channel name!")
@@ -24,12 +24,12 @@ if(!message.member.hasPermission("MANAGE_GUILD")) {
     if(channel) {
         try {
             const response = await getResponses(message);
-            let embed = new Discord.MessageEmbed()
-            .setColor(color)
-            .addField("Title:", response.title)
-            .addField("Prize:", response.prize)
-            .addField("Winners:", response.winners)
-            .addField("Duration:", response.duration)
+            const embed = new Discord.MessageEmbed()
+                .setColor(color)
+                .addField("Title:", response.title)
+                .addField("Prize:", response.prize)
+                .addField("Winners:", response.winners)
+                .addField("Duration:", response.duration)
             const msg = await message.channel.send("**CONFIRM**", embed);
             await msg.react("✅");
             await msg.react("❌");
@@ -40,14 +40,14 @@ if(!message.member.hasPermission("MANAGE_GUILD")) {
             if(choice.emoji.name === "✅") {
                 response.endsOn = new Date(Date.now() + ms(response.duration));
                 const giveawayEmbed = new Discord.MessageEmbed()
-                .setTitle(response.title)
-                .setColor(color)
-                .setDescription(`
-                **Hosted by:** ${message.author}
-                **Prize:** ${response.prize}
-                **Winners:** ${response.winners}
-                **Ends At:** ${moment(response.endsOn).format("LT")}, ${moment(response.endsOn).format("LL")}
-                **React with 🎉 to enter**
+                    .setTitle(response.title)
+                    .setColor(color)
+                    .setDescription(`
+                    **Hosted by:** ${message.author}
+                    **Prize:** ${response.prize}
+                    **Winners:** ${response.winners}
+                    **Ends At:** ${moment(response.endsOn).format("LT")}, ${moment(response.endsOn).format("LL")}
+                    **React with 🎉 to enter**
                 `)
                 const giveawayMsg = await channel.send("🎉 **GIVEAWAY** 🎉", giveawayEmbed);
                 await giveawayMsg.react("🎉")

@@ -6,18 +6,18 @@ module.exports.run = async (bot, message, args) => {
     if(!owners.includes(message.author.id)) {
         message.react("710703782887161898")
         const embed = new Discord.MessageEmbed()
-        .setTitle("❌ Access Denied!")
-        .setDescription("You aren't the owner of this bot!")
-        .setColor("RED")
-        .setTimestamp()
+            .setTitle("❌ Access Denied!")
+            .setDescription("You aren't the owner of this bot!")
+            .setColor("RED")
+            .setTimestamp()
         message.channel.send(embed)
         } else {
     if(!channel) return message.reply("Please a voice channel!")
     if(!channel.type === "text") return message.reply("I can't join text channels!")
-        let Embed = new Discord.MessageEmbed()
-        .setTitle("<a:yes:736089080521293894> Success!")
-        .setColor("GREEN")
-        .setDescription(`Successfully joined the ${channel} voice channel!`)
+        const Embed = new Discord.MessageEmbed()
+            .setTitle("<a:yes:736089080521293894> Success!")
+            .setColor("GREEN")
+            .setDescription(`Successfully joined the ${channel} voice channel!`)
         message.channel.send(Embed)
         channel.join();
         }

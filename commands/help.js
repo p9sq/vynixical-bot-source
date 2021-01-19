@@ -33,7 +33,7 @@ module.exports.run = async (bot, message, args) => {
             let command = args[0];
             if(bot.commands.has(command)) {
                 command = bot.commands.get(command);
-                let embed = new Discord.MessageEmbed()
+                const embed = new Discord.MessageEmbed()
                 embed.setAuthor(`${bot.utils.capitalizeFirstLetter(command.config.name)} Command`, message.guild.iconURL({dynamic: true, size: 2048, format: "png"}))
                 embed.setDescription(`
                 **Description:** \`${command.config.description || "No description"}\`
