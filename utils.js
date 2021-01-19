@@ -3,7 +3,7 @@ const schedule = require("node-schedule");
 const botconfig = require("./botconfig.json");
 const fs = require("fs");
 const { utc } = require("moment");
-const { Client, MessageEmbed } = require("discord.js");
+const { Client } = require("discord.js");
 
 async function saveGiveaway(response) {
     if(!response) throw new Error("Missing the response")
@@ -140,7 +140,7 @@ function duration(ms) {
     const min = Math.floor((ms / (1000 * 60)) % 60).toString()
     const hrs = Math.floor((ms / (1000 * 60 * 60)) % 60).toString()
     const days = Math.floor((ms / (1000 * 60 * 60 * 24)) % 60).toString()
-    return `${days.padStart(1, '0')} days, ${hrs.padStart(2, '0')} hours, ${min.padStart(2, '0')} minutes, ${sec.padStart(2, '0')} seconds`
+    return `${days.padStart(1, "0")} days, ${hrs.padStart(2, "0")} hours, ${min.padStart(2, "0")} minutes, ${sec.padStart(2, "0")} seconds`
 }
 
 function loadCommands(bot) {
@@ -150,13 +150,13 @@ function loadCommands(bot) {
   
       if(err) console.log(err)
   
-      let jsfile = files.filter(f => f.split(".").pop() === "js")
+      const jsfile = files.filter(f => f.split(".").pop() === "js")
       if(jsfile.length <= 0) {
-          return console.log(`Couldn't Find Commands!`);
+          return console.log("Couldn't Find Commands");
       }
   
       jsfile.forEach((f, i) => {
-          let pull = require(`./commands/${f}`);
+          const pull = require(`./commands/${f}`);
           bot.commands.set(pull.config.name, pull);
           bot.categories.set(pull.config.category, pull)
           pull.config.aliases.forEach(alias => {
@@ -170,26 +170,18 @@ function loadCommands(bot) {
 function loadEvents(bot) {
     if(!bot) throw new Error("Missing the bot")
     if(!bot instanceof Client) throw new TypeError("Client parameter must be a discord client")
-    fs.readdir('./events/', (err, files) => {
+    fs.readdir("./events/", (err, files) => {
         if (err) return console.error;
         files.forEach(file => {
-            if (!file.endsWith('.js')) return;
+            if (!file.endsWith(".js")) return;
             const evt = require(`./events/${file}`);
-            let evtName = file.split('.')[0];
+            const evtName = file.split(".")[0];
             bot.events.set(evtName, evt);
             bot.on(evtName, evt.bind(null, bot));
         });
         console.log(`[${utc().format("HH:mm:ss")}] Successfully loaded ${bot.events.size} events`)
     });
 }
-
-// function insertCommands(bot, embed) {
-//     if(!bot) throw new Error("Missing the bot")
-//     if(!embed) throw new Error("Missing the embed")
-//     if(!bot instanceof Client) throw new TypeError("Client parameter must be a discord client")
-//     if(!embed instanceof MessageEmbed) throw new TypeError("Embed must be a discord message embed")
-//     bot.categories.map(cat => embed.addField(cat.config.category, bot.commands.filter(cmd => cmd.config.category === cat.config.category).map(cmd => `\`${cmd.config.name}\``).join(", ")))
-// }
 
 function halfString(string) {
     if(!string) throw new Error("Missing the string parameter")
@@ -199,7 +191,7 @@ function halfString(string) {
     const hidden = string.slice(halflen);
     const res = string.replace(hidden, "".repeat(hidden.length));
   
-    return res
+    return res;
 }
 
 function halfHide(string) {
@@ -210,7 +202,7 @@ function halfHide(string) {
     const hidden = string.slice(halflen);
     const res = string.replace(hidden, "*".repeat(hidden.length));
   
-    return res
+    return res;
 }
 
 module.exports = {
@@ -225,7 +217,6 @@ module.exports = {
     duration,
     loadCommands,
     loadEvents,
-    // insertCommands,
     halfString,
     halfHide,
     removeDuplicates

@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
 	        for (const category of categories) {
 		        embed.addField(category, bot.commands.filter(cmd => cmd.config.category === category).map(cmd => `\`${cmd.config.name}\``).join(", "));
             }
-            embed.addField("Links", `[Invite](https://discord.com/api/oauth2/authorize?client_id=725582436477698118&permissions=8&scope=bot), [Support](https://discord.gg/sr2JWV6)`)
+            embed.addField("Links", `[Invite](https://discord.com/api/oauth2/authorize?client_id=725582436477698118&permissions=8&scope=bot) | [Support](https://discord.gg/sr2JWV6)`)
             embed.setFooter(`For more help, do ${data.prefix}help [command]`)
         message.channel.send(embed)
         })
