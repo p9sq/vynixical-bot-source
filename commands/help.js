@@ -26,7 +26,11 @@ module.exports.run = async (bot, message, args) => {
             }
             embed.addField("Links", `[Invite](https://discord.com/api/oauth2/authorize?client_id=725582436477698118&permissions=8&scope=bot) | [Support](https://discord.gg/sr2JWV6)`)
             embed.setFooter(`For more help, do ${data.prefix}help [command]`)
-        message.channel.send(embed)
+            if(!message.guild.me.hasPermission("SEND_MESSAGES")) {
+                message.author.send(embed)
+            } else {
+                message.channel.send(embed)
+            }
         })
     } else {
         if(args[0]) {
