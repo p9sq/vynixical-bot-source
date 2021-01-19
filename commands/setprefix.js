@@ -3,14 +3,14 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
     if(!message.member.hasPermission("MANAGE_GUILD")) {
-        let embed = new Discord.MessageEmbed()
+        const embed = new Discord.MessageEmbed()
         embed.setTitle("Invalid Permissions!")
         embed.addField("Permissions Required:", "Manage Guild")
         embed.setFooter(bot.user.username, bot.user.displayAvatarURL({format: "png"}))
         message.channel.send(embed)
     } else {
         if(!args.join(" ")) {
-            let embed = new Discord.MessageEmbed()
+            const embed = new Discord.MessageEmbed()
             guildprefix.findOne({guildID: message.guild.id, guildName: message.guild.name, guildOwner: message.guild.owner.user.tag}, (err, data) => {
                 embed.setTitle("Invalid Usage")
                 embed.addField("Correct Usage:", `${data.prefix}setprefix <prefix>\nDon't include the \`<>\``)

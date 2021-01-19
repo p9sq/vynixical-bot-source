@@ -5,14 +5,14 @@ const botconfig = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
     if(!message.member.hasPermission("MANAGE_GUILD")) {
-        let invalidEmbed = new Discord.MessageEmbed()
-        .setTitle("Invalid Permissions!")
-        .addField("Permissions Required:", "Manage Guild")
-        .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());
+        const invalidEmbed = new Discord.MessageEmbed()
+            .setTitle("Invalid Permissions!")
+            .addField("Permissions Required:", "Manage Guild")
+            .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());
         message.channel.send(invalidEmbed);
     } else {
     let reason = args.slice(1).join(" ")
-    let user = message.mentions.users.last();
+    const user = message.mentions.users.last();
     if(!user) return message.channel.send("<:maybe:793205689153093702> **Please mention a member to warn**")
     if(!reason) reason = "No reason provided"
     warns.findOne({Guild: message.guild.id, User: user.id}, async(err, data) => {
@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
             return message.channel.send(`Uh oh, an error has ocurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
         }
         if(!data) {
-            let newWarns = new warns({
+            const newWarns = new warns({
                 User: user.id,
                 Guild: message.guild.id,
                 Warns:[
@@ -32,7 +32,7 @@ module.exports.run = async (bot, message, args) => {
             })
             newWarns.save()
             message.channel.send(`<:allow:793205689753010217> **${user.tag} has been warned**`)
-            let warnEmbed = new Discord.MessageEmbed()
+            const warnEmbed = new Discord.MessageEmbed()
             modlogs.findOne({ guildID: message.guild.id} , ( err , ch ) => {
                 warnEmbed.setAuthor(`[WARN] ${user.tag}`, `${user.displayAvatarURL()}`)
                 warnEmbed.addField("Server warned in:", `${message.guild.name}\n\`(${message.guild.id})\``, true)
@@ -53,7 +53,7 @@ module.exports.run = async (bot, message, args) => {
             })
             data.save()
             message.channel.send(`<:allow:793205689753010217> **${user.tag} has been warned. Warns: ${data.Warns.length}**`)
-            let warnEmbed = new Discord.MessageEmbed()
+            const warnEmbed = new Discord.MessageEmbed()
             modlogs.findOne({ guildID: message.guild.id} , ( err , ch ) => {
                 warnEmbed.setAuthor(`[WARN] ${user.tag}`, `${user.displayAvatarURL()}`)
                 warnEmbed.addField("Server warned in:", `${message.guild.name}\n\`(${message.guild.id})\``, true)

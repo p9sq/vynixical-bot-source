@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
     if(!message.member.hasPermission("MANAGE_GUILD")) {
-        let embed = new Discord.MessageEmbed()
+        const embed = new Discord.MessageEmbed()
         embed.setTitle("Invalid Permissions!")
         embed.addField("Permissions Required:", "Manage Guild")
         embed.setFooter(bot.user.username, bot.user.displayAvatarURL())
@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
             if(!channel) return message.channel.send("Please mention a channel!")
             welchannel.findOne({ guildID: message.guild.id } , ( err , w ) => {
                 if(!w){
-                    let newChannel = welchannel({
+                    const newChannel = welchannel({
                         guildID: message.guild.id,
                         chID: channel.id
                     })

@@ -2,9 +2,9 @@ const Discord = require("discord.js");
 const canvacord = require("canvacord");
 
 module.exports.run = async (bot, message, args) => {
-        let user = message.mentions.users.last() || message.author;
-        let avatar = user.displayAvatarURL({ dynamic: false, format: "png" });
-        let image = await canvacord.Canvas.trash(avatar);
+        const user = message.mentions.users.last() || message.author;
+        const avatar = user.displayAvatarURL({ dynamic: false, format: "png" });
+        const image = await canvacord.Canvas.trash(avatar);
         const img = new Discord.MessageAttachment(image, "trash.png")
         message.channel.send(img);
 

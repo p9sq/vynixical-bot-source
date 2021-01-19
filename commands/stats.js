@@ -14,24 +14,24 @@ module.exports.run = async (bot, message, args) => {
         }
     }).then(async res => {
 	console.log(await res.json());
-        let embed = new Discord.MessageEmbed()
-        .setColor(color)
-        .setTitle(res.bot_name)
-        .setDescription(`
-        **Votes:** ${res.votes},
-        **Support:** ${res.support},
-        **Website:** ${res.website},
-        **Donate:** ${res.donate},
-        **Certified:** ${res.certified ? "Yes" : "No"},
-        **Tags:** ${res.tags}
-        **Prefix:** ${res.prefix},
-        **Library:** ${res.library},
-        **Description:** ${res.short_desc},
-        **Servers:** ${res.servers},
-        **Shards:** ${res.shards},
-        **Staff:** ${res.staff ? "Yes" : "No"}
-        `)
-        .setFooter(`Bot created by ${res.owner}`)
+        const embed = new Discord.MessageEmbed()
+            .setColor(color)
+            .setTitle(res.bot_name)
+            .setDescription(`
+            **Votes:** ${res.votes},
+            **Support:** ${res.support},
+            **Website:** ${res.website},
+            **Donate:** ${res.donate},
+            **Certified:** ${res.certified ? "Yes" : "No"},
+            **Tags:** ${res.tags}
+            **Prefix:** ${res.prefix},
+            **Library:** ${res.library},
+            **Description:** ${res.short_desc},
+            **Servers:** ${res.servers},
+            **Shards:** ${res.shards},
+            **Staff:** ${res.staff ? "Yes" : "No"}
+            `)
+            .setFooter(`Bot created by ${res.owner}`)
         message.channel.send(embed)
     });
 }

@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const { google, color } = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
-    let name = args.join(" ");
+    const name = args.join(" ");
     if (!name) return message.reply("Unknown channel name!");
 
     const channel = await fetch.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${name}&key=${google}&maxResults=1&type=channel`)
@@ -15,16 +15,16 @@ module.exports.run = async (bot, message, args) => {
     .catch(() => message.channel.send("Unknown channel data error."));
 
     const embed = new Discord.MessageEmbed()
-    .setColor(color)
-    .setThumbnail(channel.body.items[0].snippet.thumbnails.high.url)
-    .setTimestamp(new Date())
-    .addField("Channel Name:", channel.body.items[0].snippet.channelTitle, true)
-    .addField("Channel Description:", channel.body.items[0].snippet.description || "No Channel Description", true)
-    .addField("Subscribers Count:", parseInt(data.body.items[0].statistics.subscriberCount).toLocaleString() || "No Subscribers", true)
-    .addField("Total Views:", parseInt(data.body.items[0].statistics.viewCount).toLocaleString() || "No Views", true)
-    .addField("Total Video(s):", parseInt(data.body.items[0].statistics.videoCount).toLocaleString() || "No Videos", true)
-    .addField("Date Created:", new Date(channel.body.items[0].snippet.publishedAt).toDateString(), true)
-    .addField("Link:", `[${channel.body.items[0].snippet.channelTitle}](https://www.youtube.com/channel/${channel.body.items[0].id.channelId})`, true)
+        .setColor(color)
+        .setThumbnail(channel.body.items[0].snippet.thumbnails.high.url)
+        .setTimestamp(new Date())
+        .addField("Channel Name:", channel.body.items[0].snippet.channelTitle, true)
+        .addField("Channel Description:", channel.body.items[0].snippet.description || "No Channel Description", true)
+        .addField("Subscribers Count:", parseInt(data.body.items[0].statistics.subscriberCount).toLocaleString() || "No Subscribers", true)
+        .addField("Total Views:", parseInt(data.body.items[0].statistics.viewCount).toLocaleString() || "No Views", true)
+        .addField("Total Video(s):", parseInt(data.body.items[0].statistics.videoCount).toLocaleString() || "No Videos", true)
+        .addField("Date Created:", new Date(channel.body.items[0].snippet.publishedAt).toDateString(), true)
+        .addField("Link:", `[${channel.body.items[0].snippet.channelTitle}](https://www.youtube.com/channel/${channel.body.items[0].id.channelId})`, true)
     return message.channel.send(embed);
 }
 

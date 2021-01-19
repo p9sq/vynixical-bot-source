@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const { color } = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
-    let embed = new Discord.MessageEmbed()
+    const embed = new Discord.MessageEmbed()
     embed.setAuthor(`${bot.user.username} server count`, bot.user.displayAvatarURL({format: "png"}))
     embed.addField("Total Servers:", bot.guilds.cache.size.toLocaleString())
     embed.setFooter(bot.user.username, bot.user.displayAvatarURL({format: "png"}))

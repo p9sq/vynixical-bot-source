@@ -4,13 +4,13 @@ const botconfig = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
     if(!message.member.hasPermission("MANAGE_GUILD")) {
-        let invalidEmbed = new Discord.MessageEmbed()
-        .setTitle("Invalid Permissions!")
-        .addField("Permissions Required:", "Manage Guild")
-        .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());
+        const invalidEmbed = new Discord.MessageEmbed()
+            .setTitle("Invalid Permissions!")
+            .addField("Permissions Required:", "Manage Guild")
+            .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());
         message.channel.send(invalidEmbed);
     } else {
-    let user = message.mentions.members.last();
+    const user = message.mentions.members.last();
     if(!user) return message.reply("You must mention a user to see their warns!")
     warns.find({ Guild: message.guild.id, User: user.id},async(err, data) => {
         if(err) {
@@ -18,12 +18,12 @@ module.exports.run = async (bot, message, args) => {
         }
         if(!data) return message.channel.send(`**${user.user.tag}** hasn't been warned at all!`);
         else {
-            let Embed = new Discord.MessageEmbed()
-            .setTitle(`${user.user.tag} warns in ${message.guild.name}`)
-            .setTimestamp()
-            .setDescription(data.map((d) => {
-                return d.Warns.map((w, i) => `${i} - Moderator: ${message.guild.members.cache.get(w.Moderator).user.tag}, Reason: ${w.Reason}`).join("\n")
-            }))
+            const Embed = new Discord.MessageEmbed()
+                .setTitle(`${user.user.tag} warns in ${message.guild.name}`)
+                .setTimestamp()
+                .setDescription(data.map((d) => {
+                    return d.Warns.map((w, i) => `${i} - Moderator: ${message.guild.members.cache.get(w.Moderator).user.tag}, Reason: ${w.Reason}`).join("\n")
+                }));
             message.channel.send(Embed);
         }
     })

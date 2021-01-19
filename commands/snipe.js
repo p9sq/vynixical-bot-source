@@ -5,11 +5,11 @@ module.exports.run = async (bot, message, args) => {
     const snipes = bot.snipes.get(message.channel.id) || [];
     const msg = snipes[args[0]-1||0]
     if(!msg) return message.channel.send("❌ There's nothing to snipe!")
-    let embed = new Discord.MessageEmbed()
-    .setAuthor(msg.author.tag, msg.author.displayAvatarURL({dynamic: true, size: 256}))
-    .setColor(color)
-    .setDescription(msg.content)
-    .setFooter(`Date: ${msg.date} | ${args[0]||1}/${snipes.length}`)
+    const embed = new Discord.MessageEmbed()
+        .setAuthor(msg.author.tag, msg.author.displayAvatarURL({dynamic: true, size: 256}))
+        .setColor(color)
+        .setDescription(msg.content)
+        .setFooter(`Date: ${msg.date} | ${args[0]||1}/${snipes.length}`)
     if(msg.attachment) {
         embed.setImage(msg.attachment)
     }

@@ -3,15 +3,15 @@ const mutedRole = require("../models/mute");
 const ms = require("ms");
 
 module.exports.run = async (bot, message, args) => {
-    let Member = message.mentions.users.last();
-    let member = message.mentions.members.last();
+    const Member = message.mentions.users.last();
+    const member = message.mentions.members.last();
     let reason = args.slice(2).join(" ")
     if(!message.guild.me.hasPermission("MANAGE_GUILD")) return message.channel.send("<:maybe:793205689153093702> **I am missing the Manage Guild permission**")
     if(!message.member.hasPermission("MANAGE_GUILD")) {
-      let invalidEmbed = new Discord.MessageEmbed()
-      .setTitle("Invalid Permissions!")
-      .addField("Permissions Required:", "Manage Guild")
-      .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());
+      const invalidEmbed = new Discord.MessageEmbed()
+        .setTitle("Invalid Permissions!")
+        .addField("Permissions Required:", "Manage Guild")
+        .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());
       message.channel.send(invalidEmbed);
     } else {
       if(!member) return  message.channel.send("Please mention a user!")

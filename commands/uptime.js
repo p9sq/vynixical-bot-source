@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args) => {
         `
     }
 
-    let embed = new Discord.MessageEmbed()
+    const embed = new Discord.MessageEmbed()
     embed.setColor(color)
     embed.setDescription(`${duration(bot.uptime)}`)
     embed.setAuthor(`${bot.user.username} uptime`, bot.user.displayAvatarURL())

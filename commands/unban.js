@@ -7,10 +7,10 @@ module.exports.run = async (bot, message, args) => {
     let reason = args.slice(1).join(" ");
     if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send("<:maybe:793205689153093702> **I am missing the Ban Members permission**")
     if(!message.member.hasPermission("BAN_MEMBERS")) {
-      let invalidEmbed = new Discord.MessageEmbed()
-      .setTitle("Invalid Permissions!")
-      .addField("Permissions Required:", "Ban Members")
-      .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());
+      const invalidEmbed = new Discord.MessageEmbed()
+        .setTitle("Invalid Permissions!")
+        .addField("Permissions Required:", "Ban Members")
+        .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());
       message.channel.send(invalidEmbed);
     } else {
       if (args.length < 1) return message.channel.send("<:deny:793205689488900136> **Please specify a user id**")
@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
   
               message.channel.send(`<:allow:793205689753010217> **Successfully unbanned ${user.tag}**`)
 
-              let Embed = new Discord.MessageEmbed()
+              const Embed = new Discord.MessageEmbed()
               modlogs.findOne({ guildID: message.guild.id} , ( err , ch ) => {
                 Embed.setAuthor(`[UNBAN] ${user.tag}`, user.displayAvatarURL({format: "png"}))
                 Embed.addField("Server unbanned from:", `${message.guild.name}\n\`(${message.guild.id})\``, true)

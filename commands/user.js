@@ -11,15 +11,15 @@ module.exports.run = async (bot, message, args) => {
             "Content-Type": "application/json"
         }
     }).then(async res => {
-        let embed = new Discord.MessageEmbed()
-        .setColor(color)
-        .setTitle(`${res.username} Stats`)
-        .setDescription(`
-        **Developer:** ${res.developer ? "Yes" : "No"},
-        **Staff:** ${res.staff ? "Yes" : "No"},
-        **Certified:** ${res.certified_dev ? "Yes" : "No"},
-        **About:** ${res.about}
-        `)
+        const embed = new Discord.MessageEmbed()
+            .setColor(color)
+            .setTitle(`${res.username} Stats`)
+            .setDescription(`
+            **Developer:** ${res.developer ? "Yes" : "No"},
+            **Staff:** ${res.staff ? "Yes" : "No"},
+            **Certified:** ${res.certified_dev ? "Yes" : "No"},
+            **About:** ${res.about}
+            `)
         message.channel.send(embed)
     })
 }
