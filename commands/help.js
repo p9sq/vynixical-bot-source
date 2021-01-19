@@ -5,11 +5,15 @@ const { color, owners } = require("../botconfig.json");
 module.exports.run = async (bot, message, args) => {
     let categories;
     if(!args[0]) {
-        let embed = new Discord.MessageEmbed()
+        const embed = new Discord.MessageEmbed()
         guildprefix.findOne({guildID: message.guild.id, guildName: message.guild.name, guildOwner: message.guild.owner.user.tag}, (err, data) => {
             embed.setTitle(`${bot.user.username} Help Menu`)
             embed.setColor(color)
-            embed.setDescription(`[Add bot to server](https://discord.com/api/oauth2/authorize?client_id=725582436477698118&permissions=8&scope=bot), [Support Server](https://discord.gg/sr2JWV6)`)
+            embed.setDescription([
+				`These are the available commands for ${message.guild.name}`,
+				`The prefix for this server is \`${data.prefix}\``,
+				`Command Parameters: \`<>\` is strict & \`[]\` is optional`
+			]);
 	        if(!owners.includes(message.author.id)) {
 		        categories = bot.utils.removeDuplicates(bot.commands.filter(cmd => cmd.config.category !== "Developer").map(cmd => cmd.config.category));
 	        } else {
@@ -18,9 +22,9 @@ module.exports.run = async (bot, message, args) => {
 
 	        for (const category of categories) {
 		        embed.addField(category, bot.commands.filter(cmd => cmd.config.category === category).map(cmd => `\`${cmd.config.name}\``).join(", "));
-	        }
+            }
+            embed.addField("Links", `[Invite](https://discord.com/api/oauth2/authorize?client_id=725582436477698118&permissions=8&scope=bot), [Support](https://discord.gg/sr2JWV6)`)
             embed.setFooter(`For more help, do ${data.prefix}help [command]`)
-            embed.setTimestamp()
         message.channel.send(embed)
         })
     } else {
