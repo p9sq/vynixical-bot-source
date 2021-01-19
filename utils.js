@@ -81,6 +81,10 @@ function encode(char) {
     }).join(" ")
 }
 
+function removeDuplicates(str) {
+    return [...new Set(str)];
+}
+
 function decode(char) {
     if(!char) throw new Error("Missing binary code")
     if(!char instanceof Number) throw new TypeError("Char must be a number")
@@ -184,7 +188,17 @@ function insertCommands(bot, embed) {
     if(!embed) throw new Error("Missing the embed")
     if(!bot instanceof Client) throw new TypeError("Client parameter must be a discord client")
     if(!embed instanceof MessageEmbed) throw new TypeError("Embed must be a discord message embed")
-    bot.categories.map(cat => embed.addField(cat.config.category, bot.commands.filter(cmd => cmd.config.category === cat.config.category).map(cmd => `\`${cmd.config.name}\``).join(", ")))
+    let categories;
+	if(!botconfig.owners.includes(message.author.id)) {
+		categories = bot.utils.removeDuplicates(bot.commands.filter(cmd => cmd.config.category !== "Developer").map(cmd => cmd.config.category));
+	} else {
+		categories = bot.utils.removeDuplicates(bot.commands.map(cmd => cmd.config.category));
+	}
+
+	for (const category of categories) {
+		embed.addField(category, bot.commands.filter(cmd => cmd.config.category === category).map(cmd => `\`${cmd.name}\``).join(", "));
+	}
+    // bot.categories.map(cat => embed.addField(cat.config.category, bot.commands.filter(cmd => cmd.config.category === cat.config.category).map(cmd => `\`${cmd.config.name}\``).join(", ")))
 }
 
 function halfString(string) {
@@ -223,5 +237,6 @@ module.exports = {
     loadEvents,
     insertCommands,
     halfString,
-    halfHide
+    halfHide,
+    removeDuplicates
 }
