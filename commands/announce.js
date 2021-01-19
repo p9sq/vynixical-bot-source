@@ -11,15 +11,15 @@ module.exports.run = async (bot, message, args) => {
     } else {
     let desc = args.slice(1).join(" ")
     const mChannel = message.mentions.channels.last();
-    if(!mChannel) return message.channel.send("Please mention a channel!")
-    if(!desc) return message.channel.send("Please specify a message to announce")
+    if(!mChannel) return message.channel.send("Please mention a channel.")
+    if(!desc) return message.channel.send("Please specify a message to announce.")
     message.delete()
     let embed = new Discord.MessageEmbed()
     .setAuthor(message.author.username, message.author.displayAvatarURL({format: "png"}))
     .setTitle("Announcement!")
     .setColor(color)
     .addField("Announcement:", desc)
-    .setColor('RANDOM')
+    .setColor("RANDOM")
     .setThumbnail(message.guild.iconURL({size: 2048, dynamic: true, format: "png"}))
     .setTimestamp()
     mChannel.send("@everyone", embed);

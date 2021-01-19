@@ -16,15 +16,15 @@ module.exports.run = async (bot, message, args) => {
     } else {
       text = "No"
     }
-    let embed = new Discord.MessageEmbed()
-    .setTitle(`${channel.name} info`)
-    .setThumbnail(message.guild.iconURL({format: "png", dyamic: true, size: 2048}))
-    .setColor(color)
-    .addField("Name:", channel.name, true)
-    .addField("ID:", channel.id, true)
-    .addField("Deleted:", txt, true)
-    .addField("Type:", bot.utils.capitalizeFirstLetter(channel.type), true)
-    .addField("Raw position:", channel.rawPosition, true)
+    const embed = new Discord.MessageEmbed()
+      .setTitle(`${channel.name} info`)
+      .setThumbnail(message.guild.iconURL({format: "png", dyamic: true, size: 2048}))
+      .setColor(color)
+      .addField("Name:", channel.name, true)
+      .addField("ID:", channel.id, true)
+      .addField("Deleted:", txt, true)
+      .addField("Type:", bot.utils.capitalizeFirstLetter(channel.type), true)
+      .addField("Raw position:", channel.rawPosition, true)
     if(!channel.type === "category") {
       embed.addField("Parent ID:", channel.parentID, true)
     }

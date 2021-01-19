@@ -6,12 +6,12 @@ const moment = require("moment");
 module.exports.run = async (bot, message, args) => {
     if(!owners.includes(message.author.id)) {
         message.react("710703782887161898")
-        let Embed = new Discord.MessageEmbed()
-        .setTitle("❌ Access Denied!")
-        .setDescription("You aren't the owner of this bot!")
-        .setColor("RED")
-        .setFooter(bot.user.username, bot.user.displayAvatarURL({format: "png"}))
-        .setTimestamp()
+        const Embed = new Discord.MessageEmbed()
+            .setTitle("❌ Access Denied!")
+            .setDescription("You aren't the owner of this bot!")
+            .setColor("RED")
+            .setFooter(bot.user.username, bot.user.displayAvatarURL({format: "png"}))
+            .setTimestamp()
         message.channel.send(Embed)
         } else {      
         const desc = args.slice(1).join(" ")
@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
         if(!desc) return message.channel.send("<:deny:793205689488900136> **Please specify the message to announce**")
         message.delete()
         let Version = "";
-        let embed = new Discord.MessageEmbed()
+        const embed = new Discord.MessageEmbed()
         changelog.findOne({}, (err, data) => {
             if(!data) {
                 Version = "1.0.1"

@@ -3,7 +3,7 @@ const canvacord = require("canvacord");
 
 module.exports.run = async (bot, message, args) => {
         if(!args.join(" ")) return message.channel.send("Please provide a message!")
-        let text = await canvacord.Canvas.clyde(args.join(" "))
+        const text = await canvacord.Canvas.clyde(args.join(" "))
         const img = new Discord.MessageAttachment(text, "clyde.png")
         message.channel.send(img);
 

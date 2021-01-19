@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const { color } = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
-    let embed = new Discord.MessageEmbed()
+    const embed = new Discord.MessageEmbed()
     embed.setTitle(`${bot.user.username} Change logs`)
     embed.setColor(color)
     embed.setThumbnail(bot.user.displayAvatarURL({format: "png", size: 2048}))

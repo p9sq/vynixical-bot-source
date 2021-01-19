@@ -5,10 +5,10 @@ const modlogs = require("../models/logchannel");
 module.exports.run = async (bot, message, args) => {
 if(!message.guild.me.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Error! I am missing the `MANAGE_MESSAGES` permission!")
 if(!message.member.hasPermission("MANAGE_MESSAGES")) {
-  let invalidEmbed = new Discord.MessageEmbed()
-  .setTitle("Invalid Permissions!")
-  .addField("Permissions Required:", "Manage Messages")
-  .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());
+  const invalidEmbed = new Discord.MessageEmbed()
+    .setTitle("Invalid Permissions!")
+    .addField("Permissions Required:", "Manage Messages")
+    .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());
   message.channel.send(invalidEmbed)
 } else {
   if(!args[0]) return message.channel.send("Please specify the amount of messages you want to delete!")
@@ -18,7 +18,7 @@ if(!message.member.hasPermission("MANAGE_MESSAGES")) {
     message.channel.bulkDelete(messages)
   })
   message.channel.send(`<:allow:793205689753010217> **Successfully purged ${args[0]} messages**`).then(msg => msg.delete({ timeout: 4000 }))
-  let embed5 = new Discord.MessageEmbed()
+  const embed5 = new Discord.MessageEmbed()
   modlogs.findOne({guildID: message.guild.id}, (err, ch) => {
     if(!ch) return;
     embed5.addField("The user which used clear command:", `${message.author.tag}`)

@@ -22,7 +22,7 @@ module.exports.run = async (bot, message, args) => {
 	        }
 
 	        for (const category of categories) {
-		        embed.addField(category, bot.commands.filter(cmd => cmd.config.category === category).map(cmd => `\`${cmd.config.name}\``).join(", "));
+		        embed.addField(category, bot.commands.filter(cmd => cmd.config.category === category).map(cmd => `\`${cmd.config.name}\``).join(" "));
             }
             embed.addField("Links", `[Invite](https://discord.com/api/oauth2/authorize?client_id=725582436477698118&permissions=8&scope=bot) | [Support](https://discord.gg/sr2JWV6)`)
             embed.setFooter(`For more help, do ${data.prefix}help [command]`)
@@ -31,9 +31,7 @@ module.exports.run = async (bot, message, args) => {
     } else {
         if(args[0]) {
             let command = args[0];
-    
             if(bot.commands.has(command)) {
-
                 command = bot.commands.get(command);
                 let embed = new Discord.MessageEmbed()
                 embed.setAuthor(`${bot.utils.capitalizeFirstLetter(command.config.name)} Command`, message.guild.iconURL({dynamic: true, size: 2048, format: "png"}))
@@ -43,7 +41,7 @@ module.exports.run = async (bot, message, args) => {
                 **Category:** \`${command.config.category || "No Category"}\`
                 **Example:** \`${command.config.example || "No Example"}\`
                 **Accessable by:** \`${command.config.accessableby || "Everyone"}\`
-                **Aliases:** \`${command.config.aliases.join("`, `") || "No Aliases"}\`
+                **Aliases:** ${command.config.aliases.map(alias => `\`${alias}\``).join(" ") || "No Aliases"}
                 `)
                 embed.setColor(color)
                 embed.setFooter("Syntaxes: <> = required | [] = optional")

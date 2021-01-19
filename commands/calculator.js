@@ -8,12 +8,12 @@ module.exports.run = async (bot, message, args) => {
       try {
           resp = math.evaluate(args.join(" "))
       } catch (error) {
-        let embed = new Discord.MessageEmbed()
-        .setColor("#E31C08")
-        .setTitle("Error! This wasn't supposed to happen")
-        .setDescription(`Please report this to ${owners.map(o => bot.users.cache.get(o)).join(", or ")}`)
-        .addField("Error:", "```js\n" + error + "```")
-        .setTimestamp()
+        const embed = new Discord.MessageEmbed()
+          .setColor("#E31C08")
+          .setTitle("Error! This wasn't supposed to happen")
+          .setDescription(`Please report this to ${owners.map(o => bot.users.cache.get(o)).join(", or ")}`)
+          .addField("Error:", "```js\n" + error + "```")
+          .setTimestamp()
         return message.channel.send(embed)
       }
       if(!args.join(" ")) return message.channel.send("Please provide a maths calculation!")

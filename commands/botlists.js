@@ -13,13 +13,13 @@ const botlists = [
 ]
 
 module.exports.run = async (bot, message, args) => {
-    const list = botlists.join("\n")
-    let embed = new Discord.MessageEmbed()
-    .setColor(color)
-    .setTitle("Bot lists I am in")
-    .setDescription(list)
-    .setTimestamp()
-    .setImage("https://infinitybotlist.com/bots/725582436477698118/widget?size=large")
+    const list = botlists.join("\n");
+    const embed = new Discord.MessageEmbed()
+        .setColor(color)
+        .setTitle("Bot lists I am in")
+        .setDescription(list)
+        .setTimestamp()
+        .setImage("https://infinitybotlist.com/bots/725582436477698118/widget?size=large")
     message.channel.send(embed)
 }
 

@@ -3,7 +3,7 @@ const modlogs = require("../models/logchannel");
 const botconfig = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
-    let Member = message.mentions.users.last();
+    const Member = message.mentions.users.last();
     let reason = args.slice(1).join(" ");
     if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send("<:maybe:793205689153093702> **I am missing the Ban Members permission**")
     if(!message.member.hasPermission("BAN_MEMBERS")) {
@@ -15,24 +15,15 @@ module.exports.run = async (bot, message, args) => {
     } else {
       if(!Member) return message.channel.send("<:maybe:793205689153093702> **Please mention a member to ban**")
       if(!reason) reason = "No reason provided"
-  
       const user = message.mentions.users.last();
-  
-      if (user) {
-  
+      if(user) {
         const member = message.guild.member(user);
-  
-        if (member) {
-  
-          member
-            .ban({
-              reason: reason,
-            })
-            .then(() => {
+        if(member) {
+          member.ban({reason: reason}).then(() => {
   
               message.channel.send(`<:allow:793205689753010217> **${user.tag} has been banned**`)
 
-              let Embed = new Discord.MessageEmbed()
+              const Embed = new Discord.MessageEmbed()
               modlogs.findOne({ guildID: message.guild.id} , ( err , ch ) => {
                 Embed.setAuthor(`[BAN] ${Member.tag}`, Member.displayAvatarURL({format: "png"}))
                 Embed.addField("Server banned from:", `${message.guild.name}\n\`(${message.guild.id})\``, true)

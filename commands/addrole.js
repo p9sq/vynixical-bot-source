@@ -22,10 +22,10 @@ module.exports.run = async (bot, message, args) => {
         } else {
             const role = message.mentions.roles.last() || message.guild.roles.cache.find(r => r.name == args.slice(1).join(" "));
             const member = message.mentions.members.last();
-            if(!member) return message.channel.send("Please mention a user!")
-            if(!role) return message.channel.send("Please specify a role name or mention a role!")
-            member.roles.add(role)
-            message.channel.send(`<:allow:793205689753010217> **${role.name} was successfully given to ${member.user.tag}**`)
+            if(!member) return message.channel.send("<:deny:793205689488900136> **Please mention a user**");
+            if(!role) return message.channel.send("<:deny:793205689488900136> **Please specify a role name or mention a role**");
+            member.roles.add(role);
+            message.channel.send(`<:allow:793205689753010217> **${role.name} was successfully given to ${member.user.tag}**`);
             let embed = new Discord.MessageEmbed()
             modlogs.findOne({guildID: message.guild.id}, (err, ch) => {
                 embed.setTitle("A user has been given a role")

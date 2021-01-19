@@ -1,7 +1,7 @@
 module.exports.run = async (bot, message, args) => {
-    let clap = args.join(" 👏 ")
+    const clap = args.join(" 👏 ")
     if(!clap) return message.channel.send("Please provide a message to clap!")
-        message.channel.send("👏 " + clap + " 👏");
+    message.channel.send("👏 " + clap + " 👏");
 }
 
 module.exports.config = {
