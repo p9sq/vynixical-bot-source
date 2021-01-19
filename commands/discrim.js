@@ -1,4 +1,5 @@
 const hastebin = require("hastebin-gen");
+const botconfig = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
     const query = args[0];
