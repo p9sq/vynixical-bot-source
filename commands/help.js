@@ -14,9 +14,9 @@ module.exports.run = async (bot, message, args) => {
             embed.setDescription(`[Add bot to server](https://discord.com/api/oauth2/authorize?client_id=725582436477698118&permissions=8&scope=bot), [Support Server](https://discord.gg/sr2JWV6)`)
             // bot.utils.insertCommands(bot, embed)
 	        if(!owners.includes(message.author.id)) {
-		        categories = removeDuplicates(bot.commands.filter(cmd => cmd.config.category !== "Developer").map(cmd => cmd.config.category));
+		        categories = bot.utils.removeDuplicates(bot.commands.filter(cmd => cmd.config.category !== "Developer").map(cmd => cmd.config.category));
 	        } else {
-		        categories = removeDuplicates(bot.commands.map(cmd => cmd.config.category));
+		        categories = bot.utils.removeDuplicates(bot.commands.map(cmd => cmd.config.category));
 	        }
 
 	        for (const category of categories) {
