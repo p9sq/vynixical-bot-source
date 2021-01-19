@@ -190,13 +190,13 @@ function insertCommands(bot, embed) {
     if(!embed instanceof MessageEmbed) throw new TypeError("Embed must be a discord message embed")
     let categories;
 	if(!botconfig.owners.includes(message.author.id)) {
-		categories = bot.utils.removeDuplicates(bot.commands.filter(cmd => cmd.config.category !== "Developer").map(cmd => cmd.config.category));
+		categories = removeDuplicates(bot.commands.filter(cmd => cmd.config.category !== "Developer").map(cmd => cmd.config.category));
 	} else {
-		categories = bot.utils.removeDuplicates(bot.commands.map(cmd => cmd.config.category));
+		categories = removeDuplicates(bot.commands.map(cmd => cmd.config.category));
 	}
 
 	for (const category of categories) {
-		embed.addField(category, bot.commands.filter(cmd => cmd.config.category === category).map(cmd => `\`${cmd.name}\``).join(", "));
+		embed.addField(category, bot.commands.filter(cmd => cmd.config.category === category).map(cmd => `\`${cmd.config.name}\``).join(", "));
 	}
     // bot.categories.map(cat => embed.addField(cat.config.category, bot.commands.filter(cmd => cmd.config.category === cat.config.category).map(cmd => `\`${cmd.config.name}\``).join(", ")))
 }
