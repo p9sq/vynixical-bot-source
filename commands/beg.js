@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
             member.balance = member.balance- + -randomCoins;
             member.save();
           }
-        message.reply(`Why are you begging?? Take $${randomCoins}`)
+        message.reply(`Why are you begging?? Take <:vynixical_coin:801956380965732362> ${randomCoins}`)
     })
     } else {
     message.reply(`Sorry, but you don't get any money! Try again later`)

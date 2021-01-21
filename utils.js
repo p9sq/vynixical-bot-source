@@ -103,9 +103,9 @@ function clean(text) {
             .replace(/`/g, `\`${String.fromCharCode(8203)}`)
             .replace(/@/g, `@${String.fromCharCode(8203)}`)
             .replace(new RegExp(botconfig.token, "gi"), "*".repeat(botconfig.token.length))
+            .replace(new RegExp(botconfig.mongoURI, "gi"), "*".repeat(botconfig.mongoURI.length))
             .replace(new RegExp(botconfig.google, "gi"), "*".repeat(botconfig.google.length))
             .replace(new RegExp(botconfig.iblApiToken, "gi"), "*".repeat(botconfig.iblApiToken.length))
-            .replace(new RegExp(botconfig.mongoURI, "gi"), "*".repeat(botconfig.mongoURI.length))
     }
     return text;
 }
