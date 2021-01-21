@@ -27,11 +27,11 @@ bot.on("ready", async () => {
   eventHandler.run(bot);
   require("./dashbaord/server");
   const statuses = [
-    `Connected to ${bot.guilds.cache.size.toLocaleString()} servers | ??help`,
-    `Watching ${bot.channels.cache.size.toLocaleString()} channels | ??help`,
-    `Listening to ${bot.users.cache.size.toLocaleString()} users | ??help`,
-    `Counting ${bot.emojis.cache.size.toLocaleString()} emojis | ??help`,
-    `Looking at ${bot.ws.totalShards} shard(s) | >help`
+    `Connected to ${bot.guilds.cache.size.toLocaleString()} servers | ${botconfig.defaultPrefix}help`,
+    `Watching ${bot.channels.cache.size.toLocaleString()} channels | ${botconfig.defaultPrefix}help`,
+    `Listening to ${bot.users.cache.size.toLocaleString()} users | ${botconfig.defaultPrefix}help`,
+    `Counting ${bot.emojis.cache.size.toLocaleString()} emojis | ${botconfig.defaultPrefix}help`,
+    `Looking at ${bot.ws.totalShards} shard(s) | ${botconfig.defaultPrefix}help`
   ];
   const status = statuses[Math.floor(Math.random() * statuses.length)];
   bot.user.setPresence({activity: {name: status, type: "PLAYING"}, status: "idle"});

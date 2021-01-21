@@ -2,15 +2,16 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema({
     guildID: String,
     antiswear: Boolean,
+    muteRole: String,
+    prefix: String,
+    logChannel: String,
     autoResponse: {
-        msg: String,
+        message: String,
         response: String
     },
-    levelEnabled: Boolean,
     giveaways: {
-        guildId: { type: String, required: true },
-        messageId: { type: String, required: true },
-        channelId: { type: String, required: true },
+        messageID: { type: String, required: true },
+        channelID: { type: String, required: true },
         title: { type: String, required: true },
         prize: { type: String, required: true },
         winners: { type: Number, required: true },
@@ -18,14 +19,20 @@ const Schema = mongoose.Schema({
         endsOn: { type: Date, required: true },
         duration: { type: String, required: true }
     },
-    welimg: Boolean,
-    leaveChannel: String,
-    leaveText: String,
-    logChannel: String,
-    levelChannel: String,
-    memberRole: String,
-    muteRole: String,
-    prefix: String,
+    welcome: {
+        text: String,
+        image: Boolean,
+        channel: String,
+        role: String,
+    },
+    leave: {
+        text: String,
+        channel: String
+    },
+    levels: {
+        enabled: Boolean,
+        channel: String,
+    },
     userXp: {
         userID: String,
         balance: { type: Number, default: 0 }
@@ -33,8 +40,6 @@ const Schema = mongoose.Schema({
     warns: {
         userID: String,
         warns: Array
-    },
-    welcomeChannel: String,
-    welcomeText: String
+    }
 });
 module.exports = mongoose.model("guilds", Schema);

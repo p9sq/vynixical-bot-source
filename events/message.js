@@ -41,7 +41,7 @@ guildprefix.findOne({guildID: message.guild.id, guildName: message.guild.name}, 
       guildID: message.guild.id,
       guildOwner: message.guild.owner.user.tag,
       guildName: message.guild.name,
-      prefix: "??"
+      prefix: botconfig.defaultPrefix
     })
     guild.save()
     message.channel.send(`Hey there, it looks like that the server prefix hasn't been saved yet. I've now saved the server prefix to my DataBase as \`${guild.prefix}\`. Try running \`${guild.prefix}help\` for a list of commands.`).then((msg) => {
