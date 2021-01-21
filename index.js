@@ -37,7 +37,7 @@ bot.on("ready", async () => {
   bot.user.setPresence({activity: {name: status, type: "PLAYING"}, status: "idle"});
   setInterval(() => bot.user.setPresence({activity: {name: status, type: "PLAYING"}, status: "idle"}), 60000);
   setInterval(() => require("./ibl-poststats")(bot), 3e5);
-  mongoose.connect(botconfig.mongoURI, {useNewUrlParser: true,
+  mongoose.connect("mongodb+srv://db-user:db-password@vynixical-db.0f3pi.mongodb.net/Data?retryWrites=true&w=majority", {useNewUrlParser: true,
   useUnifiedTopology: true}).then(console.log(`[${utc().format("HH:mm:ss")}] Successfully connected to MongoDB`));
   const current = new Date();
   const giveaways = await Giveaway.find({endsOn: {$gt: current}});

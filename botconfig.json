@@ -3,7 +3,6 @@
     "defaultPrefix": "??",
     "google": "AIzaSyDLuuOFHbwNwECKV32F5kG1-4_KCOR0bIY",
     "iblApiToken": "diMauE6ee8nZLcSyURBJyBNtJXEGQZdkH1yC1MC8fBjitfU9pcAWN8nHEXvHSTC7UVLNNxGcBClrQD0fZ7wZaDwyS8zK2B8GFEMx",
-    "mongoURI": "mongodb+srv://db-user:db-password@vynixical-db.0f3pi.mongodb.net/Data?retryWrites=true&w=majority",
     "color": "#3AAEE5",
     "owners": [
         "490064230717063195", "520438477280641030"
