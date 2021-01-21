@@ -35,7 +35,7 @@ userlevel.findOne({guildID: message.guild.id, userID: message.author.id}, (err, 
 lvlch.findOne({guildID: message.guild.id}, (err, levelch) => {
 antiswear.findOne({guildID: message.guild.id}, (err, anti) => {
 au.findOne({guildID: message.guild.id}, (err, guildData) => {
-guildprefix.findOne({guildID: message.guild.id, guildName: message.guild.name}, (err , res) => {
+guildprefix.findOne({guildID: message.guild.id, guildName: message.guild.name}, (err, res) => {
   if(!res) {
     const guild = guildprefix({
       guildID: message.guild.id,
@@ -54,6 +54,8 @@ guildprefix.findOne({guildID: message.guild.id, guildName: message.guild.name}, 
     const prefix = message.content.match(mentionRegexPrefix) ? message.content.match(mentionRegexPrefix)[0] : res.prefix.toLowerCase();
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
+
+    if(!message.channel.permissionsFor(message.guild.me).toArray().includes("SEND_MESSAGES")) return;
     
     if(!message.content.startsWith(prefix)) return;
     const command = bot.commands.get(cmd) || bot.commands.get(bot.aliases.get(cmd))
