@@ -1,4 +1,3 @@
-require("./dashbaord/server");
 const botconfig = require("./botconfig.json");
 const mongoose = require("mongoose");
 const Discord = require("discord.js");
@@ -26,6 +25,7 @@ bot.on("ready", async () => {
   console.log(`[${utc().format("HH:mm:ss")}] Logged in as ${bot.user.tag}`);
   commandHandler.run(bot);
   eventHandler.run(bot);
+  require("./dashbaord/server");
   const statuses = [
     `Connected to ${bot.guilds.cache.size.toLocaleString()} servers | ??help`,
     `Watching ${bot.channels.cache.size.toLocaleString()} channels | ??help`,
