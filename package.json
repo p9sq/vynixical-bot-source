@@ -2,7 +2,7 @@
   "name": "vynixical",
   "version": "1.0.3",
   "description": "A cool bot made by p9sq69#0594",
-  "main": "index.js",
+  "main": "shard.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

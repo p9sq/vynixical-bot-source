@@ -22,7 +22,7 @@ process.on("uncaughtException", (error) => console.log(`[${utc().format("HH:mm:s
 process.on("uncaughtExceptionMonitor", (error) => console.log(`[${utc().format("HH:mm:ss")}] ${error}`));
 
 bot.on("ready", async () => {
-  console.log(`[${utc().format("HH:mm:ss")}] Logged in as ${bot.user.tag}`);
+  if(bot.shard.ids[0] === 0) console.log(`[${utc().format("HH:mm:ss")}] Logged in as ${bot.user.tag}`);
   commandHandler.run(bot);
   eventHandler.run(bot);
   require("./dashbaord/server");
@@ -37,8 +37,12 @@ bot.on("ready", async () => {
   bot.user.setPresence({activity: {name: status, type: "PLAYING"}, status: "idle"});
   setInterval(() => bot.user.setPresence({activity: {name: status, type: "PLAYING"}, status: "idle"}), 60000);
   setInterval(() => require("./ibl-poststats")(bot), 3e5);
-  mongoose.connect("mongodb+srv://db-user:db-password@vynixical-db.0f3pi.mongodb.net/Data?retryWrites=true&w=majority", {useNewUrlParser: true,
-  useUnifiedTopology: true}).then(console.log(`[${utc().format("HH:mm:ss")}] Successfully connected to MongoDB`));
+  mongoose.connect("mongodb+srv://db-user:db-password@vynixical-db.0f3pi.mongodb.net/Data?retryWrites=true&w=majority", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }).then(() => {
+      if(bot.shard.ids[0] === 0) console.log(`[${utc().format("HH:mm:ss")}] Successfully connected to MongoDB`)
+  });
   const current = new Date();
   const giveaways = await Giveaway.find({endsOn: {$gt: current}});
   await scheduleGiveaways(bot, giveaways);
