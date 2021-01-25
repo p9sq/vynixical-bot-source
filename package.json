@@ -23,6 +23,7 @@
     "got": "^11.5.1",
     "hastebin-gen": "^2.0.5",
     "mathjs": "^7.1.0",
+    "minecraft-server-util": "^3.4.2",
     "moment": "^2.27.0",
     "mongoose": "^5.9.21",
     "ms": "^2.1.2",
