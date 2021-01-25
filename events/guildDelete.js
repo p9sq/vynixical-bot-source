@@ -9,7 +9,6 @@ module.exports = async (bot, server) => {
     .setDescription(`Bot is now at ${bot.guilds.cache.size} servers!`)
     .setFooter(`Server Owner: ${bot.users.cache.get(server.owner.id).tag}`)
     .setColor("RED")
-  bot.channels.cache.get("703719270336430101").send(`${botconfig.owners.map(owner => bot.users.cache.get(owner)).join(" ")} | **New guild lost!**`, embed)
-  bot.channels.cache.get("803068437114781696").send(`${botconfig.owners.map(owner => bot.users.cache.get(owner)).join(" ")} | **New guild found!**`, embed)
+  bot.channels.cache.get("803068437114781696").send(`${botconfig.owners.map(owner => bot.users.cache.get(owner)).join(" ")} | **New guild lost!**`, embed)
   })
 }
