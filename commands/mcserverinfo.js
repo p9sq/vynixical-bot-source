@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
     util.status(args[0], {port: parseInt(args[1])}).then((res) => {
         const embed = new Discord.MessageEmbed()
             .setColor(botconfig.color)
-            .setThumbnail(res.favicon)
+            .setTitle("Minecraft Server Info")
             .addField("Host", res.host, true)
             .addField("Port", res.port, true)
             // .addField("srvRecond", res.srvRecord ? res.srvRecord : "None", true)
