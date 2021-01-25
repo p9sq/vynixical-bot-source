@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args) => {
             .addField("Protocol Version", res.protocolVersion, true)
             .addField("Online Players", res.onlinePlayers.toLocaleString(), true)
             .addField("Max Players", res.maxPlayers.toLocaleString(), true)
-            //.addField("Sample Players", res.samplePlayers ? res.samplePlayers.map(player => player).join(" ") : "None", true)
+            .addField("Sample Players", res.samplePlayers ? res.samplePlayers.join(" ") : "None", true)
             .addField("Description (With minecraft color codes)", res.description.descriptionText, true)
             .addField("Moderation Info", res.modInfo ? res.modInfo : "None")
         message.channel.send(embed);
