@@ -13,14 +13,14 @@ module.exports.run = async (bot, message, args) => {
             .setTitle("Minecraft Server Info")
             .addField("Host", res.host, true)
             .addField("Port", res.port, true)
-            .addField("srvRecond", res.srvRecord ? res.srvRecord : "None", true)
+            // .addField("srvRecond", res.srvRecord ? res.srvRecord : "None", true)
             .addField("Required Version", res.version, true)
             .addField("Protocol Version", res.protocolVersion, true)
             .addField("Online Players", res.onlinePlayers.toLocaleString(), true)
             .addField("Max Players", res.maxPlayers.toLocaleString(), true)
-            .addField("Sample Players", res.samplePlayers ? res.samplePlayers.map(player => player).join(" ") : "None", true)
+            // .addField("Sample Players", res.samplePlayers ? res.samplePlayers.map(player => player).join(" ") : "None", true)
             .addField("Description", res.description.descriptionText, true)
-            .addField("Moderation Info", res.modInfo ? res.modInfo : "None")
+            // .addField("Moderation Info", res.modInfo ? res.modInfo : "None")
         message.channel.send(embed);
     }).catch((err) => {
         message.channel.send(`Uh oh, an error has ocurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
