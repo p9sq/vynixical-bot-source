@@ -60,7 +60,7 @@ guildprefix.findOne({guildID: message.guild.id, guildName: message.guild.name}, 
     if(!message.content.startsWith(prefix)) return;
     const command = bot.commands.get(cmd) || bot.commands.get(bot.aliases.get(cmd))
     if(command) command.run(bot, message, args).catch((err) => {
-      message.channel.send(`Uh oh, an error has ocurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
+      message.channel.send(`Uh oh, an error has occurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
     })
   }
 })

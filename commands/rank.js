@@ -4,6 +4,7 @@ const Discord = require("discord.js");
 const canvacord = require("canvacord");
 const { color } = require("../botconfig.json");
 const num = 50;
+const guildprefix = require("../models/prefix");
 
 module.exports.run = async (bot, message, args) => {
     const Member = message.mentions.users.last() || message.author;
@@ -26,7 +27,9 @@ module.exports.run = async (bot, message, args) => {
             .setAvatar(Member.displayAvatarURL({format: "png", size: 1024, dynamic: false}))
         
             card.build().then(data => {
-                return message.channel.send("Leveling is currently disabled, do `.enablelevel` to enable the leveling system!", new Discord.MessageAttachment(data, "rank.png"))
+                guildprefix.findOne({guildID: message.guild.id, guildName: message.guild.name, guildOwner: message.guild.owner.user.tag}, (err, guild) => {
+                    return message.channel.send(`Leveling is currently disabled, do \`${guild.prefix}enablelevel\` to enable the leveling system!`, new Discord.MessageAttachment(data, "rank.png"))
+                })
             })
         } else {
             if(!user) {

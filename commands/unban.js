@@ -35,13 +35,13 @@ module.exports.run = async (bot, message, args) => {
             })
   
             user.send(`You have been unbanned from ${message.guild.name} by ${message.author.tag} for ${reason}`).catch((err) => {
-              return message.channel.send(`Uh oh, an error has ocurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
+              return message.channel.send(`Uh oh, an error has occurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
 
             });
   
             })
             .catch(err => {
-              return message.channel.send(`Uh oh, an error has ocurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
+              return message.channel.send(`Uh oh, an error has occurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
             });
     }
 }

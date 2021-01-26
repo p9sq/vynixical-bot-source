@@ -24,7 +24,7 @@ module.exports.run = async (bot, message, args) => {
             await message.guild.members.ban(user.id, {reason: reason});
             return message.channel.send(`<:allow:793205689753010217> **${user.tag} Was successfully banned outside of this server**`);
         }).catch(error => {
-            return message.channel.send(`Uh oh, an error has ocurred while running the command. Error: **${error}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
+            return message.channel.send(`Uh oh, an error has occurred while running the command. Error: **${error}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
         })
       }
 }

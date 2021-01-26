@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
             await message.channel.send(`<a:loading:393852367751086090> ${bot.user.tag} is restarting...`)
             process.exit()
         } catch(e) {
-            return message.channel.send(`Uh oh, an error has ocurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
+            return message.channel.send(`Uh oh, an error has occurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
         }
     }
 }

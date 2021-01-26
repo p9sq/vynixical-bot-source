@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args) => {
     if(!reason) reason = "No reason provided"
     warns.findOne({Guild: message.guild.id, User: user.id}, async(err, data) => {
         if(err) {
-            return message.channel.send(`Uh oh, an error has ocurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
+            return message.channel.send(`Uh oh, an error has occurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
         }
         if(!data) {
             const newWarns = new warns({
@@ -44,7 +44,7 @@ module.exports.run = async (bot, message, args) => {
                 logschannel.send(warnEmbed)
             })
             user.send(`You have been warned by ${bot.user.tag} in ${message.guild.name} for ${reason}`).catch((err) => {
-                return message.channel.send(`Uh oh, an error has ocurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
+                return message.channel.send(`Uh oh, an error has occurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
               });
         } else {
             data.Warns.unshift({
@@ -64,7 +64,7 @@ module.exports.run = async (bot, message, args) => {
                 logschannel.send(warnEmbed)
             })
             user.send(`You have been warned by ${bot.user.tag} in ${message.guild.name} for ${reason}`).catch((err) => {
-                return message.channel.send(`Uh oh, an error has ocurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
+                return message.channel.send(`Uh oh, an error has occurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
               });
         }
     })

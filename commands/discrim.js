@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
             message.channel.send(`**${users.length} Users found with discriminator #${query}**!\n${haste}`);
         })
         .catch((err) => {
-            message.channel.send(`Uh oh, an error has ocurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
+            message.channel.send(`Uh oh, an error has occurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners.map(o => `**${bot.users.cache.get(o).tag}**`).join(", or ")} asap.`)
         });
 }
 
