@@ -7,6 +7,7 @@ module.exports.run = async (bot, message, args) => {
     if(!emoji) return message.channel.send("Please specify an emoji to get info on.");
     const parsedEmoji = Discord.Util.parseEmoji(emoji);
     const emojiInfo = message.guild.emojis.cache.get(parsedEmoji.id);
+    if(!emojiInfo) return message.channel.send("That emoji doesn't exist in this server.")
     const embed = new Discord.MessageEmbed()
         .setTitle(`${emojiInfo.name} info`)
         .setThumbnail(emojiInfo.url)
@@ -33,5 +34,5 @@ module.exports.config = {
     category: "Info",
     example: "emojiinfo <:allow:799843005678616586>",
     accessableby: "Everyone",
-    aliases: ["emoji"]
+    aliases: []
 }
