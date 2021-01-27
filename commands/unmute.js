@@ -28,13 +28,15 @@ module.exports.run = async (bot, message, args) => {
                   guildID: message.guild.id,
                   cases: [
                     {
-                      caseID: 1,
+                      id: 1,
+                      action: "unmute",
                       moderator: message.author.id,
                       member: member.user.id,
                       reason: reason
                     }
                   ]
                 });
+                newData.save();
                 newData.save();
                 const muteEmbed = new Discord.MessageEmbed()
               modlogs.findOne({ guildID: message.guild.id}, (err , ch) => {
@@ -52,7 +54,8 @@ module.exports.run = async (bot, message, args) => {
               })
               } else {
                 data.cases.unshift({
-                  caseID: data.caseID++,
+                  id: data.cases.id++,
+                  action: "unmute",
                   moderator: message.author.id,
                   member: member.user.id,
                   reason: reason

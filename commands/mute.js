@@ -29,7 +29,7 @@ module.exports.run = async (bot, message, args) => {
                   cases: [
                     {
                       id: 1,
-                      type: "mute",
+                      action: "mute",
                       moderator: message.author.id,
                       member: member.user.id,
                       reason: reason
@@ -53,8 +53,8 @@ module.exports.run = async (bot, message, args) => {
               })
               } else {
                 data.cases.unshift({
-                  id: data.cases- + -1,
-                  type: "mute",
+                  id: data.cases.id++,
+                  action: "mute",
                   moderator: message.author.id,
                   member: member.user.id,
                   reason: reason
