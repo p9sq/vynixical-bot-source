@@ -3,39 +3,35 @@ const moment = require("moment");
 const { color } = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
-    const emoji = message.guild.emojis.cache.get(args[0]) || message.guild.emojis.cache.find(emoji => emoji.name === args[0])
-    let txt = "";
-    if(emoji.animated) {
-        txt = "Yes"
-    } else if(!emoji.animated) {
-        txt = "No"
-    }
-    if(!emoji) return message.channel.send("Please specify a emoji id or name!")
+    const emoji = args[0];
+    if(!emoji) return message.channel.send("Please specify an emoji to get info on.");
+    const parsedEmoji = Discord.Util.parseEmoji(emoji);
+    const emojiInfo = message.guild.emojis.cache.get(parsedEmoji.id);
     const embed = new Discord.MessageEmbed()
-        .setTitle(`${emoji.name} info`)
-        .setThumbnail(emoji.url)
+        .setTitle(`${emojiInfo.name} info`)
+        .setThumbnail(emojiInfo.url)
         .setColor(color)
-        .addField("Name:", emoji.name || "None", true)
-        .addField("ID:", emoji.id || "None", true)
-        .addField("Animated", txt || "None", true)
-        .addField("Emoji Created:", moment(emoji.createdAt).format('MMMM Do YYYY, h:mm A') + " | " + moment(emoji.createdAt).startOf().fromNow() || "None", true)
-        .addField("URL:", "<" + emoji.url + ">" || "None", true)
-    if(emoji.animated) {
-        embed.addField("Indentifier:", "`<a:" + emoji.name + ":" + emoji.id + ">`" || "None")
-    } else {
-        embed.addField("Indentifier:", "`<:" + emoji.name + ":" + emoji.id + ">`" || "None")
-    }
-    embed.setFooter("Emoji Info", emoji.url)
-    embed.setTimestamp()
+        .addField("Name:", emojiInfo.name, true)
+        .addField("ID:", emojiInfo.id, true)
+        .addField("Animated", emojiInfo.animated ? "Yes" : "No", true)
+        .addField("Emoji Created:", `${moment(emojiInfo.createdAt).format("MMMM Do YYYY, h:mm A")} | ${moment(emojiInfo.createdAt).startOf().fromNow()}`, true)
+        .addField("URL:", emojiInfo.url, true)
+        .setFooter("Emoji Info", emojiInfo.url)
+        .setTimestamp()
+        if(emojiInfo.animated) {
+            embed.addField("Indentifier:", `\`<a:${emojiInfo.name}:${emojiInfo.id}>\``)
+        } else {
+            embed.addField("Indentifier:", `\`<:${emojiInfo.name}:${emojiInfo.id}>\``)
+        }
     message.channel.send(embed);
 }
 
 module.exports.config = {
     name: "emojiinfo",
-    description: "Shows the emojis info by id",
-    usage: "emojiinfo <emoji-id | emoji-name>",
+    description: "Shows the emoji",
+    usage: "emojiinfo <emoji>",
     category: "Info",
-    example: "emojiinfo 704484542248911075",
+    example: "emojiinfo <:allow:799843005678616586>",
     accessableby: "Everyone",
     aliases: ["emoji"]
 }
