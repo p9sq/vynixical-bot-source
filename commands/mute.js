@@ -28,7 +28,8 @@ module.exports.run = async (bot, message, args) => {
                   guildID: message.guild.id,
                   cases: [
                     {
-                      caseID: 1,
+                      id: 1,
+                      type: "mute",
                       moderator: message.author.id,
                       member: member.user.id,
                       reason: reason
@@ -42,7 +43,7 @@ module.exports.run = async (bot, message, args) => {
                 muteEmbed.addField("Server muted in:", `${message.guild.name}\n\`(${message.guild.id})\``, true)
                 muteEmbed.addField("Moderator:", `${message.author.tag}\n\`(${message.author.id})\``, true)
                 muteEmbed.addField("Reason:", `${reason}`, true)
-                muteEmbed.addField("Case No.:", `${newData.cases.caseID}`, true)
+                muteEmbed.addField("Case No.:", `${newData.cases.id}`, true)
                 if(!ch) {
                   return;
                 } else {
@@ -52,7 +53,8 @@ module.exports.run = async (bot, message, args) => {
               })
               } else {
                 data.cases.unshift({
-                  caseID: data.caseID++,
+                  id: data.cases- + -1,
+                  type: "mute",
                   moderator: message.author.id,
                   member: member.user.id,
                   reason: reason
@@ -64,7 +66,7 @@ module.exports.run = async (bot, message, args) => {
                 muteEmbed.addField("Server muted in:", `${message.guild.name}\n\`(${message.guild.id})\``, true)
                 muteEmbed.addField("Moderator:", `${message.author.tag}\n\`(${message.author.id})\``, true)
                 muteEmbed.addField("Reason:", `${reason}`, true)
-                muteEmbed.addField("Case No.:", `${data.cases.caseID}`, true)
+                muteEmbed.addField("Case No.:", `${data.cases.id}`, true)
                 if(!ch) {
                   return;
                 } else {

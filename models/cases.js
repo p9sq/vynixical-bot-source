@@ -3,7 +3,8 @@ const Schema = mongoose.Schema({
     guildID: String,
     cases: [
         {
-            caseID: Number,
+            id: Number,
+            type: String,
             moderator: String,
             member: String,
             reason: String
