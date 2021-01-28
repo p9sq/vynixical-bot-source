@@ -20,10 +20,11 @@ module.exports = async (bot) => {
         const result = await res.json()
         const statsEmbed = new MessageEmbed()
             .setColor("GREEN")
+            .setTitle("Posted Stats")
             .addField("Amount of servers:", bot.guilds.cache.size)
             .addField("Amount of shards:", bot.shard.ids[0])
             .setDescription(`\`\`\`json\n${result}\n\`\`\``)
-            .setTimestamp(today.format("MMM Do YYYY"));
+            .setTimestamp();
         iblHook.send(statsEmbed)
     })
 }
