@@ -9,20 +9,21 @@ module.exports.run = async (bot, message, args) => {
     const currentShard = bot.shard.ids[0];
     const userPing = new Date().getTime() - msg.createdTimestamp;
 
-    msg.edit(stripIndents`<a:IssueFixed:748716312058134588> | **Pong!**
-    \`\`\`yaml
-    Message: ${msgSpeed}ms
-    Websocket: ${websocketPing}ms
-    Database: ${dbLatency()}ms
-    Your Ping: ${userPing}ms
-    Current Shard Id: #${currentShard}
-    \`\`\``)
+    ping();
 
-    async function dbLatency() {
+    async function ping() {
         const start = Date.now();
         await mongoose.connection.db.admin().ping();
         const end = Date.now() - start;
-        return end;
+
+        msg.edit(stripIndents`<a:IssueFixed:748716312058134588> | **Pong!**
+        \`\`\`yaml
+        Message: ${msgSpeed}ms
+        Websocket: ${websocketPing}ms
+        Database: ${end}ms
+        Your Ping: ${userPing}ms
+        Current Shard Id: #${currentShard}
+        \`\`\``)
     }
 }
 
