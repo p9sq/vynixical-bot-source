@@ -14,14 +14,16 @@ module.exports = async (bot) => {
         },
         body: JSON.stringify({
             servers: bot.guilds.cache.size,
-            shards: bot.ws.totalShards
+            shards: bot.shard.ids[0]
         })
     }).then(async(res) => {
         const result = await res.json()
         const statsEmbed = new MessageEmbed()
-            .setColor(botconfig.color)
-            .addField(`Posted Stats - ${today.format("MMM Do YYYY")}`, `\`\`\`json\n${result}\n\`\`\``)
-            .setTimestamp();
+            .setColor("GREEN")
+            .addField("Amount of servers:", bot.guilds.cache.size)
+            .addField("Amount of shards:", bot.shard.ids[0])
+            .setDescription(`\`\`\`json\n${result}\n\`\`\``)
+            .setTimestamp(today.format("MMM Do YYYY"));
         iblHook.send(statsEmbed)
     })
 }
