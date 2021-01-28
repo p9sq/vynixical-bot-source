@@ -1,4 +1,5 @@
 const { stripIndents } = require("common-tags");
+const mongoose = require("mongoose");
 
 module.exports.run = async (bot, message, args) => {
     const msg = await message.channel.send("<a:Issue:748716275705839786> | Pinging...")
@@ -12,9 +13,17 @@ module.exports.run = async (bot, message, args) => {
     \`\`\`yaml
     Message: ${msgSpeed}ms
     Websocket: ${websocketPing}ms
+    Database: ${dbLatency()}ms
     Your Ping: ${userPing}ms
     Current Shard Id: #${currentShard}
     \`\`\``)
+
+    async function dbLatency() {
+        const start = Date.now();
+        await mongoose.connection.db.admin().ping();
+        const end = Date.now() - start;
+        return end;
+    }
 }
 
 module.exports.config = {
