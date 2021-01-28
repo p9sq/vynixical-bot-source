@@ -27,18 +27,7 @@ module.exports.run = async (bot, message, args) => {
         } else {
           mutedRole.findOne({ guildID: message.guild.id } , ( err , m ) => {
             member.roles.add(m.muteID);
-            let formatedTime;
-            const Time = args[1].split("").reverse().slice(1).reverse().join("")
-            if(args[1].endsWith("h")) {
-              formatedTime = `${Time} Hours`
-            } else if(args[1].endsWith("d")) {
-              formatedTime = `${Time} Days`
-            } else if(args[1].endsWith("m")) {
-              formatedTime = `${Time} Minutes`
-            } else if(args[1].endsWith("s")) {
-              formatedTime = `${Time} Seconds`
-            }
-            message.channel.send(`<:allow:793205689753010217> **${Member.tag} has been temporarily muted for ${formatedTime} for ${reason}**`)
+            message.channel.send(`<:allow:793205689753010217> **${Member.tag} has been temporarily muted for ${ms(args[1], {long: true})} for ${reason}**`)
 
             setTimeout( function () {
                 member.roles.remove(m.muteID)

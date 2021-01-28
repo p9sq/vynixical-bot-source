@@ -3,7 +3,7 @@ const botconfig = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
     if(!args.join(" ")) return message.channel.send("Please provide some text!")
-    msg = args.join(" ")
+    const msg = args.join(" ")
 
     figlet.text(msg, function(err, data) {
         if(err) {

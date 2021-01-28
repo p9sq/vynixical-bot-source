@@ -13,7 +13,6 @@ module.exports.run = async (bot, message, args) => {
             "Content-Type": "application/json"
         }
     }).then(async res => {
-	console.log(await res.json());
         const embed = new Discord.MessageEmbed()
             .setColor(color)
             .setTitle(res.bot_name)

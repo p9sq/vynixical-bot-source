@@ -4,25 +4,13 @@ const { color } = require("../botconfig.json");
 module.exports.run = async (bot, message, args) => {
     const channel = message.mentions.channels.last() || message.guild.channels.cache.get(args[0]) || message.guild.channels.cache.find(channel => channel.name === args.join(" "));
     if(!channel) return message.channel.send("Please mention a channel, or specify a channel id, or specify a channel name!")
-    let txt = "";
-    if(channel.deleted) {
-      txt = "Yes"
-    } else {
-      txt = "No"
-    }
-    let text = "";
-    if(channel.nsfw) {
-      text = "Yes"
-    } else {
-      text = "No"
-    }
     const embed = new Discord.MessageEmbed()
       .setTitle(`${channel.name} info`)
       .setThumbnail(message.guild.iconURL({format: "png", dyamic: true, size: 2048}))
       .setColor(color)
       .addField("Name:", channel.name, true)
       .addField("ID:", channel.id, true)
-      .addField("Deleted:", txt, true)
+      .addField("Deleted:", channel.deleted ? "Yes" : "No", true)
       .addField("Type:", bot.utils.capitalizeFirstLetter(channel.type), true)
       .addField("Raw position:", channel.rawPosition, true)
     if(!channel.type === "category") {
@@ -30,7 +18,7 @@ module.exports.run = async (bot, message, args) => {
     }
     if(channel.type === "text") {
       embed.addField("Topic:", channel.topic, true)
-      embed.addField("NSFW:", text, true)
+      embed.addField("NSFW:", channel.nsfw ? "Yes" : "No", true)
       embed.addField("Last Message ID:", channel.lastMessageID, true)
       embed.addField("Last Pin Timestamp:", channel.lastPinTimestamp, true)
     }

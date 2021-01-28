@@ -5,14 +5,14 @@ const { color } = require("../botconfig.json");
 module.exports.run = async (bot, message, args) => {
     if(args[0]) {
         const choices = ["rock", "paper", "scissors"];
-        let botChoice = choices[Math.floor(Math.random() * 3)];
-        let playerChoice = args[0]
+        const botChoice = choices[Math.floor(Math.random() * 3)];
+        const playerChoice = args[0]
 
         if(!choices.includes(playerChoice)) return message.channel.send("Invalid choices...");
     
         let gameMsg = "";
         const embed = new Discord.MessageEmbed()
-        embed.setColor('RANDOM')
+        embed.setColor("RANDOM")
         if(botChoice == playerChoice) {
             gameMsg = "It's a tie!";
         } else if(botChoice == "rock") {

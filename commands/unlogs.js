@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
     if(!message.member.hasPermission("ADMINISTRATOR")) {
-        let invalidEmbed = new Discord.MessageEmbed()
+        const invalidEmbed = new Discord.MessageEmbed()
         .setTitle("Invalid Permissions!")
         .addField("Permissions Required:", "Administrator")
         .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());

@@ -5,14 +5,14 @@ const { color } = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
     if(!message.member.hasPermission("MANAGE_ROLES")) {
-        let invalidEmbed = new Discord.MessageEmbed()
+        const invalidEmbed = new Discord.MessageEmbed()
         .setTitle("Invalid Permissions!")
         .addField("Permissions Required:", "Manage Roles")
         .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());
         message.channel.send(invalidEmbed);
       } else {
         if(!args[0]) {
-            let embed = new Discord.MessageEmbed()
+            const embed = new Discord.MessageEmbed()
             guildprefix.findOne({guildID: message.guild.id, guildOwner: message.guild.owner.user.tag}, (err, data) => {
                 embed.setTitle("Invalid Usage")
                 embed.addField("Correct Usage:", `${data.prefix}addrole <user> <role>`)
@@ -26,7 +26,7 @@ module.exports.run = async (bot, message, args) => {
             if(!role) return message.channel.send("<:deny:793205689488900136> **Please specify a role name or mention a role**");
             member.roles.add(role);
             message.channel.send(`<:allow:793205689753010217> **${role.name} was successfully given to ${member.user.tag}**`);
-            let embed = new Discord.MessageEmbed()
+            const embed = new Discord.MessageEmbed()
             modlogs.findOne({guildID: message.guild.id}, (err, ch) => {
                 embed.setTitle("A user has been given a role")
                 embed.setColor(color)

@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
     .setTimestamp()
   message.channel.send(embed)
   } else {
-    const msg = await message.channel.send('Please wait...')
+    const msg = await message.channel.send("Please wait...")
         process.exec(args.join(" "), (error, stdout) => {
             const response = (error || stdout);
             msg.delete();

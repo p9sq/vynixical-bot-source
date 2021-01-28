@@ -22,8 +22,8 @@ module.exports.run = async (bot, message, args) => {
             .setThumbnail("https://cdn.discordapp.com/attachments/687131629176619205/727798407451639808/Vote.png")
             .setTimestamp()
         message.channel.send("", embed).then(async msg => {
-        await msg.react('👍')
-        await msg.react('👎')
+        await msg.react("👍")
+        await msg.react("👎")
         })
         }
 }

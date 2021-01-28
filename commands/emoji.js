@@ -21,10 +21,11 @@ module.exports.run = async(bot, message, args) => {
             Emojis+=Emoji(emoji.id)
         }
     })
-    let embed = new Discord.MessageEmbed()
-    embed.setTitle(`Emojis in ${message.guild.name}`)
-    embed.setColor(color)
-    embed.setDescription(`Over all emojis: \`${OverallEmojis}\``)
+    const embed = new Discord.MessageEmbed()
+        .setTitle(`Emojis in ${message.guild.name}`)
+        .setColor(color)
+        .setDescription(`Over all emojis: \`${OverallEmojis}\``)
+        .setTimestamp()
     if(!EmojisAnimated) {
         embed.addField(`[${Animated}] Animated:`, "None")
     } else {
@@ -35,7 +36,6 @@ module.exports.run = async(bot, message, args) => {
     } else {
         embed.addField(`[${EmojiCount}] Regular:`, `${EmojiCount}`)
     }
-    embed.setTimestamp()
     message.channel.send(embed)
 }
 

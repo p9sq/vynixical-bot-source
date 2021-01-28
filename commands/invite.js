@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
         > **No Permissions:**
         [Click Me](https://discord.com/api/oauth2/authorize?client_id=725582436477698118&permissions=0&scope=bot)
         `)
-    .setTimestamp()
+        .setTimestamp()
     message.channel.send(embed)
 }
 

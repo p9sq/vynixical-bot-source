@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
     let reason = args.slice(1).join(" ")
     if(!message.guild.me.hasPermission("MANAGE_GUILD")) return message.channel.send("Error! I am missing the `MANAGE_GUILD` permission!")
     if(!message.member.hasPermission("MANAGE_GUILD")) {
-      let invalidEmbed = new Discord.MessageEmbed()
+      const invalidEmbed = new Discord.MessageEmbed()
       .setTitle("Invalid Permissions!")
       .addField("Permissions Required:", "Manage Guild")
       .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());
