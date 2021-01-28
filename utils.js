@@ -104,7 +104,13 @@ function clean(text) {
             .replace(/@/g, `@${String.fromCharCode(8203)}`)
             .replace(new RegExp(botconfig.token, "gi"), "*".repeat(botconfig.token.length))
             .replace(new RegExp(botconfig.google, "gi"), "*".repeat(botconfig.google.length))
-            .replace(new RegExp(botconfig.iblApiToken, "gi"), "*".repeat(botconfig.iblApiToken.length))
+            .replace(new RegExp(botconfig.apiTokens.ibl, "gi"), "*".repeat(botconfig.apiTokens.ibl.length))
+            .replace(new RegExp(botconfig.apiTokens.dbots, "gi"), "*".repeat(botconfig.apiTokens.dbots.length))
+            .replace(new RegExp(botconfig.apiTokens.vultrex, "gi"), "*".repeat(botconfig.apiTokens.vultrex.length))
+            .replace(new RegExp(botconfig.apiTokens.topgg, "gi"), "*".repeat(botconfig.apiTokens.topgg.length))
+            .replace(new RegExp(botconfig.apiTokens.topgg, "gi"), "*".repeat(botconfig.apiTokens.topgg.length))
+            .replace(new RegExp(botconfig.apiTokens.fates, "gi"), "*".repeat(botconfig.apiTokens.fates.length))
+            .replace(new RegExp(botconfig.apiTokens.cyclone, "gi"), "*".repeat(botconfig.apiTokens.cyclone.length))
     }
     return text;
 }
