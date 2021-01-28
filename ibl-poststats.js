@@ -9,7 +9,7 @@ module.exports = async (bot) => {
     fetch(`https://infinitybotlist.com/api/bots/725582436477698118`, {
         method: "POST",
         headers: {
-            "authorization": botconfig.iblApiToken,
+            "authorization": botconfig.apiTokens.ibl,
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
