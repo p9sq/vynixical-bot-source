@@ -111,6 +111,7 @@ function clean(text) {
             .replace(new RegExp(botconfig.apiTokens.topgg, "gi"), "*".repeat(botconfig.apiTokens.topgg.length))
             .replace(new RegExp(botconfig.apiTokens.fates, "gi"), "*".repeat(botconfig.apiTokens.fates.length))
             .replace(new RegExp(botconfig.apiTokens.cyclone, "gi"), "*".repeat(botconfig.apiTokens.cyclone.length))
+            .replace(new RegExp(botconfig.apiTokens.matrix, "gi"), "*".repeat(botconfig.apiTokens.matrix.length))
     }
     return text;
 }
