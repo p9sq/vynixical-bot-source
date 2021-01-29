@@ -1,3 +1,4 @@
+require("./dashbaord/server");
 const botconfig = require("./botconfig.json");
 const mongoose = require("mongoose");
 const Discord = require("discord.js");
@@ -31,7 +32,7 @@ bot.on("ready", async () => {
     `Watching ${bot.channels.cache.size.toLocaleString()} channels | ${botconfig.defaultPrefix}help`,
     `Listening to ${bot.users.cache.size.toLocaleString()} users | ${botconfig.defaultPrefix}help`,
     `Counting ${bot.emojis.cache.size.toLocaleString()} emojis | ${botconfig.defaultPrefix}help`,
-    `Current shard id: #${bot.shard.ids[0]} | ${botconfig.defaultPrefix}help`
+    `Total shards: ${bot.shard.count} | ${botconfig.defaultPrefix}help`
   ];
   const status = statuses[Math.floor(Math.random() * statuses.length)];
   bot.user.setPresence({activity: {name: status, type: "PLAYING"}, status: "idle"});
