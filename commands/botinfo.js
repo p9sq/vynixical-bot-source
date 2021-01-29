@@ -10,7 +10,7 @@ const ms = require("ms");
 module.exports.run = async (bot, message, args) => {
     const core = os.cpus()[0];
     const embed = new Discord.MessageEmbed()
-    guildprefix.findOne({ guildID: message.guild.id, guildName: message.guild.name, guildOwner: message.guild.owner.user.tag}, (err, data) => {
+    guildprefix.findOne({guildID: message.guild.id}, (err, data) => {
     banner.findOne({}, (err, img) => {
         embed.setThumbnail(`${bot.user.avatarURL({size: 4096, format: "png"})}`)
         embed.setColor(color)

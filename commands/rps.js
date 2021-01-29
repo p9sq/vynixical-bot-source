@@ -38,7 +38,7 @@ module.exports.run = async (bot, message, args) => {
             message.channel.send(embed);
     } else {
         const embed = new Discord.MessageEmbed()
-        guildprefix.findOne({guildID: message.guild.id, guildName: message.guild.name, guildOwner: message.guild.owner.user.tag}, (err, data) => {
+        guildprefix.findOne({guildID: message.guild.id}, (err, data) => {
         embed.setColor(color)
         embed.setDescription(`Pick one: \`Rock\`, \`Paper\`, or \`Scissors\`. Make sure to type it in again after *${data.prefix}rps*`)
         message.channel.send(embed)

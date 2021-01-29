@@ -27,7 +27,7 @@ module.exports.run = async (bot, message, args) => {
             .setAvatar(Member.displayAvatarURL({format: "png", size: 1024, dynamic: false}))
         
             card.build().then(data => {
-                guildprefix.findOne({guildID: message.guild.id, guildName: message.guild.name, guildOwner: message.guild.owner.user.tag}, (err, guild) => {
+                guildprefix.findOne({guildID: message.guild.id}, (err, guild) => {
                     return message.channel.send(`Leveling is currently disabled, do \`${guild.prefix}enablelevel\` to enable the leveling system!`, new Discord.MessageAttachment(data, "rank.png"))
                 })
             })

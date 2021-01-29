@@ -10,7 +10,7 @@ const botlists = [
     "MatrixBots",
     "Tropical Bot List",
     "Vultrex Development",
-]
+];
 
 module.exports.run = async (bot, message, args) => {
     const list = botlists.join("\n");
@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
         .setDescription(list)
         .setTimestamp()
         .setImage("https://infinitybotlist.com/bots/725582436477698118/widget?size=large")
-    message.channel.send(embed)
+    message.channel.send(embed);
 }
 
 module.exports.config = {

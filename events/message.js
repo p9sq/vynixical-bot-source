@@ -35,12 +35,10 @@ userlevel.findOne({guildID: message.guild.id, userID: message.author.id}, (err, 
 lvlch.findOne({guildID: message.guild.id}, (err, levelch) => {
 antiswear.findOne({guildID: message.guild.id}, (err, anti) => {
 au.findOne({guildID: message.guild.id}, (err, guildData) => {
-guildprefix.findOne({guildID: message.guild.id, guildName: message.guild.name}, (err, res) => {
+guildprefix.findOne({guildID: message.guild.id}, (err, res) => {
   if(!res) {
     const guild = guildprefix({
       guildID: message.guild.id,
-      guildOwner: message.guild.owner.user.tag,
-      guildName: message.guild.name,
       prefix: botconfig.defaultPrefix
     })
     guild.save()

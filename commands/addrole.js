@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
       } else {
         if(!args[0]) {
             const embed = new Discord.MessageEmbed()
-            guildprefix.findOne({guildID: message.guild.id, guildOwner: message.guild.owner.user.tag}, (err, data) => {
+            guildprefix.findOne({guildID: message.guild.id}, (err, data) => {
                 embed.setTitle("Invalid Usage")
                 embed.addField("Correct Usage:", `${data.prefix}addrole <user> <role>`)
                 embed.setFooter(bot.user.username + " | Addrole command", bot.user.displayAvatarURL())

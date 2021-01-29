@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args) => {
     let categories;
     if(!args[0]) {
         const embed = new Discord.MessageEmbed()
-        guildprefix.findOne({guildID: message.guild.id, guildOwner: message.guild.owner.user.tag, guildName: message.guild.name}, (err, data) => {
+        guildprefix.findOne({guildID: message.guild.id}, (err, data) => {
             embed.setTitle(`${bot.user.username} Help Menu`)
             embed.setColor(color)
             embed.setDescription([

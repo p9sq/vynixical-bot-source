@@ -3,7 +3,7 @@ const modlogs = require("../models/logchannel");
 const guildprefix = require("../models/prefix");
 
 module.exports.run = async (bot, message, args) => {
-  guildprefix.findOne({guildID: message.guild.id, guildName: message.guild.name, guildOwner: message.guild.owner.user.tag}, (err, data) => {
+  guildprefix.findOne({guildID: message.guild.id}, (err, data) => {
     const prefix = data.prefix;
     if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send("<:maybe:793205689153093702> **I am missing the Manage Roles permission**")
     if(!message.member.hasPermission("MANAGE_ROLES")) {

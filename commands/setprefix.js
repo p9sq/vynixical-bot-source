@@ -11,14 +11,14 @@ module.exports.run = async (bot, message, args) => {
     } else {
         if(!args.join(" ")) {
             const embed = new Discord.MessageEmbed()
-            guildprefix.findOne({guildID: message.guild.id, guildName: message.guild.name, guildOwner: message.guild.owner.user.tag}, (err, data) => {
+            guildprefix.findOne({guildID: message.guild.id}, (err, data) => {
                 embed.setTitle("Invalid Usage")
                 embed.addField("Correct Usage:", `${data.prefix}setprefix <prefix>\nDon't include the \`<>\``)
                 embed.setFooter(bot.user.username + " | Prefix command", bot.user.displayAvatarURL({format: "png"}))
                 message.channel.send(embed)
             })
         } else {
-            guildprefix.findOne({guildID: message.guild.id, guildName: message.guild.name, guildOwner: message.guild.owner.user.tag}, (err, data) => {
+            guildprefix.findOne({guildID: message.guild.id}, (err, data) => {
                 data.prefix = args.join(" ")
                 data.save()
             })

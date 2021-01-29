@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const modlogs = require("../models/logchannel");
 
 module.exports = async (guild, user) => {
-    let embed = new Discord.MessageEmbed()
+    const embed = new Discord.MessageEmbed()
     modlogs.findOne({ guildID: message.guild.id} , ( err , ch ) => {
     embed.setColor("GREEN")
     embed.setTitle("New user unbanned!")

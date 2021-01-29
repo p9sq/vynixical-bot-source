@@ -13,7 +13,7 @@ module.exports = async (bot, message) => {
     snipes.splice(10);
     bot.snipes.set(message.channel.id, snipes)
     if(message.mentions.users.size > 0 || message.mentions.roles.size > 0) {
-        let embed = new Discord.MessageEmbed()
+        const embed = new Discord.MessageEmbed()
         modlogs.findOne({guildID: message.guild.id}, (err, ch) => {
         embed.setTitle("Ghost ping detected")
         embed.setThumbnail(message.author.displayAvatarURL({format: "png", dynamic: true, size: 2048}))

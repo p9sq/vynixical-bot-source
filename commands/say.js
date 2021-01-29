@@ -10,14 +10,14 @@ module.exports.run = async (bot, message, args) => {
             const embed = new Discord.MessageEmbed()
             embed.setDescription(msg)
             embed.setColor(color)
-            embed.setFooter(`Author: ${message.author.tag}`)
+            embed.setFooter(`Sent by: ${message.author.tag}`)
             channel.send(embed)
         } else {
             const channel = message.mentions.channels.first();
             const msg = args.slice(1).join(" ")
             if(!channel) return message.channel.send("<:maybe:793205689153093702> **Please mention a channel**")
             if(!msg) return message.channel.send("<:maybe:793205689153093702> **Please specify a message**")
-            channel.send(`${msg}\n\n- ${message.author.tag}`)
+            channel.send(`${msg}\n\nSent by: ${message.author.tag}`)
         }
 }
 

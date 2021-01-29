@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
         embed.setFooter(bot.user.username, bot.user.displayAvatarURL())
         message.channel.send(embed)
     } else {
-        guildprefix.findOne({guildID: message.guild.id, guildOwner: message.guild.owner.user.tag, guildName: message.guild.name}, (err, gp) => {
+        guildprefix.findOne({guildID: message.guild.id}, (err, gp) => {
             config.findOne({guildID: message.guild.id}, (err, lvl) => {
                 if(!lvl) {
                     return message.channel.send(`<:deny:793205689488900136> **The leveling system is currently disabled, do \`${gp.prefix}enablelevel\` then \`${gp.prefix}levelchannel #channel\`**`)
