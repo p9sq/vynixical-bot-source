@@ -41,7 +41,7 @@ module.exports.run = async (bot, message, args) => {
         body: JSON.stringify({serverCount: bot.guilds.cache.size, shardCount: bot.shard.count}),
         headers: {
             "Authorization": botconfig.apiTokens.vultrex,
-             "Content-Type": "application/json"
+            "Content-Type": "application/json"
         }
     }).then(res => res.json()).then(json => console.log(json));
       
@@ -52,6 +52,19 @@ module.exports.run = async (bot, message, args) => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({"server_count": bot.guilds.cache.size})
+    }).then(res => res.json()).then(json => console.log(json));
+
+    fetch("https://fateslist.xyz/api/bots/stats", {
+        method: "POST",
+        headers: {
+            "Authorization": botconfig.apiTokens.fates,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            "api_token": botconfig.apiTokens.fates,
+            "guild_count": bot.guilds.cache.size,
+            "shard_count": bot.shard.count
+        })
     }).then(res => res.json()).then(json => console.log(json));
   }
 }
