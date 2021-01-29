@@ -52,7 +52,7 @@ module.exports.run = async (bot, message, args) => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({"server_count": bot.guilds.cache.size})
-    }).then(response => response.text()).then(console.log).catch(console.error);
+    }).then(res => res.json()).then(json => console.log(json));
   }
 }
 
