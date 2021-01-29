@@ -15,6 +15,8 @@ module.exports.run = async (bot, message, args) => {
     .setTimestamp()
   message.channel.send(embed)
   } else {
+    message.channel.send("<:allow:793205689753010217> **Successfully posted stats to all bot lists**")
+
     const dbl = new DBL(botconfig.apiTokens.topgg, bot);
     const stats = new IBL(bot.user.id, botconfig.apiTokens.ibl);
 
@@ -24,8 +26,6 @@ module.exports.run = async (bot, message, args) => {
     dbl.on("posted", () => {
         console.log("Server count posted!");
     });
-
-    message.channel.send("<:allow:793205689753010217> **Successfully posted stats to all bot lists**")
 
     fetch("https://discord.bots.gg/api/v1/bots/725582436477698118/stats", {
         method: "POST",
