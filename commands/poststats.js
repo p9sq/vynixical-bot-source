@@ -57,7 +57,6 @@ module.exports.run = async (bot, message, args) => {
     fetch("https://fateslist.xyz/api/bots/stats", {
         method: "POST",
         headers: {
-            "Authorization": botconfig.apiTokens.fates,
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
