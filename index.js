@@ -1,4 +1,3 @@
-require("./dashbaord/server");
 const botconfig = require("./botconfig.json");
 const mongoose = require("mongoose");
 const Discord = require("discord.js");

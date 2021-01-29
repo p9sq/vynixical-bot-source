@@ -29,7 +29,7 @@ module.exports.run = async (bot, message, args) => {
             `**Uptime:** ${bot.utils.duration(bot.uptime)}`,
             `**Description:** This bot was made by ${bot.users.cache.get(owners[0])}. This bot has heaps of commands to use!`,
             `**Libary:** Discord.js`,
-            `**Total Shard(s):** ${bot.ws.totalShards}`,
+            `**Total Shard(s):** ${bot.shard.count}`,
             `**Owners:**`,
             `${owners.map(o => `\u3000 ${bot.users.cache.get(o)} (${bot.users.cache.get(o).id})`).join("\n")}`,
         ])
