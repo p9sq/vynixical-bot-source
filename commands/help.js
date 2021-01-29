@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
             embed.setColor(color)
             embed.setDescription([
 				`These are the available commands for ${message.guild.name}`,
-				`The prefix for this server is \`${data.prefix}\``,
+				`The prefix for this server is \`${data.prefix ? data.prefix : defaultPrefix}\``,
                 `Command Parameters: \`<>\` is strict & \`[]\` is optional`,
                 `Don't actually include the command parameters when using any command`
 			]);
@@ -25,7 +25,7 @@ module.exports.run = async (bot, message, args) => {
 		        embed.addField(category, bot.commands.filter(cmd => cmd.config.category === category).map(cmd => `\`${cmd.config.name}\``).join(" "));
             }
             embed.addField("Links", `[Invite](https://discord.com/api/oauth2/authorize?client_id=725582436477698118&permissions=8&scope=bot) | [Support](https://discord.gg/sr2JWV6)`)
-            embed.setFooter(`For more help, do ${data.prefix}help [command]`)
+            embed.setFooter(`For more help, do ${data.prefix ? data.prefix : defaultPrefix}help [command]`)
             if(!message.guild.me.hasPermission("SEND_MESSAGES")) {
                 message.author.send(embed)
             } else {

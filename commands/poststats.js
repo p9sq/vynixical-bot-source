@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
     const stats = new IBL(bot.user.id, botconfig.apiTokens.ibl);
 
     stats.postStats(bot.guilds.cache.size, bot.shard.ids[0]);
-    dbl.postStats(bot.guilds.cache.size, bot.shard.ids[0], bot.shard.ids.length);
+    dbl.postStats(bot.guilds.cache.size, bot.shard.ids[0], bot.shard.count);
 
     dbl.on("posted", () => {
         console.log("Server count posted!");
@@ -29,7 +29,7 @@ module.exports.run = async (bot, message, args) => {
 
     fetch("https://discord.bots.gg/api/v1/bots/725582436477698118/stats", {
         method: "POST",
-        body: JSON.stringify({guildCount: bot.guilds.cache.size, shardCount: bot.shard.ids.length, shardId: bot.shard.ids[0]}),
+        body: JSON.stringify({guildCount: bot.guilds.cache.size, shardCount: bot.shard.count, shardId: bot.shard.ids[0]}),
         headers: {
             "Authorization": botconfig.apiTokens.dbots,
             "Content-Type": "application/json"
@@ -38,7 +38,7 @@ module.exports.run = async (bot, message, args) => {
 
     fetch("https://api.discordbots.co/v1/public/bot/725582436477698118/stats", {
         method: "POST",
-        body: JSON.stringify({serverCount: bot.guilds.cache.size, shardCount: bot.shard.ids.length}),
+        body: JSON.stringify({serverCount: bot.guilds.cache.size, shardCount: bot.shard.count}),
         headers: {
             "Authorization": botconfig.apiTokens.vultrex,
              "Content-Type": "application/json"
