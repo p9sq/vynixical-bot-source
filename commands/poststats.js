@@ -2,6 +2,7 @@ const botconfig = require("../botconfig.json");
 const Discord = require("discord.js");
 const DBL = require("dblapi.js");
 const IBL = require("infinity-api");
+const fetch = require("node-fetch");
 
 module.exports.run = async (bot, message, args) => {
   if(!botconfig.owners.includes(message.author.id)) {
