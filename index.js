@@ -25,7 +25,7 @@ bot.on("ready", async () => {
   console.log(`[${utc().format("HH:mm:ss")}] Logged in as ${bot.user.tag}`);
   commandHandler.run(bot);
   eventHandler.run(bot);
-  require("./dashbaord/server");
+  // require("./dashbaord/server");
   const statuses = [
     `Connected to ${bot.guilds.cache.size.toLocaleString()} servers | ${botconfig.defaultPrefix}help`,
     `Watching ${bot.channels.cache.size.toLocaleString()} channels | ${botconfig.defaultPrefix}help`,
