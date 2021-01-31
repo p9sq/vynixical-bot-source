@@ -32,7 +32,7 @@ bot.on("ready", async () => {
     `Listening to ${bot.users.cache.size.toLocaleString()} users | ${botconfig.defaultPrefix}help`,
     `Counting ${bot.emojis.cache.size.toLocaleString()} emojis | ${botconfig.defaultPrefix}help`,
     `Total shards: ${bot.shard.count} | ${botconfig.defaultPrefix}help`,
-    "Visit http://www.vynixical.com/"
+    `Visit http://www.vynixical.com/ | ${botconfig.defaultPrefix}help`
   ];
   const status = statuses[Math.floor(Math.random() * statuses.length)];
   bot.user.setPresence({activity: {name: status, type: "PLAYING"}, status: "idle"});
