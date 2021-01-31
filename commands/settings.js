@@ -10,7 +10,7 @@ const leavechannel = require("../models/leavechannel");
 const config = require("../models/config");
 const antiswear = require("../models/antiswear");
 const lvlch = require("../models/lvlchannel");
-const { color, owners, defaultPrefix } = require("../botconfig.json");
+const { color, owners } = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
     const embed = new Discord.MessageEmbed()
@@ -19,8 +19,8 @@ module.exports.run = async (bot, message, args) => {
     embed.setThumbnail(message.guild.iconURL({size: 2048, dynamic: true, format: "png"}))
     embed.setFooter(`${bot.users.cache.get(owners[0]).tag} was here - 29/12/2020`)
     embed.setColor(color)
-        guildprefix.findOne({guildID: message.guild.id, guildName: message.guild.name}, (err, data) => {
-            embed.addField("Prefix:", `\`${data.prefix ? data.prefix : defaultPrefix}\``)
+        guildprefix.findOne({guildID: message.guild.id}, (err, data) => {
+            embed.addField("Prefix:", `\`${data.prefix}\``)
             mutedRole.findOne({guildID: message.guild.id}, (err, m) => {
                 if(!m) {
                     embed.addField("Muted Role:", "`No muted role`")

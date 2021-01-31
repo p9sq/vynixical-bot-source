@@ -24,7 +24,7 @@ module.exports.run = async (bot, message, args) => {
 	        for (const category of categories) {
 		        embed.addField(category, bot.commands.filter(cmd => cmd.config.category === category).map(cmd => `\`${cmd.config.name}\``).join(" "));
             }
-            embed.addField("Links", `[Invite](https://discord.com/api/oauth2/authorize?client_id=725582436477698118&permissions=8&scope=bot) | [Support](https://discord.gg/sr2JWV6) | [Website](http://www.vynixical.com/) - Thanks to ${bot.users.cache.get("767928981399273509").tag} for the website`)
+            embed.addField("Links", `[Invite](https://discord.com/api/oauth2/authorize?client_id=725582436477698118&permissions=8&scope=bot) | [Support](https://discord.gg/a6sEvf8uZY) | [Website](http://www.vynixical.com/) - Thanks to ${bot.users.cache.get("767928981399273509").tag} for the website`)
             embed.setFooter(`For more help, do ${data.prefix ? data.prefix : defaultPrefix}help [command]`)
             if(!message.guild.me.hasPermission("SEND_MESSAGES")) {
                 message.author.send(embed)
