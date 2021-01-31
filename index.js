@@ -31,7 +31,8 @@ bot.on("ready", async () => {
     `Watching ${bot.channels.cache.size.toLocaleString()} channels | ${botconfig.defaultPrefix}help`,
     `Listening to ${bot.users.cache.size.toLocaleString()} users | ${botconfig.defaultPrefix}help`,
     `Counting ${bot.emojis.cache.size.toLocaleString()} emojis | ${botconfig.defaultPrefix}help`,
-    `Total shards: ${bot.shard.count} | ${botconfig.defaultPrefix}help`
+    `Total shards: ${bot.shard.count} | ${botconfig.defaultPrefix}help`,
+    "Visit http://www.vynixical.com/"
   ];
   const status = statuses[Math.floor(Math.random() * statuses.length)];
   bot.user.setPresence({activity: {name: status, type: "PLAYING"}, status: "idle"});
