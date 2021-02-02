@@ -4,6 +4,7 @@ const request = require("request");
 module.exports.run = async (bot, message, args) => {
     if(!args[0]) return message.channel.send("Please specify an image url.");
     if(!args[0].startsWith("https://")) return message.channel.send("Please provide a full image url with `https://` at the beginning.");
+    const image = args[0].toString();
     request.post({
         url: "https://api.remove.bg/v1.0/removebg",
         formData: {
@@ -15,8 +16,8 @@ module.exports.run = async (bot, message, args) => {
         },
         encoding: null
       }, function(error, response, body) {
-        if(error) return message.channel.send(`Request failed: ${error}`);
-        if(response.statusCode != 200) return message.channel.send(`Error: ${response.statusCode, body.toString("utf8")}`);
+        if(error) return message.channel.send(`Request failed: \`${error}\``);
+        if(response.statusCode != 200) return message.channel.send(`Error: \`${response.statusCode, body.toString("utf8")}\``);
         message.channel.send(new Discord.MessageAttachment("no-bg.png", body));
     });
 }
