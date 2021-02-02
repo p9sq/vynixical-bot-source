@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
     request.post({
         url: "https://api.remove.bg/v1.0/removebg",
         formData: {
-            image_file: args[0],
+            image_file: image,
             size: "auto",
         },
         headers: {
