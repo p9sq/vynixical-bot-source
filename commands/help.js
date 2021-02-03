@@ -49,7 +49,7 @@ module.exports.run = async (bot, message, args) => {
                 **Description:** \`${command.config.description || "No description"}\`
                 **Usage:** \`${command.config.usage || "No usage"}\`
                 **Category:** \`${command.config.category || "No Category"}\`
-                **Example:** \`${example || "No Example"}\`
+                **Example:** ${example || "No Example"}
                 **Accessable by:** \`${command.config.accessableby || "Everyone"}\`
                 **Aliases:** ${command.config.aliases.map(alias => `\`${alias}\``).join(" ") || "No Aliases"}
                 `)
