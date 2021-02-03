@@ -41,7 +41,7 @@ module.exports.run = async (bot, message, args) => {
                 if(command.config.name === "removebg") {
                     example = command.config.example;
                 } else {
-                    example = `\`${command.config.example}`
+                    example = `\`${command.config.example}\``
                 }
                 const embed = new Discord.MessageEmbed()
                 embed.setAuthor(`${bot.utils.capitalizeFirstLetter(command.config.name)} Command`, message.guild.iconURL({dynamic: true, size: 2048, format: "png"}))
