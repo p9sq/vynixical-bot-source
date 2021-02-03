@@ -5,14 +5,7 @@ const moment = require("moment");
 
 module.exports.run = async (bot, message, args) => {
     if(!owners.includes(message.author.id)) {
-        message.react("710703782887161898")
-        const Embed = new Discord.MessageEmbed()
-            .setTitle("❌ Access Denied!")
-            .setDescription("You aren't the owner of this bot!")
-            .setColor("RED")
-            .setFooter(bot.user.username, bot.user.displayAvatarURL({format: "png"}))
-            .setTimestamp()
-        message.channel.send(Embed)
+        return
         } else {      
         const desc = args.slice(1).join(" ")
         const mChannel = message.mentions.channels.first();

@@ -4,13 +4,7 @@ const { owners } = require("../botconfig.json");
 module.exports.run = async (bot, message, args) => {
     const channel = message.mentions.channels.first();
     if(!owners.includes(message.author.id)) {
-        message.react("710703782887161898")
-        const embed = new Discord.MessageEmbed()
-            .setTitle("❌ Access Denied!")
-            .setDescription("You aren't the owner of this bot!")
-            .setColor("RED")
-            .setTimestamp()
-        message.channel.send(embed)
+        return
         } else {
     if(!channel) return message.reply("Please a voice channel!")
     if(!channel.type === "text") return message.reply("I can't join text channels!")

@@ -1,17 +1,9 @@
 const process = require("child_process");
 const botconfig = require("../botconfig.json");
-const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
   if(!botconfig.owners.includes(message.author.id)) {
-  message.react("710703782887161898")
-  const embed = new Discord.MessageEmbed()
-    .setTitle("❌ Access Denied!")
-    .setDescription("You aren't the owner of this bot!")
-    .setColor("RED")
-    .setFooter(bot.user.username, bot.user.displayAvatarURL({format: "png"}))
-    .setTimestamp()
-  message.channel.send(embed)
+  return
   } else {
     const msg = await message.channel.send("Please wait...")
         process.exec(args.join(" "), (error, stdout) => {

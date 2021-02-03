@@ -38,24 +38,28 @@ module.exports.run = async (bot, message, args) => {
             let example;
             if(bot.commands.has(command)) {
                 command = bot.commands.get(command);
-                if(command.config.name === "removebg") {
-                    example = command.config.example;
+                if(command.config.category === "Developer" && !owners.includes(message.author.id)) {
+                    return message.channel.send(`<:xmark:314349398824058880> **help: unknown command '${args[0]}'**`)
                 } else {
-                    example = `\`${command.config.example}\``
+                    if(command.config.name === "removebg") {
+                        example = command.config.example;
+                    } else {
+                        example = `\`${command.config.example}\``
+                    }
+                    const embed = new Discord.MessageEmbed()
+                    embed.setAuthor(`${bot.utils.capitalizeFirstLetter(command.config.name)} Command`, message.guild.iconURL({dynamic: true, size: 2048, format: "png"}))
+                    embed.setDescription(`
+                    **Description:** \`${command.config.description || "No description"}\`
+                    **Usage:** \`${command.config.usage || "No usage"}\`
+                    **Category:** \`${command.config.category || "No Category"}\`
+                    **Example:** ${example || "No Example"}
+                    **Accessable by:** \`${command.config.accessableby || "Everyone"}\`
+                    **Aliases:** ${command.config.aliases.map(alias => `\`${alias}\``).join(" ") || "No Aliases"}
+                    `)
+                    embed.setColor(color)
+                    embed.setFooter("Syntaxes: <> = required | [] = optional")
+                    message.channel.send(embed);
                 }
-                const embed = new Discord.MessageEmbed()
-                embed.setAuthor(`${bot.utils.capitalizeFirstLetter(command.config.name)} Command`, message.guild.iconURL({dynamic: true, size: 2048, format: "png"}))
-                embed.setDescription(`
-                **Description:** \`${command.config.description || "No description"}\`
-                **Usage:** \`${command.config.usage || "No usage"}\`
-                **Category:** \`${command.config.category || "No Category"}\`
-                **Example:** ${example || "No Example"}
-                **Accessable by:** \`${command.config.accessableby || "Everyone"}\`
-                **Aliases:** ${command.config.aliases.map(alias => `\`${alias}\``).join(" ") || "No Aliases"}
-                `)
-                embed.setColor(color)
-                embed.setFooter("Syntaxes: <> = required | [] = optional")
-                message.channel.send(embed);
             } else {
                 message.channel.send(`<:xmark:314349398824058880> **help: unknown command '${args[0]}'**`)
             }

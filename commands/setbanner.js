@@ -1,17 +1,9 @@
-const Discord = require("discord.js");
 const botconfig = require("../botconfig.json");
 const banner = require("../models/banner");
 
 module.exports.run = async (bot, message, args) => {
     if(!botconfig.owners.includes(message.author.id)) {
-        message.react("710703782887161898")
-        const embed = new Discord.MessageEmbed()
-            .setTitle("❌ Access Denied!")
-            .setDescription("You aren't the owner of this bot!")
-            .setColor("RED")
-            .setFooter(bot.user.username, bot.user.displayAvatarURL({format: "png"}))
-            .setTimestamp()
-        message.channel.send(embed)
+        return
         } else {
             if(!args[0]) return message.channel.send("<:maybe:793205689153093702> **Please specify a discord attachment url**")
             if(!args[0].startsWith("https://cdn.discordapp.com/")) return message.channel.send("<:maybe:793205689153093702> **That is not a valid discord attachment**")

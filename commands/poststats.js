@@ -1,19 +1,11 @@
 const botconfig = require("../botconfig.json");
-const Discord = require("discord.js");
 const DBL = require("dblapi.js");
 const IBL = require("infinity-api");
 const fetch = require("node-fetch");
 
 module.exports.run = async (bot, message, args) => {
   if(!botconfig.owners.includes(message.author.id)) {
-  message.react("710703782887161898")
-  const embed = new Discord.MessageEmbed()
-    .setTitle("❌ Access Denied!")
-    .setDescription("You aren't the owner of this bot!")
-    .setColor("RED")
-    .setFooter(bot.user.username, bot.user.displayAvatarURL({format: "png"}))
-    .setTimestamp()
-  message.channel.send(embed)
+  return
   } else {
     const msg = await message.channel.send("<a:loading:393852367751086090> | Posting...");
 
