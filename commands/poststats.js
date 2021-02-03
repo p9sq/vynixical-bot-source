@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
     const dbl = new DBL(botconfig.apiTokens.topgg, bot);
     const stats = new IBL(bot.user.id, botconfig.apiTokens.ibl);
 
-    stats.postStats(bot.guilds.cache.size, bot.shard.ids[0]);
+    stats.postStats(bot.guilds.cache.size, bot.shard.count);
     dbl.postStats(bot.guilds.cache.size, bot.shard.ids[0], bot.shard.count);
 
     dbl.on("posted", () => {
