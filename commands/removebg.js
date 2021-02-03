@@ -1,5 +1,6 @@
 const request = require("request");
 const guildprefix = require("../models/prefix");
+const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
   const image = message.attachments.first();
@@ -31,7 +32,7 @@ module.exports.config = {
     description: "Removes the background of an image",
     usage: "removebg <attachment>",
     category: "Image",
-    example: "removebg [attachment-here-(make-sure-it's-not-a-url]",
+    example: "Click this > ",
     accessableby: "Everyone",
     aliases: ["removebackground", "rbackground"]
 }
