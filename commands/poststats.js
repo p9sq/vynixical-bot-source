@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
     .setTimestamp()
   message.channel.send(embed)
   } else {
-    message.channel.send("<:allow:793205689753010217> **Successfully posted stats to all bot lists**")
+    const msg = await message.channel.send("<a:loading:393852367751086090> | Posting...");
 
     const dbl = new DBL(botconfig.apiTokens.topgg, bot);
     const stats = new IBL(bot.user.id, botconfig.apiTokens.ibl);
@@ -65,6 +65,8 @@ module.exports.run = async (bot, message, args) => {
             "shard_count": bot.shard.count
         })
     }).then(res => res.json()).then(json => console.log(json));
+
+    msg.edit("<:allow:793205689753010217> **Successfully posted stats to all bot lists**");
   }
 }
 

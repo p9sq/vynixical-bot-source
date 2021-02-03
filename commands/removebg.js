@@ -32,7 +32,7 @@ module.exports.config = {
     description: "Removes the background of an image",
     usage: "removebg <attachment>",
     category: "Image",
-    example: "Click this > ",
+    example: "[\`Click Me\`](https://i.gyazo.com/532a268867df0d629e57d55cf62bea97.gif)",
     accessableby: "Everyone",
     aliases: ["removebackground", "rbackground"]
 }
