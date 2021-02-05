@@ -3,7 +3,7 @@ const users = require("../models/users");
 module.exports.run = async (bot, message, args) => {
     const randomCoins = Math.floor(Math.random() * 99) + 1;
     const chance = Math.floor(Math.random() * 15);
-    if(chance == 5) {
+    if(chance == 2) {
       users.findOne({userID: message.author.id, guildID: message.guild.id}, (err, member) => {
         if(!member) {
             const newcredits = new users({
