@@ -46,7 +46,7 @@ module.exports.run = async (bot, message, args) => {
         body: JSON.stringify({"server_count": bot.guilds.cache.size})
     }).then(res => res.json()).then(json => console.log(json));
 
-    fetch("https://fateslist.xyz/api/bots/stats", {
+    fetch("https://fateslist.xyz/api/bots/725582436477698118/stats", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
