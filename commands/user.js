@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const { color } = require("../botconfig.json");
+const fetch = require("node-fetch");
 
 module.exports.run = async (bot, message, args) => {
     if(message.guild.id !== "758641373074423808") return message.channel.send("**<:deny:793205689488900136> This command can only be used in Infinity Bot List**")
