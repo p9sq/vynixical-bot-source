@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
     if(message.guild.id !== "758641373074423808") return message.channel.send("**<:deny:793205689488900136> This command can only be used in Infinity Bot List**")
     if(!args[0]) return message.channel.send("Please specify a user id!")
     if(isNaN(args[0])) return message.channel.send("That is not a valid user id!")
-    fetch(`https://infinitybotlist.com/api/users/${args[0]}`, {
+    fetch(`https://api.infinitybotlist.com/user/${args[0]}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
