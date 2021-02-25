@@ -7,7 +7,7 @@ const Giveaway = require("./models/giveaway");
 const commandHandler = require("./structures/command");
 const eventHandler = require("./structures/event");
 
-const bot = new Discord.Client({disableMentions: "everyone"});
+const bot = new Discord.Client({disableMentions: "everyone", ws: {intents: Discord.Intents.ALL}});
 bot.setMaxListeners(0);
 bot.utils = require("./utils");
 bot.commands = new Discord.Collection();
