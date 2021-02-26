@@ -3,20 +3,24 @@ const Discord = require("discord.js");
 const { color } = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
-    if(message.guild.id !== "758641373074423808") return message.channel.send("**<:deny:793205689488900136> This command can only be used in Infinity Bot List**")
-    const botMention = message.mentions.users.first();
-    if(!botMention.bot) return message.channel.send("That user isn't a bot!")
-    if(!botMention) return message.channel.send("Please mention a bot!")
-    fetch(`https://api.infinitybotlist.com/bot/${botMention.id}/info`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }).then(async res => {
-        const embed = new Discord.MessageEmbed()
-            .setColor(color)
-            .setTitle(res.bot_name)
-            .setDescription(`
+  if (message.guild.id !== "758641373074423808")
+    return message.channel.send(
+      "**<:deny:793205689488900136> This command can only be used in Infinity Bot List**"
+    );
+  const botMention = message.mentions.users.first();
+  if (!botMention.bot) return message.channel.send("That user isn't a bot!");
+  if (!botMention) return message.channel.send("Please mention a bot!");
+  fetch(`https://api.infinitybotlist.com/bot/${botMention.id}/info`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(async (res) => {
+    const embed = new Discord.MessageEmbed()
+      .setColor(color)
+      .setTitle(res.bot_name)
+      .setDescription(
+        `
             **Votes:** ${res.votes},
             **Support:** ${res.support},
             **Website:** ${res.website},
@@ -29,18 +33,19 @@ module.exports.run = async (bot, message, args) => {
             **Servers:** ${res.servers},
             **Shards:** ${res.shards},
             **Staff:** ${res.staff ? "Yes" : "No"}
-            `)
-            .setFooter(`Bot created by ${res.owner}`)
-        message.channel.send(embed)
-    });
-}
+            `
+      )
+      .setFooter(`Bot created by ${res.owner}`);
+    message.channel.send(embed);
+  });
+};
 
 module.exports.config = {
-    name: "stats",
-    description: "Gets the stats on a bot from IBL",
-    usage: "stats <bot>",
-    category: "Info",
-    example: "stats @Vynixical#0874",
-    accessableby: "Everyone",
-    aliases: ["iblstats"]
-}
+  name: "stats",
+  description: "Gets the stats on a bot from IBL",
+  usage: "stats <bot>",
+  category: "Info",
+  example: "stats @Vynixical#0874",
+  accessableby: "Everyone",
+  aliases: ["iblstats"],
+};

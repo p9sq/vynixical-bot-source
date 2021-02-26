@@ -3,10 +3,10 @@ const { post } = require("node-superfetch");
 const { inspect } = require("util");
 
 module.exports.run = async (bot, message, args) => {
-  if(!botconfig.owners.includes(message.author.id)) {
-  return
+  if (!botconfig.owners.includes(message.author.id)) {
+    return;
   } else {
-    if(!args.length) return message.channel.send("Please input the code.");
+    if (!args.length) return message.channel.send("Please input the code.");
     const msg = message;
     const author = message.author;
     const member = message.member;
@@ -17,28 +17,36 @@ module.exports.run = async (bot, message, args) => {
     code = code.replace(/[“”]/g, '"').replace(/[‘’]/g, "'");
     let evaled;
     try {
-        const start = process.hrtime();
-        evaled = eval(code);
-        const stop = process.hrtime(start);
-        const res = bot.utils.clean(inspect(evaled, {depth: 0}));
-        if (res.length < 2000) {
-            await msg.reply(`*Executed in ${stop[0] > 0 ? `${stop[0]}s ` : ""}${stop[1] / 1e6}ms*\n\`\`\`js\n${res}\n\`\`\``);
-        } else {
-            const {body} = await post("https://hastebin.com/documents").send(res)
-            await msg.reply(`The output was too big. I have posted it https://hastebin.com/${body.key}.js`);
-        }
+      const start = process.hrtime();
+      evaled = eval(code);
+      const stop = process.hrtime(start);
+      const res = bot.utils.clean(inspect(evaled, { depth: 0 }));
+      if (res.length < 2000) {
+        await msg.reply(
+          `*Executed in ${stop[0] > 0 ? `${stop[0]}s ` : ""}${
+            stop[1] / 1e6
+          }ms*\n\`\`\`js\n${res}\n\`\`\``
+        );
+      } else {
+        const { body } = await post("https://hastebin.com/documents").send(res);
+        await msg.reply(
+          `The output was too big. I have posted it https://hastebin.com/${body.key}.js`
+        );
+      }
     } catch (err) {
-        return message.reply(`Error while evaluating: \`${bot.utils.clean(err)}\``);
+      return message.reply(
+        `Error while evaluating: \`${bot.utils.clean(err)}\``
+      );
     }
   }
-}
+};
 
 module.exports.config = {
-    name: "eval",
-    description: "Evaluates JavaScript code",
-    usage: "eval <code>",
-    category: "Developer",
-    example: "eval message.channel.send(\"Hello World\")",
-    accessableby: "Developer",
-    aliases: ["e", "evaluate", "ev", "run"]
-}
+  name: "eval",
+  description: "Evaluates JavaScript code",
+  usage: "eval <code>",
+  category: "Developer",
+  example: 'eval message.channel.send("Hello World")',
+  accessableby: "Developer",
+  aliases: ["e", "evaluate", "ev", "run"],
+};

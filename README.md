@@ -1,7 +1,6 @@
-Vynixical
--
-A multi-purpose discord bot
--
+## Vynixical
+
+## A multi-purpose discord bot
 
 - This bot was coded using JavaScript (Discord.js v12)
 
@@ -15,8 +14,8 @@ A multi-purpose discord bot
 
 - For more help, do `>help`
 
-Commands:
--
+## Commands:
+
 Here are all of the available command categories, for more help, do `>help <command>`
 
 Fun
