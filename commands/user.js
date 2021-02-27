@@ -24,7 +24,7 @@ module.exports.run = async (bot, message, args) => {
             **Certified?:** ${res.certified_dev ? "Yes" : "No"},
             **Staff?:** ${res.staff ? "Yes" : "No"},
             **Developer?:** ${res.developer ? "Yes" : "No"},
-            **Links:** ${res.links.website || "None"}
+            **Links:** ${res.links || "None"}
             `);
     message.channel.send(embed);
   });
