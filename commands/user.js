@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
   if (!args[0]) return message.channel.send("Please specify a user id!");
   if (isNaN(args[0]))
     return message.channel.send("That is not a valid user id!");
-  fetch(`https://api.infinitybotlist.xyz/user/${args[0]}`, {
+  fetch(`https://api.infinitybots.xyz/user/${args[0]}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
