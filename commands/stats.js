@@ -30,10 +30,6 @@ module.exports.run = async (bot, message, args) => {
             **Staff?:** ${stats.staff ? "Yes" : "No"},
             **NSFW?:** ${stats.nsfw ? "Yes" : "No"},
             **Certified?:** ${stats.certified ? "Yes" : "No"},
-            **Servers:** ${stats.analytics.servers.toLocaleString()},
-            **Shards:** ${stats.analytics.shards.toLocaleString()},
-            **Votes:** ${stats.analytics.votes.toLocaleString()},
-            **Invites:** ${stats.analytics.invites.toLocaleString()},
             **Website:** [Website](${stats.links.website}),
             **Donate:** [Donate](${stats.links.donate}),
             **Support Server:** [Support Server](${stats.links.support}),
@@ -44,6 +40,11 @@ module.exports.run = async (bot, message, args) => {
     message.channel.send(embed);
   });
 };
+
+// **Servers:** ${stats.analytics.servers},
+// **Shards:** ${stats.analytics.shards},
+// **Votes:** ${stats.analytics.votes},
+// **Invites:** ${stats.analytics.invites},
 
 module.exports.config = {
   name: "stats",
