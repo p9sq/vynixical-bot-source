@@ -19,10 +19,12 @@ module.exports.run = async (bot, message, args) => {
     const embed = new Discord.MessageEmbed()
       .setColor(color)
       .setTitle(`${res.username} Stats`).setDescription(`
-            **Developer:** ${res.developer ? "Yes" : "No"},
-            **Staff:** ${res.staff ? "Yes" : "No"},
-            **Certified:** ${res.certified_dev ? "Yes" : "No"},
-            **About:** ${res.about}
+            **Nickname:** ${res.nickname},
+            **About:** ${res.about},
+            **Certified?:** ${res.certified_dev ? "Yes" : "No"},
+            **Staff?:** ${res.staff ? "Yes" : "No"},
+            **Developer?:** ${res.developer ? "Yes" : "No"},
+            **Links:** ${res.links.website || "None"}
             `);
     message.channel.send(embed);
   });
