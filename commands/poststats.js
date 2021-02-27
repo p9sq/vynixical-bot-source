@@ -1,6 +1,5 @@
 const botconfig = require("../botconfig.json");
 const DBL = require("dblapi.js");
-const IBL = require("infinity-api");
 const fetch = require("node-fetch");
 
 module.exports.run = async (bot, message, args) => {
@@ -12,14 +11,26 @@ module.exports.run = async (bot, message, args) => {
     );
 
     const dbl = new DBL(botconfig.apiTokens.topgg, bot);
-    const stats = new IBL(bot.user.id, botconfig.apiTokens.ibl);
 
-    stats.postStats(bot.guilds.cache.size, bot.shard.count);
     dbl.postStats(bot.guilds.cache.size, bot.shard.ids[0], bot.shard.count);
 
     dbl.on("posted", () => {
       console.log("Server count posted!");
     });
+
+    fetch("https://api.infinitybots.xyz/bot/725582436477698118", {
+      method: "POST",
+      body: JSON.stringify({
+        servers: bot.guilds.cache.size,
+        shards: bot.shard.count,
+      }),
+      headers: {
+        Authorization: botconfig.apiTokens.ibl,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => console.log(json));
 
     fetch("https://discord.bots.gg/api/v1/bots/725582436477698118/stats", {
       method: "POST",
@@ -30,20 +41,6 @@ module.exports.run = async (bot, message, args) => {
       }),
       headers: {
         Authorization: botconfig.apiTokens.dbots,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((json) => console.log(json));
-
-    fetch("https://api.discordbots.co/v1/public/bot/725582436477698118/stats", {
-      method: "POST",
-      body: JSON.stringify({
-        serverCount: bot.guilds.cache.size,
-        shardCount: bot.shard.count,
-      }),
-      headers: {
-        Authorization: botconfig.apiTokens.vultrex,
         "Content-Type": "application/json",
       },
     })

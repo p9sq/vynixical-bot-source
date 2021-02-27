@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
   const botMention = message.mentions.users.first();
   if (!botMention.bot) return message.channel.send("That user isn't a bot!");
   if (!botMention) return message.channel.send("Please mention a bot!");
-  fetch(`https://api.infinitybotlist.com/bot/${botMention.id}/info`, {
+  fetch(`https://api.infinitybotlist.xyz/bot/${botMention.id}/info`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
