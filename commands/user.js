@@ -16,15 +16,16 @@ module.exports.run = async (bot, message, args) => {
       "Content-Type": "application/json",
     },
   }).then(async (res) => {
+    const stats = await res.json();
     const embed = new Discord.MessageEmbed()
       .setColor(color)
-      .setTitle(`${res.username} Stats`).setDescription(`
-            **Nickname:** ${res.nickname},
-            **About:** ${res.about},
-            **Certified?:** ${res.certified_dev ? "Yes" : "No"},
-            **Staff?:** ${res.staff ? "Yes" : "No"},
-            **Developer?:** ${res.developer ? "Yes" : "No"},
-            **Links:** ${res.links || "None"}
+      .setTitle(`${stats.username} Stats`).setDescription(`
+            **Nickname:** ${stats.nickname},
+            **About:** ${stats.about},
+            **Certified?:** ${stats.certified_dev ? "Yes" : "No"},
+            **Staff?:** ${stats.staff ? "Yes" : "No"},
+            **Developer?:** ${stats.developer ? "Yes" : "No"},
+            **Links:** [Website](${stats.links.website})
             `);
     message.channel.send(embed);
   });

@@ -16,26 +16,31 @@ module.exports.run = async (bot, message, args) => {
       "Content-Type": "application/json",
     },
   }).then(async (res) => {
+    const stats = await res.json();
     const embed = new Discord.MessageEmbed()
       .setColor(color)
-      .setTitle(res.bot_name)
+      .setTitle(`${stats.name} Stats`)
       .setDescription(
         `
-            **Votes:** ${res.votes},
-            **Support:** ${res.support},
-            **Website:** ${res.website},
-            **Donate:** ${res.donate},
-            **Certified:** ${res.certified ? "Yes" : "No"},
-            **Tags:** ${res.tags}
-            **Prefix:** ${res.prefix},
-            **Library:** ${res.library},
-            **Description:** ${res.short_desc},
-            **Servers:** ${res.servers},
-            **Shards:** ${res.shards},
-            **Staff:** ${res.staff ? "Yes" : "No"}
+            **Tags:** ${stats.tags},
+            **Owner:** ${stats.owner},
+            **Short Description:** ${stats.short},
+            **Library:** ${stats.library},
+            **Premium?:** ${stats.premium ? "Yes" : "No"},
+            **Staff?:** ${stats.staff ? "Yes" : "No"},
+            **NSFW?:** ${stats.nsfw ? "Yes" : "No"},
+            **Certified?:** ${stats.certified ? "Yes" : "No"},
+            **Servers:** ${stats.analytics.servers.toLocaleString()},
+            **Shards:** ${stats.analytics.shards.toLocaleString()},
+            **Votes:** ${stats.analytics.votes.toLocaleString()},
+            **Invites:** ${stats.analytics.invites.toLocaleString()},
+            **Website:** [Website](${stats.links.website}),
+            **Donate:** [Donate](${stats.links.donate}),
+            **Support Server:** [Support Server](${stats.links.support}),
+            **GitHub:** [GitHub](${stats.links.github}),
+            **Banner:** [Banner](${stats.links.banner})
             `
-      )
-      .setFooter(`Bot created by ${res.owner}`);
+      );
     message.channel.send(embed);
   });
 };
