@@ -19,7 +19,7 @@ module.exports.run = async (bot, message, args) => {
     )
     .addField(
       "Want to ask a question / report a bug?",
-      `If you want to ask a question about the bot, or report a bug, make sure to join ${bot.user.username}'s support server [here](https://discord.gg/a6sEvf8uZY)`
+      `If you want to ask a question about the bot, or report a bug, make sure to join ${bot.user.username}'s support server [here](https://discord.gg/a6sEvf8uZY).`
     )
     .setFooter(`${bot.user.username} Current privacy policy`)
     .setTimestamp();
