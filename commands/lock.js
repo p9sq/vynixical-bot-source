@@ -37,8 +37,14 @@ module.exports.run = async (bot, message, args) => {
 
     if (args[1] === methods[0]) {
       channel.updateOverwrite(message.guild.id, { SEND_MESSAGES: false });
+      message.channel.send(
+        `<:allow:793205689753010217> **${channel.name} has now been successfully locked**`
+      );
     } else if (args[1] === methods[1]) {
       channel.updateOverwrite(message.guild.id, { SEND_MESSAGES: true });
+      message.channel.send(
+        `<:allow:793205689753010217> **${channel.name} has now been successfully unlocked**`
+      );
     }
   }
 };
