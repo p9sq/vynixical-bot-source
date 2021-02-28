@@ -12,45 +12,43 @@ module.exports.run = async (bot, message, args) => {
       .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());
     message.channel.send(invalidEmbed);
   } else {
-    const channels = message.guild.channels.cache.filter(
-      (ch) => ch.type !== "category"
-    );
-    if (args[0] === "on") {
-      channels.forEach((channel) => {
-        channel
-          .updateOverwrite(message.guild.roles.everyone, {
-            SEND_MESSAGES: false,
-          })
-          .then(() => {
-            channel.setName((channel.name += "🔒"));
-          });
-      });
+    const channel =
+      message.mentions.channels.first() ||
+      message.guild.channels.cache.get(args[0]);
+    const methods = ["on", "off"];
+
+    if (!channel)
       return message.channel.send(
-        `<:allow:793205689753010217> **Successfully locked all channels**`
+        "<:maybe:793205689153093702> **Please mention a channel to lock**"
       );
-    } else if (args[0] === "off") {
-      channels.forEach((channel) => {
-        channel
-          .updateOverwrite(message.guild.roles.everyone, {
-            SEND_MESSAGES: true,
-          })
-          .then(() => {
-            channel.setName(channel.name.replace("🔒", ""));
-          });
-      });
+    if (!message.guild.channels.cache.get(channel.id))
       return message.channel.send(
-        `<:allow:793205689753010217> **Successfully unlocked all channels**`
+        "<:deny:793205689488900136> **That isn't a valid channel**"
       );
+
+    if (!args[1])
+      return message.channel.send(
+        "<:maybe:793205689153093702> **Make sure you are specifing `on` or `of` depending on what you're doing to lock or unlock a specific channel"
+      );
+    if (!methods.includes(args[1]))
+      return message.channel.send(
+        "<:maybe:793205689153093702> **Invalid option. Make sure you are specifing either `on` or `off` depending on what you're doing to lock or unlock a specific channel**"
+      );
+
+    if (args[1] === methods[0]) {
+      channel.updateOverwrite(message.guild.id, { SEND_MESSAGES: false });
+    } else if (args[1] === methods[1]) {
+      channel.updateOverwrite(message.guild.id, { SEND_MESSAGES: true });
     }
   }
 };
 
 module.exports.config = {
   name: "lock",
-  description: "Locks every single channel in the server",
-  usage: "lock <on - off>",
+  description: "Locks or unlocks a specific channel",
+  usage: "lock <channel> <on - off>",
   category: "Moderation",
-  example: "lock on",
+  example: "lock #general on",
   accessableby: "Admins",
-  aliases: ["lockall", "lockchannels"],
+  aliases: ["lockchannel"],
 };
