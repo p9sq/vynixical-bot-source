@@ -1,6 +1,8 @@
 const botconfig = require("../botconfig.json");
 const DBL = require("dblapi.js");
 const fetch = require("node-fetch");
+const IBL = require("infinitybots.js");
+const stats = new IBL("725582436477698118", botconfig.apiTokens.ibl);
 
 module.exports.run = async (bot, message, args) => {
   if (!botconfig.owners.includes(message.author.id)) {
@@ -13,24 +15,11 @@ module.exports.run = async (bot, message, args) => {
     const dbl = new DBL(botconfig.apiTokens.topgg, bot);
 
     dbl.postStats(bot.guilds.cache.size, bot.shard.ids[0], bot.shard.count);
+    stats.postStats(bot.guilds.cache.size, bot.shard.count);
 
     dbl.on("posted", () => {
       console.log("Server count posted!");
     });
-
-    fetch("https://api.infinitybots.xyz/bot/725582436477698118", {
-      method: "POST",
-      body: JSON.stringify({
-        servers: bot.guilds.cache.size,
-        shards: bot.shard.count,
-      }),
-      headers: {
-        Authorization: botconfig.apiTokens.ibl,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((json) => console.log(json));
 
     fetch("https://discord.bots.gg/api/v1/bots/725582436477698118/stats", {
       method: "POST",

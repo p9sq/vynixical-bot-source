@@ -1,6 +1,10 @@
-const fetch = require("node-fetch");
 const Discord = require("discord.js");
-const { color } = require("../botconfig.json");
+const {
+  apiTokens: { ibl },
+  color,
+} = require("../botconfig.json");
+const IBL = require("infinitybots.js");
+const stats = new IBL("725582436477698118", ibl);
 
 module.exports.run = async (bot, message, args) => {
   if (message.guild.id !== "758641373074423808")
@@ -10,35 +14,29 @@ module.exports.run = async (bot, message, args) => {
   const botMention = message.mentions.users.first();
   if (!botMention.bot) return message.channel.send("That user isn't a bot!");
   if (!botMention) return message.channel.send("Please mention a bot!");
-  fetch(`https://api.infinitybots.xyz/bot/${botMention.id}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then(async (res) => {
-    const stats = await res.json();
+  stats.getStats((data) => {
     const embed = new Discord.MessageEmbed()
       .setColor(color)
       .setTitle(`${stats.name} Stats`)
       .setDescription(
         `
-            **Tags:** ${stats.tags},
-            **Owner:** ${stats.owner},
-            **Short Description:** ${stats.short},
-            **Library:** ${stats.library},
-            **Premium?:** ${stats.premium ? "Yes" : "No"},
-            **Staff?:** ${stats.staff ? "Yes" : "No"},
-            **NSFW?:** ${stats.nsfw ? "Yes" : "No"},
-            **Certified?:** ${stats.certified ? "Yes" : "No"},
-            **Servers:** ${stats.analytics.servers},
-            **Shards:** ${stats.analytics.shards},
-            **Votes:** ${stats.analytics.votes},
-            **Invites:** ${stats.analytics.invites},
-            **Website:** [Website](${stats.links.website}),
-            **Donate:** [Donate](${stats.links.donate}),
-            **Support Server:** [Support Server](${stats.links.support}),
-            **GitHub:** [GitHub](${stats.links.github}),
-            **Banner:** [Banner](${stats.links.banner})
+            **Tags:** ${data.tags},
+            **Owner:** ${data.owner},
+            **Short Description:** ${data.short},
+            **Library:** ${data.library},
+            **Premium?:** ${data.premium ? "Yes" : "No"},
+            **Staff?:** ${data.staff ? "Yes" : "No"},
+            **NSFW?:** ${data.nsfw ? "Yes" : "No"},
+            **Certified?:** ${data.certified ? "Yes" : "No"},
+            **Servers:** ${data.analytics.servers},
+            **Shards:** ${data.analytics.shards},
+            **Votes:** ${data.analytics.votes},
+            **Invites:** ${data.analytics.invites},
+            **Website:** [Website](${data.links.website}),
+            **Donate:** [Donate](${data.links.donate}),
+            **Support Server:** [Support Server](${data.links.support}),
+            **GitHub:** [GitHub](${data.links.github}),
+            **Banner:** [Banner](${data.links.banner})
             `
       );
     message.channel.send(embed);
