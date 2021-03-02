@@ -2,21 +2,21 @@ const Discord = require("discord.js");
 const { color } = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
-  const Member = message.mentions.users.last() || message.author;
+  const Member = message.mentions.members.last() || message.guild.members.cache.get(args[0]) || message.member;
   const embed = new Discord.MessageEmbed()
-    .setTitle(`${Member.username}'s avatar`)
-    .setThumbnail(Member.defaultAvatarURL)
-    .setImage(Member.avatarURL({ size: 2048, dynamic: true, format: "png" }))
+    .setTitle(`${Member.user.username}'s avatar`)
+    .setThumbnail(Member.user.username.defaultAvatarURL)
+    .setImage(Member.user.username.avatarURL({ size: 2048, dynamic: true, format: "png" }))
     .setDescription(
-      `Formats: [png](${Member.avatarURL({
+      `Formats: [png](${Member.user.username.avatarURL({
         size: 2048,
         dynamic: true,
         format: "png",
-      })}) | [jpg](${Member.avatarURL({
+      })}) | [jpg](${Member.user.username.avatarURL({
         size: 2048,
         dynamic: true,
         format: "jpg",
-      })}) | [webp](${Member.avatarURL({
+      })}) | [webp](${Member.user.username.avatarURL({
         size: 2048,
         dynamic: true,
         format: "webp",
