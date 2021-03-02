@@ -2,21 +2,43 @@ const Discord = require("discord.js");
 const { color } = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
-  const Member = message.mentions.members.last() || message.guild.members.cache.get(args[0]) || message.member;
-  const embed = new Discord.MessageEmbed()
+  const Member = message.mentions.members.last() || message.guild.members.cache.get(args[0]) || message.member || "server";
+  if(Member === "server".toLowerCase()) {
+    const embed = new Discord.MessageEmbed()
+      .setTitle(`${message.guild.name} Icon`)
+      .setImage(message.guild.iconURL({ size: 2048, dynamic: true, format: "png" }))
+      .setDescription(
+        `Formats: [png](${Member.user.avatarURL({
+          size: 2048,
+          dynamic: true,
+          format: "png",
+        })}) | [jpg](${Member.user.avatarURL({
+          size: 2048,
+          dynamic: true,
+          format: "jpg",
+        })}) | [webp](${Member.user.avatarURL({
+          size: 2048,
+          dynamic: true,
+          format: "webp",
+        })})`
+    )
+    .setColor(color);
+  message.channel.send(embed)
+  } else {
+    const embed = new Discord.MessageEmbed()
     .setTitle(`${Member.user.username}'s avatar`)
-    .setThumbnail(Member.user.username.defaultAvatarURL)
-    .setImage(Member.user.username.avatarURL({ size: 2048, dynamic: true, format: "png" }))
+    .setThumbnail(Member.user.defaultAvatarURL)
+    .setImage(Member.user.avatarURL({ size: 2048, dynamic: true, format: "png" }))
     .setDescription(
-      `Formats: [png](${Member.user.username.avatarURL({
+      `Formats: [png](${Member.user.avatarURL({
         size: 2048,
         dynamic: true,
         format: "png",
-      })}) | [jpg](${Member.user.username.avatarURL({
+      })}) | [jpg](${Member.user.avatarURL({
         size: 2048,
         dynamic: true,
         format: "jpg",
-      })}) | [webp](${Member.user.username.avatarURL({
+      })}) | [webp](${Member.user.avatarURL({
         size: 2048,
         dynamic: true,
         format: "webp",
@@ -24,6 +46,7 @@ module.exports.run = async (bot, message, args) => {
     )
     .setColor(color);
   message.channel.send(embed);
+  }
 };
 
 module.exports.config = {
