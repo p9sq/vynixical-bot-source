@@ -2,21 +2,43 @@ const Discord = require("discord.js");
 const { color } = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
-  const Member = message.mentions.users.last() || message.author;
-  const embed = new Discord.MessageEmbed()
-    .setTitle(`${Member.username}'s avatar`)
-    .setThumbnail(Member.defaultAvatarURL)
-    .setImage(Member.avatarURL({ size: 2048, dynamic: true, format: "png" }))
+  const Member = message.mentions.members.last() || message.guild.members.cache.get(args[0]) || message.member || "server";
+  if(Member === "server".toLowerCase()) {
+    const embed = new Discord.MessageEmbed()
+      .setTitle(`${message.guild.name} Icon`)
+      .setImage(message.guild.iconURL({ size: 2048, dynamic: true, format: "png" }))
+      .setDescription(
+        `Formats: [png](${Member.user.avatarURL({
+          size: 2048,
+          dynamic: true,
+          format: "png",
+        })}) | [jpg](${Member.user.avatarURL({
+          size: 2048,
+          dynamic: true,
+          format: "jpg",
+        })}) | [webp](${Member.user.avatarURL({
+          size: 2048,
+          dynamic: true,
+          format: "webp",
+        })})`
+    )
+    .setColor(color);
+  message.channel.send(embed)
+  } else {
+    const embed = new Discord.MessageEmbed()
+    .setTitle(`${Member.user.username}'s avatar`)
+    .setThumbnail(Member.user.defaultAvatarURL)
+    .setImage(Member.user.avatarURL({ size: 2048, dynamic: true, format: "png" }))
     .setDescription(
-      `Formats: [png](${Member.avatarURL({
+      `Formats: [png](${Member.user.avatarURL({
         size: 2048,
         dynamic: true,
         format: "png",
-      })}) | [jpg](${Member.avatarURL({
+      })}) | [jpg](${Member.user.avatarURL({
         size: 2048,
         dynamic: true,
         format: "jpg",
-      })}) | [webp](${Member.avatarURL({
+      })}) | [webp](${Member.user.avatarURL({
         size: 2048,
         dynamic: true,
         format: "webp",
@@ -24,6 +46,7 @@ module.exports.run = async (bot, message, args) => {
     )
     .setColor(color);
   message.channel.send(embed);
+  }
 };
 
 module.exports.config = {
