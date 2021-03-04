@@ -5,6 +5,8 @@ module.exports.run = async (bot) => {
   fs.readdir("./commands/", (err, files) => {
     if (err) console.log(err);
 
+    require("../inlineReply");
+
     const jsfile = files.filter((f) => f.split(".").pop() === "js");
     if (jsfile.length <= 0) {
       return console.log("Couldn't Find Commands");
