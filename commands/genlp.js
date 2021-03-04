@@ -19,7 +19,7 @@ module.exports.run = async (bot, message, args) => {
     return `${letterString}${numberString}`;
   }
 
-  message.inlineReply(
+  message.channel.send(
     `Your generated fake license plate is \`${genLicense()}\``
   );
 };
