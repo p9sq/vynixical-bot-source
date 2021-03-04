@@ -1,5 +1,4 @@
 const botconfig = require("../botconfig.json");
-require("../inlineReply");
 
 module.exports.run = async (bot, message, args) => {
   if (!botconfig.owners.includes(message.author.id)) {
