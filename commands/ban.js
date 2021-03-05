@@ -16,6 +16,14 @@ module.exports.run = async (bot, message, args) => {
       .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());
     message.channel.send(invalidEmbed);
   } else {
+    if (
+      message.member.roles.highest.position <= user.roles.highest.position &&
+      message.guild.ownerID != message.author.id
+    )
+      return message.channel.send("<:maybe:793205689153093702> **You can't ban them due to hierarchy**");
+    if (message.guild.me.roles.highest.position <= user.roles.highest.position)
+      return message.channel.send("<:maybe:793205689153093702> **I can't ban them due to hierarchy**");
+
     if (!Member)
       return message.channel.send(
         "<:maybe:793205689153093702> **Please mention a member to ban**"

@@ -11,6 +11,14 @@ module.exports.run = async (bot, message, args) => {
       .setFooter(`${bot.user.username}`, bot.user.displayAvatarURL());
     message.channel.send(invalidEmbed);
   } else {
+    if (
+      message.member.roles.highest.position <= user.roles.highest.position &&
+      message.guild.ownerID != message.author.id
+    )
+      return message.channel.send("<:maybe:793205689153093702> **You can't warn them due to hierarchy**");
+    if (message.guild.me.roles.highest.position <= user.roles.highest.position)
+      return message.channel.send("<:maybe:793205689153093702> **I can't warn them due to hierarchy**");
+
     let reason = args.slice(1).join(" ");
     const user = message.mentions.users.last();
     if (!user)
