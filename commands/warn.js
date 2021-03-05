@@ -51,12 +51,12 @@ module.exports.run = async (bot, message, args) => {
           });
           newWarns.save();
           message.channel.send(
-            `<:allow:793205689753010217> **${user.tag} has been warned**`
+            `<:allow:793205689753010217> **${user.user.tag} has been warned**`
           );
           const warnEmbed = new Discord.MessageEmbed();
           modlogs.findOne({ guildID: message.guild.id }, (err, ch) => {
             warnEmbed.setAuthor(
-              `[WARN] ${user.tag}`,
+              `[WARN] ${user.user.tag}`,
               `${user.displayAvatarURL()}`
             );
             warnEmbed.addField(
@@ -77,7 +77,7 @@ module.exports.run = async (bot, message, args) => {
           });
           user
             .send(
-              `You have been warned by ${bot.user.tag} in ${message.guild.name} for ${reason}`
+              `You have been warned by ${message.author.tag} in ${message.guild.name} for ${reason}`
             )
             .catch((err) => {
               return message.channel.send(
@@ -93,7 +93,7 @@ module.exports.run = async (bot, message, args) => {
           });
           data.save();
           message.channel.send(
-            `<:allow:793205689753010217> **${user.tag} has been warned. Warns: ${data.Warns.length}**`
+            `<:allow:793205689753010217> **${user.user.tag} has been warned. Warns: ${data.Warns.length}**`
           );
           const warnEmbed = new Discord.MessageEmbed();
           modlogs.findOne({ guildID: message.guild.id }, (err, ch) => {
@@ -118,7 +118,7 @@ module.exports.run = async (bot, message, args) => {
           });
           user
             .send(
-              `You have been warned by ${bot.user.tag} in ${message.guild.name} for ${reason}`
+              `You have been warned by ${message.author.tag} in ${message.guild.name} for ${reason}`
             )
             .catch((err) => {
               return message.channel.send(
