@@ -66,7 +66,7 @@ module.exports.run = async (bot, message, args) => {
           !owners.includes(message.author.id)
         ) {
           return message.channel.send(
-            `<:xmark:314349398824058880> **help: unknown command '${args[0]}'**`
+            `<:deny:793205689488900136> **help: unknown command '${args[0]}'**`
           );
         } else {
           if (command.config.name === "removebg") {
@@ -103,7 +103,7 @@ module.exports.run = async (bot, message, args) => {
         }
       } else {
         message.channel.send(
-          `<:xmark:314349398824058880> **help: unknown command '${args[0]}'**`
+          `<:deny:793205689488900136> **help: unknown command '${args[0]}'**`
         );
       }
     }
