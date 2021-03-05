@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
   } else {
 
     let reason = args.slice(1).join(" ");
-    const user = message.mentions.users.last();
+    const user = message.mentions.members.last();
 
     if (
       message.member.roles.highest.position <= user.roles.highest.position &&
