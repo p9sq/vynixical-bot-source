@@ -8,7 +8,7 @@ const commandHandler = require("./structures/command");
 const eventHandler = require("./structures/event");
 
 const bot = new Discord.Client({
-  disableMentions: "everyone",
+  disableMentions: "all",
   ws: { intents: Discord.Intents.ALL },
 });
 bot.setMaxListeners(0);

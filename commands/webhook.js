@@ -3,18 +3,14 @@ module.exports.run = async (bot, message, args) => {
     return message.channel.send(
       "I don't have the `MANAGE_WEBHOOKS` permission!"
     );
-  let content = args.join(" ");
-  if (!content) return message.channel.send("Please provide some text!");
-  if(typeof content === "string") {
-    content = content.replace(new RegExp("@", "g"), "")
-  }
+  if (!args.join(" ")) return message.channel.send("Please provide some text!");
   message.delete();
   message.channel
     .createWebhook(message.author.username, {
       avatar: `${message.author.avatarURL({ format: "png" })}`,
     })
     .then((webhook) => {
-      webhook.send(content);
+      webhook.send(args.join(" "));
       webhook.send("*This webhook will be deleted in 4 seconds...*");
       setTimeout(() => {
         webhook
