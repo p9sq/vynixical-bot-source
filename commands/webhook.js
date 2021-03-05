@@ -5,8 +5,8 @@ module.exports.run = async (bot, message, args) => {
     );
   let content = args.join(" ");
   if (!content) return message.channel.send("Please provide some text!");
-  if (args.includes("@")) {
-    content = content.replace(/@/g, "");
+  if(typeof content === "string") {
+    content = content.replace(new RegExp(content, "g"), "")
   }
   message.delete();
   message.channel
