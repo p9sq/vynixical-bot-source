@@ -18,11 +18,11 @@ module.exports.run = async (bot, message, args) => {
     message.channel.send(invalidEmbed);
   } else {
     if (
-      message.member.roles.highest.position <= user.roles.highest.position &&
+      message.member.roles.highest.position <= member.roles.highest.position &&
       message.guild.ownerID != message.author.id
     )
       return message.channel.send("<:maybe:793205689153093702> **You can't unmute them due to hierarchy**");
-    if (message.guild.me.roles.highest.position <= user.roles.highest.position)
+    if (message.guild.me.roles.highest.position <= member.roles.highest.position)
       return message.channel.send("<:maybe:793205689153093702> **I can't unmute them due to hierarchy**");
 
     if (!member) return message.channel.send("Please mention a user!");
