@@ -18,8 +18,6 @@ module.exports.run = async (bot, message, args) => {
 
   const embed = new Discord.MessageEmbed()
     .setColor(botconfig.color)
-    .setTitle(`Success!`)
-    .setAuthor(`Found ${users.length} users with discriminator #${query}`)
     .setDescription(users.join("\n"));
   message.channel.send(embed);
 };
