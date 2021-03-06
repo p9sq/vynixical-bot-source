@@ -16,11 +16,9 @@ module.exports.run = async (bot, message, args) => {
       `<:deny:793205689488900136> **No users found with discriminator #${query}**`
     );
 
-  const embed = new Discord.MessageEmbed();
+  const embed = new Discord.MessageEmbed().setColor(botconfig.color);
 
-  embed.setColor(botconfig.color);
-
-  if (users.length > 6000) {
+  if (users.size > 6000) {
     embed.setDescription(
       `Over 6,000 users haven been found with discriminator **#${query}**`
     );
