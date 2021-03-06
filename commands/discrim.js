@@ -20,7 +20,8 @@ module.exports.run = async (bot, message, args) => {
 
   if (users.join("\n").length > 2048) {
     embed.setDescription(
-      `Over 2,048 users haven been found with discriminator **#${query}**`
+      `To many users have been found with discriminator **#${query}**.
+      **${users.size.toLocaleString()}** users haven been found with discriminator **#${query}**`
     );
     return message.channel.send(embed);
   } else {
