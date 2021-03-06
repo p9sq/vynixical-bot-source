@@ -1,5 +1,5 @@
-const hastebin = require("hastebin-gen");
 const botconfig = require("../botconfig.json");
+const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
   const query = args[0];
@@ -16,19 +16,12 @@ module.exports.run = async (bot, message, args) => {
       `<:deny:793205689488900136> **No users found with discriminator #${query}**`
     );
 
-  hastebin(users.join("\n"))
-    .then((haste) => {
-      message.channel.send(
-        `**${users.length} Users found with discriminator #${query}**!\n${haste}`
-      );
-    })
-    .catch((err) => {
-      message.channel.send(
-        `Uh oh, an error has occurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners
-          .map((o) => `**${bot.users.cache.get(o).tag}**`)
-          .join(", or ")} asap.`
-      );
-    });
+  const embed = new Discord.MessageEmbed()
+    .setColor(botconfig.color)
+    .setTitle(`Success!`)
+    .setAuthor(`Found ${users.length} users with discriminator #${query}`)
+    .setDescription(users.join("\n"));
+  message.channel.send(embed);
 };
 
 module.exports.config = {

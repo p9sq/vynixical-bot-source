@@ -21,9 +21,15 @@ module.exports.run = async (bot, message, args) => {
       message.member.roles.highest.position <= member.roles.highest.position &&
       message.guild.ownerID != message.author.id
     )
-      return message.channel.send("<:maybe:793205689153093702> **You can't unmute them due to hierarchy**");
-    if (message.guild.me.roles.highest.position <= member.roles.highest.position)
-      return message.channel.send("<:maybe:793205689153093702> **I can't unmute them due to hierarchy**");
+      return message.channel.send(
+        "<:maybe:793205689153093702> **You can't unmute them due to hierarchy**"
+      );
+    if (
+      message.guild.me.roles.highest.position <= member.roles.highest.position
+    )
+      return message.channel.send(
+        "<:maybe:793205689153093702> **I can't unmute them due to hierarchy**"
+      );
 
     if (!member) return message.channel.send("Please mention a user!");
     if (!reason) reason = "No reason provided";

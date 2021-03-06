@@ -56,7 +56,6 @@ module.exports = async (bot, message) => {
                             msg.delete({ timeout: 7000 });
                           });
                       } else {
-
                         const mentionRegex = RegExp(`^<@!${bot.user.id}>$`);
                         const mentionRegexPrefix = RegExp(
                           `^<@!${bot.user.id}> `

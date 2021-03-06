@@ -9,7 +9,8 @@ module.exports.run = async (bot, message, args) => {
     embed.setFooter(bot.user.username, bot.user.displayAvatarURL());
     message.channel.send(embed);
   } else {
-    const role = message.mentions.roles.last() || message.guild.roles.cache.get(args[0]);
+    const role =
+      message.mentions.roles.last() || message.guild.roles.cache.get(args[0]);
     if (!args[0]) return message.channel.send("Please mention a role!");
     if (!role) return message.channel.send("Please mention a valid role!");
     memberRole.findOne({ guildID: message.guild.id }, (err, mr) => {
