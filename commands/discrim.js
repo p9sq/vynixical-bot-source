@@ -18,9 +18,9 @@ module.exports.run = async (bot, message, args) => {
 
   const embed = new Discord.MessageEmbed().setColor(botconfig.color);
 
-  if (users.size > 6000) {
+  if (users.length > 2000) {
     embed.setDescription(
-      `Over 6,000 users haven been found with discriminator **#${query}**`
+      `Over 2,000 users haven been found with discriminator **#${query}**`
     );
     return message.channel.send(embed);
   } else {
