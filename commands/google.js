@@ -1,9 +1,9 @@
 const Discord = require("discord.js");
 const request = require("node-superfetch");
 const { color, googleKeys } = require("../botconfig.json");
-const apiKey = googleKeys[0];
 
 module.exports.run = async (bot, message, args) => {
+  const apiKey = googleKeys[0];
   const csx = "9d37a2551cd0274a3";
   const query = args.join(" ");
   let result;
