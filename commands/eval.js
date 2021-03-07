@@ -1,9 +1,9 @@
-const botconfig = require("../botconfig.json");
+const { owners } = require("../botconfig.json");
 const { post } = require("node-superfetch");
 const { inspect } = require("util");
 
 module.exports.run = async (bot, message, args) => {
-  if (!botconfig.owners.includes(message.author.id)) {
+  if (!owners.includes(message.author.id)) {
     return;
   } else {
     if (!args.length) return message.channel.send("Please input the code.");
@@ -12,6 +12,7 @@ module.exports.run = async (bot, message, args) => {
     const member = message.member;
     const guild = message.guild;
     const channel = message.channel;
+    const me = message.guild.me;
 
     let code = args.join(" ");
     code = code.replace(/[“”]/g, '"').replace(/[‘’]/g, "'");
