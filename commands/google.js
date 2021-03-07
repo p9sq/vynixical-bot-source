@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const request = require("node-fetch");
+const request = require("node-superfetch");
 const { color, googleKeys } = require("../botconfig.json");
 const apiKey = googleKeys[0];
 
