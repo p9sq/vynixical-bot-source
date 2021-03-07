@@ -1,7 +1,10 @@
 {
   "token": "NzI1NTgyNDM2NDc3Njk4MTE4.XvQ1TQ.1dTqjdlL9Ie0uIrrWLyoDqIxflg",
   "defaultPrefix": "??",
-  "google": "AIzaSyDLuuOFHbwNwECKV32F5kG1-4_KCOR0bIY",
+  "googleKeys": [
+    "AIzaSyAjX6s3za3CcaXRkDHSaJXrG2VJT745K-Q",
+    "AIzaSyDLuuOFHbwNwECKV32F5kG1-4_KCOR0bIY"
+  ],
   "color": "#3AAEE5",
   "owners": ["490064230717063195", "520438477280641030"],
   "apiTokens": {

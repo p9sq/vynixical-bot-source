@@ -1,6 +1,6 @@
 const fetch = require("node-superfetch");
 const Discord = require("discord.js");
-const { google, color } = require("../botconfig.json");
+const { googleKeys, color } = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
   const name = args.join(" ");
@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
 
   const channel = await fetch
     .get(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${name}&key=${google}&maxResults=1&type=channel`
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${name}&key=${googleKeys[1]}&maxResults=1&type=channel`
     )
     .catch(() => message.channel.send("Unknown channel error."));
 
@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args) => {
 
   const data = await fetch
     .get(
-      `https://www.googleapis.com/youtube/v3/channels?part=snippet,contentDetails,statistics,brandingSettings&id=${channel.body.items[0].id.channelId}&key=${google}`
+      `https://www.googleapis.com/youtube/v3/channels?part=snippet,contentDetails,statistics,brandingSettings&id=${channel.body.items[0].id.channelId}&key=${googleKeys[1]}`
     )
     .catch(() => message.channel.send("Unknown channel data error."));
 
