@@ -36,6 +36,7 @@
     "snowflake-studio-docs": "^1.0.3",
     "something-random-on-discord": "0.0.2",
     "superagent": "^6.1.0",
+    "translate-google": "^1.4.3",
     "twemoji-parser": "^13.0.0",
     "urban-dictionary": "^2.2.1",
     "util": "^0.12.3",
