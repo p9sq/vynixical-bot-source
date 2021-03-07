@@ -38,7 +38,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
   name: "translate",
   description: "Translates the specified text to english",
-  usage: "translate <text>",
+  usage: "translate <language> <text>",
   category: "Fun",
   example: "translate en Hola amigo, como estas?",
   accessableby: "Everyone",
