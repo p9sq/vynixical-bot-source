@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
   let content = args.join(" ");
   if (typeof content === "string") {
     if (content.includes(mention))
-      content = content.replace(mention, "[mention]");
+      content = content.replace(new RegExp(mention, "gi"), "[mention]");
   }
   if (!content) return message.channel.send("Please provide some text!");
   message.delete();
