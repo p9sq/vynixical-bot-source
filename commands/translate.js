@@ -22,8 +22,8 @@ module.exports.run = async (bot, message, args) => {
       const embed = new Discord.MessageEmbed()
         .setTitle("Success")
         .setColor(color)
-        .addField("Original text", text)
-        .addField("Translated text", res.text);
+        .addField("Original", text)
+        .addField("Translated", res.text);
       message.channel.send(embed);
     })
     .catch((err) => {
@@ -40,7 +40,7 @@ module.exports.config = {
   description: "Translates the specified text to english",
   usage: "translate <text>",
   category: "Fun",
-  example: "translate Hola amigo, como estas?",
+  example: "translate en Hola amigo, como estas?",
   accessableby: "Everyone",
   aliases: [],
 };
