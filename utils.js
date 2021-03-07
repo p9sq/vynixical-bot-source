@@ -129,8 +129,12 @@ function clean(text) {
         "*".repeat(botconfig.token.length)
       )
       .replace(
-        new RegExp(botconfig.google, "gi"),
-        "*".repeat(botconfig.google.length)
+        new RegExp(botconfig.googleKeys[0], "gi"),
+        "*".repeat(botconfig.googleKeys[0].length)
+      )
+      .replace(
+        new RegExp(botconfig.googleKeys[1], "gi"),
+        "*".repeat(botconfig.googleKeys[1].length)
       )
       .replace(
         new RegExp(botconfig.apiTokens.ibl, "gi"),
