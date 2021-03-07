@@ -1,9 +1,9 @@
-const { owners } = require("../botconfig.json");
+const botconfig = require("../botconfig.json");
 const { post } = require("node-superfetch");
 const { inspect } = require("util");
 
 module.exports.run = async (bot, message, args) => {
-  if (!owners.includes(message.author.id)) {
+  if (!botconfig.owners.includes(message.author.id)) {
     return;
   } else {
     if (!args.length) return message.channel.send("Please input the code.");
