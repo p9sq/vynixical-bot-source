@@ -1,4 +1,4 @@
-const translate = require("google-translate-api");
+const translate = require("@k3rn31p4nic/google-translate-api");
 const Discord = require("discord.js");
 const { color, owners } = require("../botconfig.json");
 

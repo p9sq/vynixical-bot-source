@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@extreme_hero/deeptype": "^1.0.1",
+    "@k3rn31p4nic/google-translate-api": "^1.1.1",
     "axios": "^0.19.2",
     "canvacord": "^5.0.8",
     "canvas": "^2.6.1",
@@ -20,7 +21,6 @@
     "dblapi.js": "^2.4.1",
     "discord.js": "^12.5.1",
     "figlet": "^1.4.0",
-    "google-translate-api": "^2.3.0",
     "got": "^11.5.1",
     "hastebin-gen": "^2.0.5",
     "infinitybots.js": "^1.2.0",
