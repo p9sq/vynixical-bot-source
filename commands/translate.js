@@ -3,8 +3,19 @@ const Discord = require("discord.js");
 const { color, owners } = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
-  if (!args.length)
+  const language = args[0];
+  const text = args.slice(1).join(" ");
+
+  if (!language)
+    return message.channel.send(
+      "Please specify the language you are translating to."
+    );
+  if (!text)
     return message.channel.send("Please specify some text to translate.");
+  if (language.lengh < 2)
+    return message.channel.send(
+      "Please specify a proper language alias. (E.g. **English** > **en**)"
+    );
 
   translate(args.join(" "), { to: "en" })
     .then((res) => {
