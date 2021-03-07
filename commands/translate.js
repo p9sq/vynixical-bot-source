@@ -1,4 +1,4 @@
-const translate = require("translate-google");
+const translate = require("google-translate-api");
 const Discord = require("discord.js");
 const { color, owners } = require("../botconfig.json");
 
@@ -17,13 +17,13 @@ module.exports.run = async (bot, message, args) => {
       "Please specify a proper language alias. (E.g. **English** > **en**)"
     );
 
-  translate(args.join(" "), { to: "en" })
+  translate(text, { to: language })
     .then((res) => {
       const embed = new Discord.MessageEmbed()
         .setTitle("Success")
         .setColor(color)
-        .addField("Original text", args.join(" "))
-        .addField("Translated text", res);
+        .addField("Original text", text)
+        .addField("Translated text", res.text);
       message.channel.send(embed);
     })
     .catch((err) => {
