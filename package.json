@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
-    "node": "13.2.0"
+    "node": "15.11.0"
   },
   "author": "p9sq69#0594",
   "license": "ISC",
@@ -19,7 +19,7 @@
     "canvas": "^2.6.1",
     "common-tags": "^1.8.0",
     "dblapi.js": "^2.4.1",
-    "discord.js": "^12.5.1",
+    "discord.js": "github:discordjs/discord.js",
     "figlet": "^1.4.0",
     "got": "^11.5.1",
     "hastebin-gen": "^2.0.5",
