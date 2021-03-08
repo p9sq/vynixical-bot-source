@@ -13,7 +13,6 @@ const Discord = require("discord.js");
 let num = 50;
 
 module.exports = async (bot, message) => {
-  require("../inlineReply");
   if (message.author.bot || message.channel.type === "dm") return;
 
   if (message.guild.id === "731049271926849556") {
