@@ -1,6 +1,5 @@
-require("../inlineReply");
-
 module.exports.run = async (bot, message, args) => {
+  require("../online reply");
   function genLicense() {
     let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     let letterString = "";
