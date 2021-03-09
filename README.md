@@ -15,7 +15,7 @@
 
 ## Commands:
 
-- Here are all of the available command categories, for more help, do `??help <command>`
+Here are all of the available command categories, for more help, do `??help <command>`
 
 Fun
 `8ball` `ascii` `avatar` `base64` `binary` `clap` `coinflip` `emoji` `emojify` `hack` `howgay` `hug` `invite` `joke` `lyrics` `meme` `pat` `ping` `reverse` `roledice` `rps` `say` `serverinvite` `webhook` `wink`
