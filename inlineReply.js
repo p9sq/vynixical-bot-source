@@ -17,7 +17,7 @@ class Message extends Structures.get("Message") {
             return Promise.all(apiMessage.split().map(x => {
                 x.data.allowed_mentions = apiMessage.data.allowed_mentions;
                 return x;
-            }).map(this.inlineReply.bind(this)));
+            }).map(this.quote.bind(this)));
         }
 
         const { data, files } = await apiMessage.resolveFiles();
