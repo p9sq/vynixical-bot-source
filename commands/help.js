@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const guildprefix = require("../models/prefix");
 const { color, owners } = require("../botconfig.json");
+require("../inlineReply");
 
 module.exports.run = async (bot, message, args) => {
   let categories;
@@ -65,7 +66,7 @@ module.exports.run = async (bot, message, args) => {
           command.config.category === "Developer" &&
           !owners.includes(message.author.id)
         ) {
-          return message.reply(
+          return message.quote(
             `<:deny:793205689488900136> **help: unknown command '${args[0]}'**`
           );
         } else {
@@ -102,7 +103,7 @@ module.exports.run = async (bot, message, args) => {
           message.channel.send(embed);
         }
       } else {
-        message.reply(
+        message.quote(
           `<:deny:793205689488900136> **help: unknown command '${args[0]}'**`
         );
       }
