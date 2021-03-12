@@ -1,5 +1,3 @@
-require("../inlineReply");
-
 module.exports.run = async (bot, message, args) => {
   function genLicense() {
     let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -21,7 +19,7 @@ module.exports.run = async (bot, message, args) => {
     return `${letterString}${numberString}`;
   }
 
-  message.quote(
+  message.channel.send(
     `Your generated fake license plate is \`${genLicense()}\``
   );
 };
