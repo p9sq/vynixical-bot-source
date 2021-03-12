@@ -1,15 +1,12 @@
 {
   "name": "vynixical",
   "version": "1.0.3",
-  "description": "A cool bot made by p9sq#0001",
+  "description": "A cool bot made by p9sq#0083",
   "main": "shard.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "engines": {
-    "node": "15.x"
-  },
-  "author": "p9sq69#0594",
+  "author": "p9sq#0083",
   "license": "ISC",
   "dependencies": {
     "@extreme_hero/deeptype": "^1.0.1",
