@@ -111,6 +111,9 @@ module.exports.run = async (bot, message, args) => {
       "Guild info",
       message.guild.iconURL({ format: "png", size: 2048, dynamic: true })
     );
+  if (message.guild.banner) {
+    embed.setImage(message.guild.banner);
+  }
   message.channel.send(embed);
 };
 
