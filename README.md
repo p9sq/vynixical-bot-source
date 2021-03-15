@@ -1,4 +1,5 @@
 ## Vynixical
+
 ## A multi-purpose discord bot
 
 - This bot was coded using JavaScript (Discord.js v12)
