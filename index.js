@@ -9,7 +9,6 @@ const eventHandler = require("./structures/event");
 
 const bot = new Discord.Client({
   disableMentions: "everyone",
-  ws: { intents: Discord.Intents.ALL },
 });
 bot.setMaxListeners(0);
 bot.utils = require("./utils");
