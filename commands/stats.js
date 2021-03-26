@@ -1,10 +1,6 @@
 const Discord = require("discord.js");
-const {
-  apiTokens: { ibl },
-  color,
-} = require("../botconfig.json");
-const IBL = require("infinitybots.js");
-const stats = new IBL("725582436477698118", ibl);
+const { color } = require("../botconfig.json");
+const fetch = require("node-fetch");
 
 module.exports.run = async (bot, message, args) => {
   if (message.guild.id !== "758641373074423808")
@@ -14,12 +10,19 @@ module.exports.run = async (bot, message, args) => {
   const botMention = message.mentions.users.first();
   if (!botMention.bot) return message.channel.send("That user isn't a bot!");
   if (!botMention) return message.channel.send("Please mention a bot!");
-  stats.getStats((data) => {
-    const embed = new Discord.MessageEmbed()
-      .setColor(color)
-      .setTitle(`${stats.name} Stats`)
-      .setDescription(
-        `
+  fetch(`https://api.infinitybots.xyz/bot/${botMention}/info`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json)
+    .then((data) => {
+      const embed = new Discord.MessageEmbed()
+        .setColor(color)
+        .setTitle(`${stats.name} Stats`)
+        .setDescription(
+          `
             **Tags:** ${data.tags},
             **Owner:** ${data.owner},
             **Short Description:** ${data.short},
@@ -38,9 +41,9 @@ module.exports.run = async (bot, message, args) => {
             **GitHub:** [GitHub](${data.links.github}),
             **Banner:** [Banner](${data.links.banner})
             `
-      );
-    message.channel.send(embed);
-  });
+        );
+      message.channel.send(embed);
+    });
 };
 
 module.exports.config = {
