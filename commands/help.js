@@ -40,9 +40,10 @@ module.exports.run = async (bot, message, args) => {
       }
       embed.addField(
         "Links",
-        `[Invite](https://discord.com/api/oauth2/authorize?client_id=725582436477698118&permissions=8&scope=bot) | [Support](https://discord.gg/a6sEvf8uZY) | [Website](https://vynixical.com/) - Thanks to ${
-          bot.users.cache.get("767928981399273509").tag
-        } for the website`
+        `[Invite](https://discord.com/api/oauth2/authorize?client_id=725582436477698118&permissions=8&scope=bot) | [Support](https://discord.gg/a6sEvf8uZY) | [Website](https://vynixical.com/)`
+        // `[Invite](https://discord.com/api/oauth2/authorize?client_id=725582436477698118&permissions=8&scope=bot) | [Support](https://discord.gg/a6sEvf8uZY) | [Website](https://vynixical.com/) - Thanks to ${
+        //   bot.users.cache.get("767928981399273509").tag
+        // } for the website`
       );
       embed.setFooter(
         `For more help, do ${
