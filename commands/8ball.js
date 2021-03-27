@@ -25,7 +25,7 @@ module.exports.run = async (bot, message, args) => {
     "Very doubtful.",
     "Without a doubt.",
     "Yes.",
-    "Yes – definitely.",
+    "Yes - definitely.",
     "You may rely on it.",
   ];
   const response = responses[Math.floor(Math.random() * responses.length)];

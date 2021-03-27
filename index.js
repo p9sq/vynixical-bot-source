@@ -53,13 +53,13 @@ bot.on("ready", async () => {
   const status = statuses[Math.floor(Math.random() * statuses.length)];
   bot.user.setPresence({
     activity: { name: status, type: "PLAYING" },
-    status: "idle",
+    status: "dnd",
   });
   setInterval(
     () =>
       bot.user.setPresence({
         activity: { name: status, type: "PLAYING" },
-        status: "idle",
+        status: "dnd",
       }),
     60000
   );
