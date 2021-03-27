@@ -47,8 +47,7 @@ bot.on("ready", async () => {
       botconfig.defaultPrefix
     }help`,
     `Total shards: ${bot.shard.count} | ${botconfig.defaultPrefix}help`,
-    `Visit https://vynixical.com/ | ${botconfig.defaultPrefix}help`,
-    `Almost verified! | ${botconfig.defaultPrefix}help`,
+    `Visit https://vynixical.com/ | ${botconfig.defaultPrefix}help`
   ];
   const status = statuses[Math.floor(Math.random() * statuses.length)];
   bot.user.setPresence({

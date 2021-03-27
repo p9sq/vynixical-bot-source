@@ -38,4 +38,4 @@ Animals
 
 Image
 `changemymind` `clyde` `delete` `enlarge` `gay` `trash` `trigger` `wasted` `ytcomment` <br> <br>
-![](https://i.gyazo.com/2c4b5a20470b7185fc691a0dd6bce183.png)
+![](https://i.gyazo.com/cf5c7d41c7e76a56d556989097513e10.png)
