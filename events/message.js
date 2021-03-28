@@ -62,7 +62,7 @@ module.exports = async (bot, message) => {
                         );
                         if (message.content.match(mentionRegex))
                           message.channel.send(
-                            `My prefix for ${message.guild.name} is \`${res.prefix}\`, Mention works as a prefix to!`
+                            `My prefix for ${message.guild.name} is \`${res.prefix}\`, Mention works as a prefix too!`
                           );
                         const prefix = message.content.match(mentionRegexPrefix)
                           ? message.content.match(mentionRegexPrefix)[0]
