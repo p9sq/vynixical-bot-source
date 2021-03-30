@@ -85,7 +85,7 @@ bot.on("ready", async () => {
           name: "member",
           description: "The member you are mentioning to see when they die",
           type: 6,
-          required: false
+          required: true
         }
       ]
     }
