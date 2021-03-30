@@ -5,11 +5,11 @@ module.exports.run = async (bot, message, args) => {
   const embed = new Discord.MessageEmbed()
     .setDescription(`Intents (\`Presence Intent\` & \`Server Members Intent\`) haven't been whitelisted yet. So don't expect the information provided to be correct.`)
     .setColor(color)
-    .addField("Statistics", `
-    **Users:** ${bot.users.cache.size.toLocaleString()}
-    **Channels:** ${bot.channels.cache.size.toLocaleString()}
-    **Servers:** ${bot.guilds.cache.size.toLocaleString()}
-    **Emojis:** ${bot.emojis.cache.size}
+    .addField("Statistics:", `
+    \u3000 **Users:** ${bot.users.cache.size.toLocaleString()}
+    \u3000 **Channels:** ${bot.channels.cache.size.toLocaleString()}
+    \u3000 **Servers:** ${bot.guilds.cache.size.toLocaleString()}
+    \u3000 **Emojis:** ${bot.emojis.cache.size}
     `);
   message.reply(embed);
 };
