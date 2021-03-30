@@ -75,7 +75,6 @@ bot.on("ready", async () => {
   const current = new Date();
   const giveaways = await Giveaway.find({ endsOn: { $gt: current } });
   await scheduleGiveaways(bot, giveaways);
-  bot.api.applications(bot.user.id).commands("826288834382790727").delete();
 });
 
 bot.login(botconfig.token);
