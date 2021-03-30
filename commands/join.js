@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
       .setTitle("<a:yes:736089080521293894> Success!")
       .setColor("GREEN")
       .setDescription(`Successfully joined the ${channel} voice channel!`);
-    message.channel.send(Embed);
+    message.reply(Embed);
     channel.join();
   }
 };

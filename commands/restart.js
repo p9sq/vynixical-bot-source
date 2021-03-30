@@ -5,15 +5,13 @@ module.exports.run = async (bot, message, args) => {
     return;
   } else {
     try {
-      await message.channel.send(
+      await message.reply(
         `<a:loading:393852367751086090> ${bot.user.tag} is restarting...`
       );
       process.exit();
     } catch (e) {
-      return message.channel.send(
-        `Uh oh, an error has occurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners
-          .map((o) => `**${bot.users.cache.get(o).tag}**`)
-          .join(", or ")} asap.`
+      return message.reply(
+        `**Error while restarting bot:** ${e}`
       );
     }
   }

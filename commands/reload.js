@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
     return;
   } else {
     if (!args[0])
-      return message.channel.send(
+      return message.reply(
         "<:maybe:793205689153093702> **You must input a command name**"
       );
 
@@ -18,11 +18,11 @@ module.exports.run = async (bot, message, args) => {
       const pull = require(`./${command}.js`);
       bot.commands.set(command, pull);
 
-      return message.channel.send(
+      return message.reply(
         `<:allow:793205689753010217> **Successfully reloaded ${args[0].toLowerCase()} command**`
       );
     } catch (error) {
-      return message.channel.send(
+      return message.reply(
         `<:deny:793205689488900136> **Error while reloading ${args[0].toLowerCase()} command**: \`${error}\``
       );
     }

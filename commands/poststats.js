@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
   } else {
     const dbl = new DBL(botconfig.apiTokens.topgg, bot);
 
-    const msg = await message.channel.send(
+    const msg = await message.reply(
       "<a:loading:393852367751086090> | Posting..."
     );
 

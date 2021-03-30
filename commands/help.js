@@ -53,7 +53,7 @@ module.exports.run = async (bot, message, args) => {
       if (!message.guild.me.hasPermission("SEND_MESSAGES")) {
         message.author.send(embed);
       } else {
-        message.channel.send(embed);
+        message.reply(embed);
       }
     });
   } else {
@@ -66,7 +66,7 @@ module.exports.run = async (bot, message, args) => {
           command.config.category === "Developer" &&
           !owners.includes(message.author.id)
         ) {
-          return message.channel.send(
+          return message.reply(
             `<:deny:793205689488900136> **help: unknown command '${args[0]}'**`
           );
         } else {
@@ -103,7 +103,7 @@ module.exports.run = async (bot, message, args) => {
           message.channel.send(embed);
         }
       } else {
-        message.channel.send(
+        message.reply(
           `<:deny:793205689488900136> **help: unknown command '${args[0]}'**`
         );
       }

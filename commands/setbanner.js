@@ -6,11 +6,11 @@ module.exports.run = async (bot, message, args) => {
     return;
   } else {
     if (!args[0])
-      return message.channel.send(
+      return message.reply(
         "<:maybe:793205689153093702> **Please specify a discord attachment url**"
       );
     if (!args[0].startsWith("https://cdn.discordapp.com/"))
-      return message.channel.send(
+      return message.reply(
         "<:maybe:793205689153093702> **That is not a valid discord attachment**"
       );
     banner.findOne({}, (err, img) => {
@@ -19,13 +19,13 @@ module.exports.run = async (bot, message, args) => {
           image: args[0],
         });
         newBanner.save();
-        message.channel.send(
+        message.reply(
           `<:allow:793205689753010217> **Successfully set the banner to <${args[0]}>**`
         );
       } else {
         img.image = args[0];
         img.save();
-        message.channel.send(
+        message.reply(
           `<:allow:793205689753010217> **Successfully set the banner to <${args[0]}>**`
         );
       }

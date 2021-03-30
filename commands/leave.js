@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
       return message.reply(
         "Please provide a voice channel id, not a text channel id!"
       );
-    message.channel.send(
+    message.reply(
       `<:check:314349398811475968> Successfully left the <#${channelID}> voice channel!`
     );
     channelID.leave();

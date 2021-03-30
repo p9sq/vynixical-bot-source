@@ -87,7 +87,7 @@ module.exports = async (bot, message) => {
                           bot.commands.get(bot.aliases.get(cmd));
                         if (command)
                           command.run(bot, message, args).catch((err) => {
-                            return message.channel.send(
+                            return message.reply(
                               `Uh oh, an error has occurred while running the command. Error: **${err}**. Make sure to report this to ${botconfig.owners
                                 .map((o) => `**${bot.users.cache.get(o).tag}**`)
                                 .join(", or ")} asap.`
