@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
     process
       .exec(args.join(" "), (error, stdout) => {
         const response = error || stdout;
-        msg.edit(response, { code: "asciidoc", split: "\n" });
+        msg.edit(`\`\`\`asciidoc\n${response}\n\n\`\`\``);
       })
       .catch((err) => message.reply(`**Error while executing:** ${err}`));
 

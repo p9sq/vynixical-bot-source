@@ -2,7 +2,7 @@ const { stripIndents } = require("common-tags");
 const mongoose = require("mongoose");
 
 module.exports.run = async (bot, message, args) => {
-  const msg = await message.channel.send(
+  const msg = await message.reply(
     "<a:Issue:748716275705839786> | Pinging..."
   );
 
