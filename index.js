@@ -30,6 +30,8 @@ process.on("uncaughtExceptionMonitor", (error) =>
 );
 
 bot.on("ready", async () => {
+  bot.api.applications(bot.user.id).commands("826535264545275995").delete();
+  bot.api.applications(bot.user.id).commands("826535266432581722").delete();
   console.log(`[${utc().format("HH:mm:ss")}] Logged in as ${bot.user.tag}`);
   commandHandler.run(bot);
   eventHandler.run(bot);
@@ -75,55 +77,6 @@ bot.on("ready", async () => {
   const current = new Date();
   const giveaways = await Giveaway.find({ endsOn: { $gt: current } });
   await scheduleGiveaways(bot, giveaways);
-  
-  bot.api.applications(bot.user.id).commands.post({
-    data: {
-      name: "ping",
-      description: "Shows the latency to the Discord API"
-    }
-  });
-  
-  bot.api.applications(bot.user.id).commands.post({
-    data: {
-      name: "icon",
-      description: "Shows the server icon in an embed"
-    }
-  });
-  
-  bot.ws.on('INTERACTION_CREATE', async(interaction) => {
-    const command = interaction.data.name.toLowerCase();
-    
-    if(command === "ping") {
-      bot.api.applications(interaction.id, interaction.token).callback.post({
-        data: {
-          type: 4,
-          content: `Latency to the Discord API is \`${bot.ws.ping}ms\``
-        }
-      });
-    }
-    
-    if(command === "icon") {
-      const embed = new Discord.MessageEmbed()
-        .setTitle(`${interaction.guild.name} icon`)
-        .setColor(botconfig.color)
-        .setImage(interaction.guild.iconURL({format: "png", size: 2048, dynamic: true}));
-      
-      bot.api.applications(interaction.id, interaction.token).callback.post({
-        data: {
-          type: 4,
-          content: await createAPIMessage(interaction, embed)
-        }
-      });
-    }
-  });
 });
-
-async function createAPIMessage(interaction, content) {
-  const apiMessage = await Discord.APIMessage.create(bot.channels.resolve(interaction.channel_id), content)
-    .resolveData()
-    .resolveFiles();
-  
-  return { ...apiMessage.data, files: apiMessage.files };
-}
 
 bot.login(botconfig.token);

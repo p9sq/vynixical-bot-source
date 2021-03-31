@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("Statistics:", `\n\u3000 **Users:** ${bot.users.cache.size.toLocaleString()}
     \u3000 **Channels:** ${bot.channels.cache.size.toLocaleString()}
     \u3000 **Servers:** ${bot.guilds.cache.size.toLocaleString()}
-    \u3000 **Emojis:** ${bot.emojis.cache.size}
+    \u3000 **Emojis:** ${bot.emojis.cache.size.toLocaleString()}
     `);
   message.reply(embed);
 };
