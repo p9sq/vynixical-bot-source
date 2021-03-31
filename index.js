@@ -30,8 +30,6 @@ process.on("uncaughtExceptionMonitor", (error) =>
 );
 
 bot.on("ready", async () => {
-  bot.api.applications(bot.user.id).commands("826535264545275995").delete();
-  bot.api.applications(bot.user.id).commands("826535266432581722").delete();
   console.log(`[${utc().format("HH:mm:ss")}] Logged in as ${bot.user.tag}`);
   commandHandler.run(bot);
   eventHandler.run(bot);
