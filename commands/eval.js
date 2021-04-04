@@ -1,6 +1,6 @@
 const botconfig = require("../botconfig.json");
-const { post } = require("node-superfetch");
 const { inspect } = require("util");
+const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
   if (!botconfig.owners.includes(message.author.id)) {
@@ -29,10 +29,8 @@ module.exports.run = async (bot, message, args) => {
           }ms*\n\`\`\`js\n${res}\n\`\`\``
         );
       } else {
-        const { body } = await post("https://hastebin.com/documents").send(res);
-        await msg.reply(
-          `The output was too big. I have posted it https://hastebin.com/${body.key}.js`
-        );
+        const output = new Discord.MessageAttachment(Buffer.from(res), "output.txt");
+        await message.reply(output);
       }
     } catch (err) {
       return message.reply(
