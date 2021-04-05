@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 module.exports.run = async (bot, message, args) => {
   const msg = await message.reply(
-    "<a:Issue:748716275705839786> | Pinging..."
+    "<a:Issue:748716275705839786> | Pinging...", { allowedMentions: { repliedUser: false }}
   );
 
   const msgSpeed =
