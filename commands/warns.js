@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
   } else {
     const user = message.mentions.members.last();
     if (!user)
-      return message.reply("You must mention a user to see their warns!");
+      return message.reply("You must mention a user to see their warns!", { allowedMentions: { repliedUser: false }});
     warns.find(
       { Guild: message.guild.id, User: user.id },
       async (err, data) => {
