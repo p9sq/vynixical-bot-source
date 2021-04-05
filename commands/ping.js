@@ -20,14 +20,19 @@ module.exports.run = async (bot, message, args) => {
     await mongoose.connection.db.admin().ping();
     const end = Date.now() - start;
 
-    msg.edit(stripIndents`<a:IssueFixed:748716312058134588> | **Pong!**
+    msg.edit(
+      stripIndents`<a:IssueFixed:748716312058134588> | **Pong!**
         \`\`\`yaml
         Message: ${msgSpeed}ms
         Websocket: ${websocketPing}ms
         Database: ${end}ms
         Your Ping: ${userPing}ms
         Current Shard Id: #${currentShard}
-        \`\`\``);
+        \`\`\``,
+      {
+        allowedMentions: { repliedUser: false },
+      }
+    );
   }
 };
 
