@@ -1,8 +1,8 @@
 const fetch = require("node-fetch");
 
 module.exports.run = async (bot, message, args) => {
-  if (!args.join(" "))
-    return message.channel.send("Please specify a search query!");
+  const query = args.join(" ");
+  if (!query) return message.channel.send("Please specify a search query!");
   const url = `https://djsdocs.sorta.moe/v2/embed?src=stable&q=${encodeURIComponent(
     query
   )}`;
@@ -11,11 +11,8 @@ module.exports.run = async (bot, message, args) => {
   const embed = await docFetch.json();
 
   if (!embed || embed.error) {
-    return message.reply(
-      `"${query}" couldn't be located within the discord.js documentation! (<https://discord.js.org/>)`,
-      {
-        allowedMentions: { repliedUser: false },
-      }
+    return message.channel.send(
+      `<:maybe:793205689153093702> **"${query}" couldn't be located within the discord.js documentation!** (<https://discord.js.org/>)`
     );
   }
 
