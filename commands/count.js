@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
     \u3000 **Servers:** ${bot.guilds.cache.size.toLocaleString()}
     \u3000 **Emojis:** ${bot.emojis.cache.size.toLocaleString()}
     `);
-  message.reply(embed);
+  message.reply(embed, { allowedMentions: { repliedUser: false }});
 };
 
 module.exports.config = {
