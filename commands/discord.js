@@ -3,10 +3,39 @@ const fetch = require("node-fetch");
 module.exports.run = async (bot, message, args) => {
   if (!args.join(" "))
     return message.channel.send("Please specify a search query!");
-  const query = args[0];
-  fetch(`https://djsdocs.sorta.moe/v2/embed?src=stable&q=${query}`)
-    .then((res) => res.json())
-    .then((json) => message.channel.send({ embed: json }));
+  const url = `https://djsdocs.sorta.moe/v2/embed?src=stable&q=${encodeURIComponent(
+    query
+  )}`;
+
+  const docFetch = await fetch(url);
+  const embed = await docFetch.json();
+
+  if (!embed || embed.error) {
+    return message.reply(
+      `"${query}" couldn't be located within the discord.js documentation! (<https://discord.js.org/>)`,
+      {
+        allowedMentions: { repliedUser: false },
+      }
+    );
+  }
+
+  const msg = await message.channel.send({ embed });
+  msg.react("🗑");
+
+  let react;
+  try {
+    react = await msg.awaitReactions(
+      (reaction, user) =>
+        reaction.emoji.name === "🗑" && user.id === message.author.id,
+      { max: 1, time: 10000, errors: ["time"] }
+    );
+  } catch (error) {
+    msg.reactions.removeAll();
+  }
+
+  if (react && react.first()) msg.delete();
+
+  return message;
 };
 
 module.exports.config = {
@@ -16,5 +45,5 @@ module.exports.config = {
   category: "Info",
   example: "discordjs ClientUser",
   accessableby: "Everyone",
-  aliases: ["djs-docs"],
+  aliases: ["djs-docs", "docs"],
 };

@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
       const stop = process.hrtime(start);
       const res = bot.utils.clean(inspect(evaled, { depth: 0 }));
       if (res.length < 2000) {
-        await msg.reply(
+        await message.reply(
           `*Executed in ${stop[0] > 0 ? `${stop[0]}s ` : ""}${
             stop[1] / 1e6
           }ms*\n\`\`\`js\n${res}\n\`\`\``
