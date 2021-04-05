@@ -53,7 +53,7 @@ module.exports.run = async (bot, message, args) => {
       if (!message.guild.me.hasPermission("SEND_MESSAGES")) {
         message.author.send(embed);
       } else {
-        message.reply(embed, { allowedMentions: { repliedUser: false }});
+        message.channel.send(embed);
       }
     });
   } else {
