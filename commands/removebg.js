@@ -23,14 +23,14 @@ module.exports.run = async (bot, message, args) => {
         },
         encoding: null,
       },
-      function (error, response, body) {
-        message.channel.send("Processing...");
-        if (error) return message.channel.send(`Request failed: \`${error}\``);
+      async function (error, response, body) {
+        const msg = await message.reply("Processing...", { allowedMentions: { repliedUser: false }});
+        if (error) return msg.edit(`Request failed: \`${error}\``);
         if (response.statusCode != 200)
-          return message.channel.send(
+          return msg.edit(
             `Error: \`${(response.statusCode, body.toString("utf8"))}\``
           );
-        message.reply(
+        msg.edit(
           "Done! The background has been successfully removed!",
           new Discord.MessageAttachment(body, "no-bg.png")
         );
