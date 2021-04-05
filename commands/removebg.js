@@ -32,7 +32,8 @@ module.exports.run = async (bot, message, args) => {
           );
         message.reply(
           "Done! The background has been successfully removed!",
-          new Discord.MessageAttachment(body, "no-bg.png"), { allowedMentions: { repliedUser: false }}
+          new Discord.MessageAttachment(body, "no-bg.png"),
+          { allowedMentions: { repliedUser: false } }
         );
       }
     );

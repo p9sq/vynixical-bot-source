@@ -53,7 +53,7 @@ module.exports.run = async (bot, message, args) => {
       if (!message.guild.me.hasPermission("SEND_MESSAGES")) {
         message.author.send(embed);
       } else {
-        message.channel.send(embed);
+        message.reply(embed, { allowedMentions: { repliedUser: false } });
       }
     });
   } else {
@@ -67,7 +67,8 @@ module.exports.run = async (bot, message, args) => {
           !owners.includes(message.author.id)
         ) {
           return message.reply(
-            `<:deny:793205689488900136> **help: unknown command '${args[0]}'**`, { allowedMentions: { repliedUser: false }}
+            `<:deny:793205689488900136> **help: unknown command '${args[0]}'**`,
+            { allowedMentions: { repliedUser: false } }
           );
         } else {
           if (command.config.name === "removebg") {
@@ -104,7 +105,8 @@ module.exports.run = async (bot, message, args) => {
         }
       } else {
         message.reply(
-          `<:deny:793205689488900136> **help: unknown command '${args[0]}'**`, { allowedMentions: { repliedUser: false }}
+          `<:deny:793205689488900136> **help: unknown command '${args[0]}'**`,
+          { allowedMentions: { repliedUser: false } }
         );
       }
     }

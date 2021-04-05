@@ -4,7 +4,10 @@ const { googleKeys, color } = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
   const name = args.join(" ");
-  if (!name) return message.reply("Unknown channel name!", { allowedMentions: { repliedUser: false }});
+  if (!name)
+    return message.reply("Unknown channel name!", {
+      allowedMentions: { repliedUser: false },
+    });
 
   const channel = await fetch
     .get(

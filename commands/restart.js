@@ -10,9 +10,7 @@ module.exports.run = async (bot, message, args) => {
       );
       process.exit();
     } catch (e) {
-      return message.reply(
-        `**Error while restarting bot:** ${e}`
-      );
+      return message.reply(`**Error while restarting bot:** ${e}`);
     }
   }
 };

@@ -3,14 +3,19 @@ const { color } = require("../botconfig.json");
 
 module.exports.run = async (bot, message, args) => {
   const embed = new Discord.MessageEmbed()
-    .setDescription(`Intents (\`Presence Intent\` & \`Server Members Intent\`) haven't been whitelisted yet. So don't expect the information provided to be correct.`)
+    .setDescription(
+      `Intents (\`Presence Intent\` & \`Server Members Intent\`) haven't been whitelisted yet. So don't expect the information provided to be correct.`
+    )
     .setColor(color)
-    .addField("Statistics:", `\n\u3000 **Users:** ${bot.users.cache.size.toLocaleString()}
+    .addField(
+      "Statistics:",
+      `\n\u3000 **Users:** ${bot.users.cache.size.toLocaleString()}
     \u3000 **Channels:** ${bot.channels.cache.size.toLocaleString()}
     \u3000 **Servers:** ${bot.guilds.cache.size.toLocaleString()}
     \u3000 **Emojis:** ${bot.emojis.cache.size.toLocaleString()}
-    `);
-  message.reply(embed, { allowedMentions: { repliedUser: false }});
+    `
+    );
+  message.reply(embed, { allowedMentions: { repliedUser: false } });
 };
 
 module.exports.config = {

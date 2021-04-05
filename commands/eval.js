@@ -29,7 +29,10 @@ module.exports.run = async (bot, message, args) => {
           }ms*\n\`\`\`js\n${res}\n\`\`\``
         );
       } else {
-        const output = new Discord.MessageAttachment(Buffer.from(res), "output.js");
+        const output = new Discord.MessageAttachment(
+          Buffer.from(res),
+          "output.js"
+        );
         await message.reply(output);
       }
     } catch (err) {

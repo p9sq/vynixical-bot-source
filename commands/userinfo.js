@@ -27,7 +27,10 @@
 // };
 
 module.exports.run = async (bot, message, args) => {
-  return message.reply("Hey there. My intents haven't been whitelisted yet. So some of these commands/events/features wont function properly. If you think this is an error/issuel, feel free to DM my developer (p9sq#2041). Sorry for the inconvenience, I hope you understand.", { allowedMentions: { repliedUser: false }});
+  return message.reply(
+    "Hey there. My intents haven't been whitelisted yet. So some of these commands/events/features wont function properly. If you think this is an error/issuel, feel free to DM my developer (p9sq#2041). Sorry for the inconvenience, I hope you understand.",
+    { allowedMentions: { repliedUser: false } }
+  );
   // const user =
   //   message.mentions.users.last() ||
   //   message.author ||
