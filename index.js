@@ -71,7 +71,8 @@ bot.on("ready", async () => {
       console.log(
         `[${utc().format("HH:mm:ss")}] Successfully connected to MongoDB`
       )
-    );
+    )
+    .catch(err => console.log(`[${utc().format("HH:mm:ss")}] Mongoose Connection Error: ${err}`))
   const current = new Date();
   const giveaways = await Giveaway.find({ endsOn: { $gt: current } });
   await scheduleGiveaways(bot, giveaways);
