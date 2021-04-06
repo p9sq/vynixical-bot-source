@@ -64,7 +64,7 @@ bot.on("ready", async () => {
   );
   mongoose
     .connect(
-      "mongodb+srv://db-user:db-password@vynixical-db.0f3pi.mongodb.net/Data?retryWrites=true&w=majority",
+      "mongodb+srv://vynixical-user:p7su37UJ08jZzBq6@vynixical-db.0f3pi.mongodb.net/Data",
       { useNewUrlParser: true, useUnifiedTopology: true }
     )
     .then(
