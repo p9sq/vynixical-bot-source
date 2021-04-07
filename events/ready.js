@@ -1,7 +1,7 @@
 const botconfig = require("../botconfig.json");
 const mongoose = require("mongoose");
 const { utc } = require("moment");
-const { scheduleGiveaways } = require("./utils");
+const { scheduleGiveaways } = require("../utils");
 const Giveaway = require("../models/giveaway");
 
 module.exports = async (bot) => {
