@@ -1,6 +1,8 @@
 const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const { utc } = require("moment");
+const commandHandler = require("./structures/command");
+const eventHandler = require("./structures/event");
 
 const bot = new Discord.Client({
   disableMentions: "everyone",
@@ -23,5 +25,8 @@ process.on("uncaughtException", (error) =>
 process.on("uncaughtExceptionMonitor", (error) =>
   console.log(`[${utc().format("HH:mm:ss")}] ${error}`)
 );
+
+commandHandler.run(bot);
+eventHandler.run(bot);
 
 bot.login(botconfig.token);

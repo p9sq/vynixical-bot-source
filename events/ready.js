@@ -3,13 +3,9 @@ const mongoose = require("mongoose");
 const { utc } = require("moment");
 const { scheduleGiveaways } = require("./utils");
 const Giveaway = require("./models/giveaway");
-const commandHandler = require("./structures/command");
-const eventHandler = require("./structures/event");
 
 module.exports = async (bot) => {
   console.log(`[${utc().format("HH:mm:ss")}] Logged in as ${bot.user.tag}`);
-  commandHandler.run(bot);
-  eventHandler.run(bot);
   const statuses = [
     `Connected to ${bot.guilds.cache.size.toLocaleString()} servers | ${
       botconfig.defaultPrefix
