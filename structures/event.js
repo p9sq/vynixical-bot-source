@@ -1,20 +1,20 @@
-const fs = require("fs");
 const { utc } = require("moment");
+const { readdirSync } = require("fs");
+const { join } = require("path");
+const filePath = join(__dirname, "..", "events");
 
-module.exports.run = async (bot) => {
-  fs.readdir("./events/", (err, files) => {
-    if (err) return console.error;
-    files.forEach((file) => {
-      if (!file.endsWith(".js")) return;
-      const evt = require(`../events/${file}`);
-      const evtName = file.split(".")[0];
-      bot.events.set(evtName, evt);
-      bot.on(evtName, evt.bind(null, bot));
-    });
-    console.log(
-      `[${utc().format("HH:mm:ss")}] Successfully loaded ${
-        bot.events.size
-      } events`
-    );
-  });
+module.exports.run = (bot) => {
+  const eventFiles = readdirSync(filePath);
+  for (const eventFile of eventFiles) {
+    const event = require(`${filePath}/${eventFile}`);
+    const eventName = eventFile.split(".").shift();
+    bot.events.set(eventName, event);
+    bot.on(eventName, event.bind(null, bot));
+  }
+
+  console.log(
+    `[${utc().format("HH:mm:ss")}] Successfully loaded ${
+      bot.commands.size
+    } commands`
+  );
 };

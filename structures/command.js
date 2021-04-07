@@ -1,27 +1,25 @@
-const fs = require("fs");
 const { utc } = require("moment");
+const { readdirSync } = require("fs");
+const { join } = require("path");
+const filePath = join(__dirname, "..", "commands");
 
-module.exports.run = async (bot) => {
-  fs.readdir("./commands/", (err, files) => {
-    if (err) console.log(err);
+module.exports.run = (bot) => {
+  for (const cmd of readdirSync(filePath).filter((cmd) =>
+    cmd.endsWith(".js")
+  )) {
+    const props = require(`${filePath}/${cmd}`);
+    bot.commands.set(props.config.name, props);
+    bot.categories.set(props.config.category, props);
 
-    const jsfile = files.filter((f) => f.split(".").pop() === "js");
-    if (jsfile.length <= 0) {
-      return console.log("Couldn't Find Commands");
-    }
+    if (props.config.aliases)
+      for (const alias of props.config.aliases) {
+        bot.aliases.set(alias, props);
+      }
+  }
 
-    jsfile.forEach((f, i) => {
-      const pull = require(`../commands/${f}`);
-      bot.commands.set(pull.config.name, pull);
-      bot.categories.set(pull.config.category, pull);
-      pull.config.aliases.forEach((alias) => {
-        bot.aliases.set(alias, pull.config.name);
-      });
-    });
-    console.log(
-      `[${utc().format("HH:mm:ss")}] Successfully loaded ${
-        bot.commands.size
-      } commands`
-    );
-  });
+  console.log(
+    `[${utc().format("HH:mm:ss")}] Successfully loaded ${
+      bot.commands.size
+    } commands`
+  );
 };
