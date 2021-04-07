@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
     \u3000 **Emojis:** ${bot.emojis.cache.size.toLocaleString()}
     `
     );
-  message.reply(embed, { allowedMentions: { repliedUser: false } });
+  message.reply(embed);
 };
 
 module.exports.config = {
