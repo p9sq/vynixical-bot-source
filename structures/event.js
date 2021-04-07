@@ -14,7 +14,7 @@ module.exports.run = (bot) => {
 
   console.log(
     `[${utc().format("HH:mm:ss")}] Successfully loaded ${
-      bot.commands.size
+      bot.events.size
     } commands`
   );
 };
