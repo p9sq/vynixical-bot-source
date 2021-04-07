@@ -1,8 +1,8 @@
-const botconfig = require("./botconfig.json");
+const botconfig = require("../botconfig.json");
 const mongoose = require("mongoose");
 const { utc } = require("moment");
 const { scheduleGiveaways } = require("./utils");
-const Giveaway = require("./models/giveaway");
+const Giveaway = require("../models/giveaway");
 
 module.exports = async (bot) => {
   console.log(`[${utc().format("HH:mm:ss")}] Logged in as ${bot.user.tag}`);
