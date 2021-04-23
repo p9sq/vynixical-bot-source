@@ -9,11 +9,9 @@
 
 module.exports.run = async (bot, message, args) => {
   return message.reply(
-    `Hey there. My intents haven't been whitelisted yet. So some of these commands/events/features wont function properly. If you think this is an error/issue, feel free to DM my developer (${
-      bot.users.cache.get(require("../botconfig.json").owners[0]).tag
-    }). Sorry for the inconvenience, I hope you understand.`,
+    `Hey there. My intents haven't been whitelisted yet. So some of these commands/events/features wont function properly. If you think this is an error/issue, feel free to DM my developer (${bot.users.cache.get(require("../botconfig.json").owners[0]).tag}). Sorry for the inconvenience, I hope you understand.`,
     { allowedMentions: { repliedUser: false } }
-  );
+);
   // const core = os.cpus()[0];
   // const embed = new Discord.MessageEmbed();
   // guildprefix.findOne({ guildID: message.guild.id }, (err, data) => {
