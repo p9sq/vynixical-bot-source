@@ -1,9 +1,8 @@
 const { ShardingManager } = require("discord.js");
-const botconfig = require("./botconfig.json");
 const { utc } = require("moment");
 
 const shards = new ShardingManager("./index.js", {
-  token: botconfig.token,
+  token: process.env.token,
   totalShards: "auto",
 });
 
