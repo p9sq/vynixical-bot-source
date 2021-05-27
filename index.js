@@ -1,4 +1,3 @@
-const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const { utc } = require("moment");
 const commandHandler = require("./structures/command");
@@ -29,4 +28,4 @@ process.on("uncaughtExceptionMonitor", (error) =>
 commandHandler.run(bot);
 eventHandler.run(bot);
 
-bot.login(botconfig.token);
+bot.login(process.env.token);

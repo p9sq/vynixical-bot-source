@@ -125,8 +125,8 @@ function clean(text) {
       .replace(/`/g, `\`${String.fromCharCode(8203)}`)
       .replace(/@/g, `@${String.fromCharCode(8203)}`)
       .replace(
-        new RegExp(botconfig.token, "gi"),
-        "*".repeat(botconfig.token.length)
+        new RegExp(process.env.token, "gi"),
+        "*".repeat(process.env.token.length)
       )
       .replace(
         new RegExp(botconfig.googleKeys[0], "gi"),
