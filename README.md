@@ -20,7 +20,7 @@
     "" // YouTube stats command api key
   ],
   "color": "", // Embed color
-  "owners": ["", ""],
+  "owners": ["", ""], // Make sure to add your own id to this (You can choose to add another user you trust, for example, a friend's discord id. (If you don't want additional owners, then remove the `, ""` ))
   "apiTokens": { // Don't include these if your bot isn't going to be in any bot lists
     "ibl": "",
     "dbots": "",
