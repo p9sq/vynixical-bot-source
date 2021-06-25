@@ -22,13 +22,13 @@
   "color": "", // Embed color
   "owners": ["", ""], // Make sure to add your own id to this (You can choose to add another user you trust, for example, a friend's discord id. (If you don't want additional owners, then remove the `, ""` ))
   "apiTokens": { // Don't include these if your bot isn't going to be in any bot lists
-    "ibl": "",
-    "dbots": "",
-    "vultrex": "",
-    "topgg": "",
-    "fates": "",
-    "cyclone": "",
-    "matrix": ""
+    "ibl": "", // Infinity Bot List
+    "dbots": "", // Dbots.co
+    "vultrex": "", // Vultrex Bot List (Deleted)
+    "topgg": "", // Top.gg
+    "fates": "", // Fates list
+    "cyclone": "", // Cyclone Bot List
+    "matrix": "" // Matrix Bots
   }
 }
 ```
