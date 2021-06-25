@@ -1,41 +1,39 @@
-## Vynixical
+## Install
+1. Press `Code` and then press `Download ZIP`
+2. Extract it where ever you like
 
-## A multi-purpose discord bot
-
-- This bot was coded using JavaScript (Discord.js v12)
-
-- If you want to report a bug / ask a question, make sure to join the bots support server!
-
-- The bots default prefix is `??` but the prefix can be changed through a command.
-
-- This bot has heaps of commands to use!
-
-- If you want to be able to level up using this bot, just use `??enablelevel`
-
-- For more help, do `??help`
-
-## Commands:
-
-Here are all of the available command categories, for more help, do `??help <command>`
-
-Fun
-`8ball` `ascii` `avatar` `base64` `binary` `clap` `coinflip` `emoji` `emojify` `hack` `howgay` `hug` `invite` `joke` `lyrics` `meme` `pat` `ping` `reverse` `roledice` `rps` `say` `serverinvite` `webhook` `wink`
-
-Moderation
-`addrole` `announce` `ban` `clear` `createrole` `editsuggestion` `create` `hackban` `kick` `lock` `mute` `removerole` `tempmute` `unban` `unmute` `vote` `warn` `warns`
-
-Config
-`antiswear` `autoresponse` `disablemute` `disablelevel` `disablelvlch` `disablewelchannel` `disablewelimg` `disableweltxt` `enablelevel` `enablewelimg` `leavechannel` `leavemsg` `levelchannel` `memberrole` `resetwarns` `setlogs` `setmute` `setprefix ` `unantiswear` `disablelogs` `welchannel` `welmsg`
-
-Economy
-`bal` `beg` `rank`
-
-Info
-`botinfo` `botlists` `calculate` `canvacord` `cat-fact` `changelogs` `channelinfo` `corona` `discordjs` `discrim` `dog-fact` `emojiinfo` `fox-fact` `help` `mcserverinfo` `roleinfo` `serverinfo` `servers` `settings` `snipe` `stats` `uptime` `urban` `user` `userinfo` `ytstats`
-
-Animals
-`cat` `dog` `fox` `red-panda`
-
-Image
-`changemymind` `clyde` `delete` `enlarge` `gay` `trash` `trigger` `wasted` `ytcomment` <br> <br>
-![](https://i.gyazo.com/cf5c7d41c7e76a56d556989097513e10.png)
+## Setup
+1. Create the bot app
+2. Convert it to a bot
+3. Enable both intents
+4. Come back to this repository
+5. Rename `example.env` to `.env`
+6. Go to `.env` and replace the part where it says `imagine` with the bots token
+7. Create `botconfig.json` with this inside:
+```js
+ {
+  "defaultPrefix": "", // Default bot prefix
+  "mongoURI": "", // Mongoose Database (MongoDB/MongoURI) connection string
+  "googleKeys": [ // Required for some commands
+    "", // Google command api key
+    "" // YouTube stats command api key
+  ],
+  "color": "", // Embed color
+  "owners": ["", ""],
+  "apiTokens": { // Don't include these if your bot isn't going to be in any bot lists
+    "ibl": "",
+    "dbots": "",
+    "vultrex": "",
+    "topgg": "",
+    "fates": "",
+    "cyclone": "",
+    "matrix": ""
+  }
+}
+```
+4. Fill in the variables
+5. Invite your bot to your server
+6. Open the command prompt
+7. CD into the bot's folder
+8. run `node .`
+9. Now go to your server and run a command and it should work 100%
