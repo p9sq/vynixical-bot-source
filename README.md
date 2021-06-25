@@ -1,6 +1,7 @@
 ## Install
 1. Press `Code` and then press `Download ZIP`
 2. Extract it where ever you like
+3. Open it and run `npm install` or `npm i`
 
 ## Setup
 1. Create the bot app
