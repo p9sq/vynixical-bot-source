@@ -14,7 +14,7 @@
   "dependencies": {
     "@extreme_hero/deeptype": "^1.0.1",
     "@k3rn31p4nic/google-translate-api": "^1.1.1",
-    "axios": "^0.19.2",
+    "axios": ">=0.21.1",
     "canvacord": "^5.0.8",
     "canvas": "^2.7.0",
     "common-tags": "^1.8.0",
